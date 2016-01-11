@@ -590,6 +590,7 @@ input {
 
 .carousel-caption {
     z-index: 10;
+
 }
 
 .carousel-inner > .item > img {
@@ -607,8 +608,10 @@ input {
 
 }
 .carousel-caption-title{
-    color:#fff !important;
-    background-color: rgba(0,0,0,0.8);
+    border: 10px solid hsla(0,0%,100%,.5);
+    background: white;
+    background-clip: padding-box;
+
 }
 /***** main section css styles*/
 

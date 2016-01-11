@@ -73,7 +73,7 @@ if (isset($_GET['id'])) {
     });
 </script>
 <?php include 'top-menu.php'; ?>
-<div class="main">
+<div class="mai">
     <div class="title"><a href="../index.html"> صفحه اصلی </a> » <a href="../articles.php"> مقالات </a>
         <?php
         if ($n == 1) {
