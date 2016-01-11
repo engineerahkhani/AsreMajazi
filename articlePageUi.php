@@ -1,20 +1,79 @@
+<?php include 'config.php';
+include 'functions.php';
+$n = 0;
+$type = 'all';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $n = getnumrows('article', 'id', $id);
+    if ($n == 1) {
+        $article = mysql_fetch_array(mysql_query("select * from `article` where `id`='" . $id . "'"));
+        $type = 'art';
+        $v = $article['view'];
+        ++$v;
+        mysql_query("UPDATE `article` SET `view`='" . $v . "' WHERE `id`='" . $id . "'");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
-    <title>article</title>
+    <title><?php
+    if ($n == 1) {
+        echo "عصر مجازی  » " . strip_tags($article['title']);
+    } else {
+        echo "مقالات | Articles";
+    }
+    ?></title>
+    <meta name="description" content="<?php
+    if ($n == 1) {
+        echo "عصر مجازی  » " . strip_tags($article['title']);
+    } else {
+        echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
+    }
+    ?>"/>
+    <meta name="keywords" content="<?php
+    if ($n == 1) {
+        echo "عصر مجازی  » " . strip_tags($article['sum']);
+    } else {
+        echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
+    }
+    ?>"/>
+    <link rel="stylesheet" type="text/css" href="css/hoverex-all.css" media="all"/>
     <link href="css/style2.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
-    <link href="css/bootstrap-rtl.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 </head>
 <body>
-<div class="container">
-    <!--header section -->
-    <div id="header">
-        header
-    </div>
-    <!--head end-->
+<div id="wait" class="wait1"><img src="img/wait.gif"/></div>
+<script>
+    $(document).ready(function () {
+        window.setTimeout(function () {
+            $('#wait').removeClass('wait1').addClass('wait0');
+            var time = 500;
+            $('.art-li').each(function () {
+                var $this = $(this);
+
+                function delayed() {
+                    $this.css('display', 'inline-block');
+                    $this.addClass('box a_normal').addClass('fadeInUp');
+                }
+
+                setTimeout(delayed, time);
+                time += 500;
+            });
+        }, 1000)
+        $(".main").fadeIn('slow');
+
+
+    });
+</script>
+<?php include 'top-menu.php'; ?>
+<!--head end-->
+<div class="container marginTop">
+
     <!--article section-->
     <div id="articleSection">
         <div class="row ">
@@ -28,6 +87,11 @@
                                 <span class="fa fa-2x fa-folder-open-o"></span>
                                 <span><a href="#">صفحه اصلی</a> <span class="divider">/</span></span>
                                 <span><a href="#">مقالات</a> <span class="divider"></span></span>
+                                <span><a href="#"> <?php
+                                        if ($n == 1) {
+                                            echo "  » " . strip_tags($article['title']);
+                                        }
+                                        ?></a> <span class="divider"></span></span>
 
                             </div>
                         </div>
@@ -92,24 +156,24 @@
                     <div class="row">
                         <div class="col-sm-8">
                             <div id="articles">
-                                <div class="col-sm-6">
-                                    <div><h4>نت فیلیکس فیلتر شد</h4></div>
-                                    <div><p>دسترسی به سایت نت فیلیکس تا روز چهارشنبه روی ایرانیان بسته بود و مسئولان این سایت آمریکایی دسترسی کاربران ایرانی را برای تماشای فیلم‌های آن مسدود کرده بودند.
-                                        امروز این سایت در ایران فیلتر شد.</p></div>
-                                    <div id="articleProperties">
-                                        <span><span class="fa fa-user">&nbsp;احمد حسین خانی </span></span>
-                                        <span><span class="fa fa-clock-o">&nbsp;دی ماه 94</span></span>
-
-
-                                        <span> &nbsp; <span class="fa fa-eye "><span class="badge">1</span></span></span>
-
-
+                                <div class="col-sm-12">
+                                    <?php
+                                    $grp2 = mysql_query("select * from article");
+                                    while ($grp = mysql_fetch_array($grp2)) {
+                                        echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
+                                        echo "<a href='#'> <h4>" . $grp['title'] . "</h4></a>";
+                                        echo "<div> <p>" . $grp['sum'] . "</p></div>";
+                                        echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
+                                        echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
+                                        echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
+                                        echo " <hr>";
+                                    }
+                                    ?>
                                     </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img id="articleImge" src="img/ar2.jpg" class="img-responsive">
-                                </div>
-
+<!--                                <div class="col-sm-6">-->
+<!--                                   -->
+<!--<!--                                    <img id="articleImge" src="img/ar2.jpg" class="img-responsive">-->-->
+<!--                                </div>-->
                             </div>
                             <hr>
 
@@ -132,7 +196,7 @@
                                 <hr>
                                 <div class="list-group">
                                     <a href="#" class="list-group-item active"><span class="count">33</span>همه مقالات
-                                    </a>
+                                     </a>
 
                                     <div><a href="#" class="list-group-item " data-toggle="collapse"
                                             data-target="#demo">
@@ -160,12 +224,12 @@
                                     <div class="panel-heading"><span class="fa fa-star-o"></span>&nbsp; محبوبترین مقالات </div>
                                     <div class="panel-body">
                                         <ol>
-                                           <a href="#"> <li>اتورهای جدید اینترنت تا دو ماه آینده</li></a>
-                                            <li>بازدید از این 8 سایت هوش‌تان را افزایش می‌دهد</li>
-                                            <li>نت فیلیکس فیلتر شد</li>
-                                            <li> برخی از خبرگزاری‌ها و رسانه‌ها خبرهایی را مبنی بر عدم نظارت ای</li>
-                                            <li> برخی از خبرگزاری‌ها و رسانه‌ها خبرهایی را مبنی بر عدم نظارت ای</li>
-                                            <li> برخی از خبرگزاری‌ها و رسانه‌ها خبرهایی را مبنی بر عدم نظارت ای</li>
+                                        <?php
+                                    $grp2 = mysql_query("select * from article  ORDER BY view DESC LIMIT 10 ");
+                                    while ($grp = mysql_fetch_array($grp2)) {
+                                        echo "<a href='#'> <li>" . $grp['title'] . "</li></a>";
+                                    }
+                                   ?>
                                         </ol>
                                     </div>
                                 </div>
@@ -184,8 +248,7 @@
 <footer>footer</footer>
 <!--end footer section-->
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
+
 <script>
     $(function () {
         $('.carousel').carousel({

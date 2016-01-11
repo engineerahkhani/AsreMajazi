@@ -566,8 +566,12 @@ input {
 /******************/
 
 /***** general css styles*/
+.marginTop{
+    margin-top: 40px;
 
+}
 /***** header css styles*/
+
 /***** search bar section css styles*/
 .breadcrumb {
     direction: rtl;
@@ -622,7 +626,7 @@ input {
     direction: rtl;
 }
 #articleProperties {
-    direction: rtl;
+    direction: ltr;
     text-align: right;
    font-size: 10px;
 
