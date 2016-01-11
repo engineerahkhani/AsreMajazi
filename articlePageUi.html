@@ -4,100 +4,180 @@
     <meta charset="UTF-8">
     <title>article</title>
     <link href="css/style2.css" rel="stylesheet" media="all" type="text/css">
-    <link href="css/bootstrap.css" rel="stylesheet"media="all" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
+    <link href="css/bootstrap-rtl.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
-
 </head>
 <body>
 <div class="container">
-<!--header section -->
-<div id="header">
-header
-</div>
-<!--head end-->
-
-<!--article section-->
-<div id="articleSection">
-    <div class="row">
-        <section id="searchBarSection">
-            <div class="col-sm-6">
-                <section>
-                    <span class="fa fa-search"></span><h3>search</h3>
-                    <div class="input-group">
-                        <input type="text" class="form-control input-lg" placeholder="search">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default"><i class="fa fa-search fa-3x "></i></button>
-                        </span>
-                    </div>
-                </section>
-
-            </div>
-            <div class="col-sm-6">
-
-            </div>
-
-        </section><hr>
-        <!--end searchBarSection-->
-        <section id="slideShowSection">
-
-        </section>
-        <!--end slideShowSection-->
-        <section id="mainSection">
-            <div class="col-sm-8">
-                <section>
-                    <div  class="col-xs-7">
-                       <div>title</div>
-                        <div>dectioptin</div>
-                        <div>time</div>
-                    </div>
-                    <div id="articleImge" class="col-xs-5">
-                        <img src="img/ar2.jpg" class="img-responsive">
-                    </div>
-
-                </section>
-
-            </div>
-            <div class="col-sm-4">
-                <section id="categorySection">
-                    <h3>tags</h3>
-                    <div class="list-group">
-                       <a href="#" class="list-group-item active"><span>33</span>all </a>
-                       <a href="#" class="list-group-item "><span >33</span>tec </a>
-                       <a href="#" class="list-group-item "><span >33</span>3d </a>
-
-                    </div>
-
-                </section>
-                <section id="topArticles">
-                    <h1>top</h1>
-                    <ol>
-                        <li>first art</li>
-                        <li>first art</li>
-                        <li>first art</li>
-                        <li>first art</li>
-                        <li>first art</li>
-                        <li>first art</li>
-                        <li>first art</li>
-                        <li>first art</li>
-                        <li>first art</li>
-                        <li>first art</li>
-                    </ol>
-                </section>
-
-            </div>
-
-        </section>
-        <!--end mainSection-->
-
+    <!--header section -->
+    <div id="header">
+        header
     </div>
-</div>
-<!-- end article section-->
+    <!--head end-->
+    <!--article section-->
+    <div id="articleSection">
+        <div class="row ">
+            <div id="searchBarSection">
+                <div class="container">
+                    <div class="row">
+                        <div id="searchBarSectionTitle" class="col-sm-6">
+                            <!--<h4><span class="fa fa-book fa-2x"></span>&nbsp;<a href="#"> all</a> »<a href="#">art</a>-->
+                            <!--</h4>-->
+                            <div class="breadcrumb">
+                                <span class="fa fa-2x fa-folder-open-o"></span>
+                                <span><a href="#">Home</a> <span class="divider">/</span></span>
+                                <span><a href="#">Library</a> <span class="divider">/</span></span>
 
-<!--footer section-->
-<div id="footer">footer</div>
-<!--end footer section-->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-lg" placeholder="search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default"><span class="fa fa-search fa-2x "></span></button>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end searchBarSection-->
+            <div id="slideShowSection" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#slideShowSection" data-slide-to="0" class="active"></li>
+                    <li data-target="#slideShowSection" data-slide-to="1"></li>
+                    <li data-target="#slideShowSection" data-slide-to="2"></li>
+
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="img/ar1.JPG" class="img-responsive">
+
+                        <div class=" active">
+                            <div class="carousel-caption">
+                                <h2><a href="#"> title</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item ">
+                        <img src="img/ar2.JPG" class="img-responsive">
+
+                        <div class=" active">
+                            <div class="carousel-caption">
+                                <h2><a href="#"> title2</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item ">
+                        <img src="img/ar3.JPG" class="img-responsive">
+
+                        <div class=" active">
+                            <div class="carousel-caption">
+                                <h2><a href="#"> title3</a></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <a class="left carousel-control" href="#slideShowSection" data-slide="prev"><span  class="fa fa-chevron-circle-left"></span></a>
+                <a class="right carousel-control" href="#slideShowSection" data-slide="next"><span class="fa fa-chevron-circle-right"></span></a>
+            </div>
+            <!--end slideShowSection-->
+            <section id="mainSection">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <section id="categorySection">
+                                <h3>موضوعات</h3>
+                                <hr>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item active"><span class="count">33</span>all </a>
+
+                                    <div><a href="#" class="list-group-item " data-toggle="collapse"
+                                            data-target="#demo"><span class="count">33</span><span id="PusIcon" class="fa fa-plus"></span>
+                                        tec </a>
+
+                                        <div id="demo" class="collapse list-group ">
+                                            <div><a href="#" class="list-group-item"><span class="fa fa-minus"></span>submnu1</a>
+                                            </div>
+                                            <div><a href="#" class="list-group-item"><span class="fa fa-minus"></span>submnu2</a>
+                                            </div>
+                                            <div><a href="#" class="list-group-item"><span class="fa fa-minus"></span>submnu3</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="list-group-item "><span class="count">33</span>3d </a>
+                                </div>
+                            </section>
+                            <section id="topArticles">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Panel Heading</div>
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>first art</li>
+                                            <li>first art</li>
+                                            <li>first art</li>
+                                            <li>first art</li>
+                                            <li>first art</li>
+                                            <li>first art</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-sm-8">
+                            <div id="articles">
+                                <div class="col-sm-6">
+                                    <img id="articleImge" src="img/ar2.jpg" class="img-responsive">
+                                </div>
+                                <div class="col-sm-6">
+                                    <div><h4>title</h4></div>
+                                    <div><p>text text text</p></div>
+                                    <div id="articleProperties">
+                                        <span><span class="badge">1</span>view &nbsp; <span
+                                                class="fa fa-eye "></span></span>
+                                        <span>date <span class="fa fa-clock-o "></span></span>
+
+                                        <span>user &nbsp;<span class="fa fa-user"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div id="pagination">
+                                <ul class="pagination">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">6</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--end mainSection-->
+        </div>
+    </div>
+    <!-- end article section-->
 </div>
+<!--footer section-->
+<footer>footer</footer>
+<!--end footer section-->
+
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script>
+    $(function () {
+        $('.carousel').carousel({
+            interval: 2000
+        });
+    })
+</script>
 </body>
 </html>
