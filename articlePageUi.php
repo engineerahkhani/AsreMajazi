@@ -19,12 +19,12 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title><?php
-    if ($n == 1) {
-        echo "عصر مجازی  » " . strip_tags($article['title']);
-    } else {
-        echo "مقالات | Articles";
-    }
-    ?></title>
+        if ($n == 1) {
+            echo "عصر مجازی  » " . strip_tags($article['title']);
+        } else {
+            echo "مقالات | Articles";
+        }
+        ?></title>
     <meta name="description" content="<?php
     if ($n == 1) {
         echo "عصر مجازی  » " . strip_tags($article['title']);
@@ -49,28 +49,28 @@ if (isset($_GET['id'])) {
 
 <!--navigation goes here-->
 <div class="row" id="navebar">
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Asre Mjazi</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <!--site logo-->
-        <a class="navbar-brand" href="index.html">Asre Mjazi</a>
-    </div>
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li><span></span><a href="#welcome" class="fa fa-home fa-1x" >&nbsp; تور مجازی</a></li>
-            <li><a href="#rezume" class="fa fa-user fa-1x">&nbsp; بانک مقالات</a></li>
-            <li><a href="#blog" class="fa fa-rss fa-1x">&nbsp;واقعیت افزوده</a></li>
-            <li><a href="#sample" class="fa fa-desktop fa-1x">&nbsp;باشگاه مشتریان</a></li>
-            <li><a href="#friends" class="fa fa-group fa-1x">&nbsp;خیریه</a></li>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Asre Mjazi</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--site logo-->
+            <a class="navbar-brand" href="index.html">Asre Mjazi</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><span></span><a href="#welcome" class="fa fa-home fa-1x">&nbsp; تور مجازی</a></li>
+                <li><a href="#rezume" class="fa fa-user fa-1x">&nbsp; بانک مقالات</a></li>
+                <li><a href="#blog" class="fa fa-rss fa-1x">&nbsp;واقعیت افزوده</a></li>
+                <li><a href="#sample" class="fa fa-desktop fa-1x">&nbsp;باشگاه مشتریان</a></li>
+                <li><a href="#friends" class="fa fa-group fa-1x">&nbsp;خیریه</a></li>
 
-        </ul>
-    </div>
-</nav>
+            </ul>
+        </div>
+    </nav>
 </div>
 <!--end navigation-->
 <!--head end-->
@@ -81,7 +81,7 @@ if (isset($_GET['id'])) {
             <div id="searchBarSection">
                 <div class="container">
                     <div class="row">
-                        <div  class="col-sm-6">
+                        <div class="col-sm-6">
                             <div class="input-group">
                                 <input type="text" class="form-control input-lg" placeholder="جستجو در سایت . . .">
                         <span class="input-group-btn">
@@ -117,11 +117,9 @@ if (isset($_GET['id'])) {
                     $grp2 = mysql_query("select * from article    ORDER BY date and time  LIMIT 3 ");
                     $i = 1;
                     while ($grp = mysql_fetch_array($grp2)) {
-                        if($i==1){
+                        if ($i == 1) {
                             echo "  <div class=\"item active \">";
-                        }
-                        else
-                        {
+                        } else {
                             echo "  <div class=\"item  \">";
                         }
                         ++$i;
@@ -175,7 +173,7 @@ if (isset($_GET['id'])) {
                                             $src = 'img/blankpic.jpg';
                                         }
                                         echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
-                                       // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
+                                        // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
                                         echo "<a href='#'> <h4>" . $grp['title'] . "</h4></a>";
                                         echo "<div> <p>" . $grp['sum'] . "</p></div>";
                                         echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
@@ -184,18 +182,18 @@ if (isset($_GET['id'])) {
                                         echo " <hr>";
                                     }
                                     ?>
-                                    </div>
+                                </div>
                             </div>
                             <hr>
 
                             <div id="pagination">
                                 <ul class="pagination">
                                     <li><a href="#">&laquo;</a></li>
-                                    <?php for ($i=1; $i<= getnumrows2('article')/7;$i++) {
+                                    <?php for ($i = 1; $i <= getnumrows2('article') / 7; $i++) {
                                         echo "  <li class=\"active\"><a href=\"#\">";
                                         echo "$i";
                                         echo "</a></li>";
-                                    }?>
+                                    } ?>
                                     <li><a href="#">&raquo;</a></li>
                                 </ul>
                             </div>
@@ -205,15 +203,16 @@ if (isset($_GET['id'])) {
                                 <h3>موضوعات</h3>
                                 <hr>
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item active"><span class="count"><?php echo getArticlesCount(); ?></span>همه مقالات
+                                    <a href="#" class="list-group-item active"><span
+                                            class="count"><?php echo getArticlesCount(); ?></span>همه مقالات
                                     </a>
                                     <?php
                                     $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
                                     while ($grp = mysql_fetch_array($grp2)) {
-                                        echo "<a href='#' class=\"list-group-item \"><span class='count'>".getCountRows($grp['id'])."</span>" . $grp['name'] . "</a>";
+                                        echo "<a href='#' class=\"list-group-item \"><span class='count'>" . getCountRows($grp['id']) . "</span>" . $grp['name'] . "</a>";
                                         $sgrp2 = mysql_query("select * from `grp` where `mgrp`='" . $grp['id'] . "'");
                                         while ($sgrp = mysql_fetch_array($sgrp2)) {
-                                            echo "<div><a href=\"#\" class=\"list-group-item\"><span class='count'>".getCountRows($grp['id'])."</span>" . $sgrp['name'] . "</a></div>";
+                                            echo "<div><a href=\"#\" class=\"list-group-item\"><span class='count'>" . getCountRows($grp['id']) . "</span>" . $sgrp['name'] . "</a></div>";
                                         }
                                     }
                                     ?>
@@ -221,15 +220,16 @@ if (isset($_GET['id'])) {
                             </section>
                             <section id="topArticles">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading"><span class="fa fa-star-o"></span>&nbsp; محبوبترین مقالات </div>
+                                    <div class="panel-heading"><span class="fa fa-star-o"></span>&nbsp; محبوبترین مقالات
+                                    </div>
                                     <div class="panel-body">
                                         <ol>
-                                        <?php
-                                    $grp2 = mysql_query("select * from article  ORDER BY view DESC LIMIT 10 ");
-                                    while ($grp = mysql_fetch_array($grp2)) {
-                                        echo "<a href='#'> <li>" . $grp['title'] . "</li></a>";
-                                    }
-                                   ?>
+                                            <?php
+                                            $grp2 = mysql_query("select * from article  ORDER BY view DESC LIMIT 10 ");
+                                            while ($grp = mysql_fetch_array($grp2)) {
+                                                echo "<a href='#'> <li>" . $grp['title'] . "</li></a>";
+                                            }
+                                            ?>
                                         </ol>
                                     </div>
                                 </div>
@@ -245,16 +245,25 @@ if (isset($_GET['id'])) {
     <!-- end article section-->
 </div>
 <!--footer section-->
-<footer>footer</footer>
+<footer id="footer">footer</footer>
 <!--end footer section-->
 
 
 <script>
-    $(function () {
-        $('.carousel').carousel({
-            interval: 2000
+    $(document).ready(function () {
+        $(function () {
+            $('.carousel').carousel({
+                interval: 3000
+            });
         });
-    })
+        $("#pagination a").click(function () {
+            $('footer').load("test.php",{param1: 'value1', param2: 'value2'});
+            alert();
+
+        });
+    });
+
+
 </script>
 </body>
 </html>
