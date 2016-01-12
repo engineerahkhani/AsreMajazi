@@ -115,16 +115,27 @@ if (isset($_GET['id'])) {
                 <div class="carousel-inner">
                     <?php
                     $grp2 = mysql_query("select * from article    ORDER BY date and time  LIMIT 3 ");
+                    $i = 1;
                     while ($grp = mysql_fetch_array($grp2)) {
-                        if($grp['id'] == 1){
+                        if($i==1){
                             echo "  <div class=\"item active \">";
                         }
                         else
                         {
                             echo "  <div class=\"item  \">";
                         }
-
-                        echo " <img src=\"img/ar1.JPG\" class=\"img-responsive\">";
+                        ++$i;
+                        $doc = new DOMDocument();
+                        $doc->loadHTML($grp['content']);
+                        $xml = simplexml_import_dom($doc);
+                        $images = $xml->xpath('//img');
+                        $count = count($images);
+                        if ($count != 0) {
+                            $src = $images[0]['src'];
+                        } else {
+                            $src = 'img/blankpic.jpg';
+                        }
+                        echo "<img class=\"art-thumb\" src=\"" . $src . "\" />";
                         echo "<a href='#'> <li>" . $grp['title'] . "</li></a>";
                         echo " <div class=\" active\">";
                         echo "<div class=\"carousel-caption\">";
@@ -153,7 +164,18 @@ if (isset($_GET['id'])) {
                                     <?php
                                     $grp2 = mysql_query("select * from article limit 7");
                                     while ($grp = mysql_fetch_array($grp2)) {
-                                        echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
+                                        $doc = new DOMDocument();
+                                        $doc->loadHTML($grp['content']);
+                                        $xml = simplexml_import_dom($doc);
+                                        $images = $xml->xpath('//img');
+                                        $count = count($images);
+                                        if ($count != 0) {
+                                            $src = $images[0]['src'];
+                                        } else {
+                                            $src = 'img/blankpic.jpg';
+                                        }
+                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
+                                       // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
                                         echo "<a href='#'> <h4>" . $grp['title'] . "</h4></a>";
                                         echo "<div> <p>" . $grp['sum'] . "</p></div>";
                                         echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
