@@ -195,28 +195,19 @@ if (isset($_GET['id'])) {
                                 <h3>موضوعات</h3>
                                 <hr>
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item active"><span class="count">33</span>همه مقالات
-                                     </a>
+                                    <a href="#" class="list-group-item active"><span class="count"><?php echo getArticlesCount(); ?></span>همه مقالات
+                                    </a>
+                                    <?php
+                                    $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
+                                    while ($grp = mysql_fetch_array($grp2)) {
+                                        echo "<a href='#' class=\"list-group-item \"><span class='count'>".getCountRows($grp['id'])."</span>" . $grp['name'] . "</a>";
+                                        $sgrp2 = mysql_query("select * from `grp` where `mgrp`='" . $grp['id'] . "'");
+                                        while ($sgrp = mysql_fetch_array($sgrp2)) {
+                                            echo "<div><a href=\"#\" class=\"list-group-item\"><span class='count'>".getCountRows($grp['id'])."</span>" . $sgrp['name'] . "</a></div>";
+                                        }
 
-                                    <div><a href="#" class="list-group-item " data-toggle="collapse"
-                                            data-target="#demo">
-                                        <span class="count">33</span><span id="PusIcon" class="fa fa-plus"></span>&nbsp;
-                                        تکنولوژی </a>
-
-                                        <div id="demo" class="collapse list-group ">
-                                            <div><a href="#" class="list-group-item"><span class="fa fa-minus"></span>&nbsp;
-                                                موبایل</a>
-                                            </div>
-                                            <div><a href="#" class="list-group-item"><span class="fa fa-minus"></span>&nbsp;
-                                                کامپیوتر</a>
-                                            </div>
-                                            <div><a href="#" class="list-group-item"><span class="fa fa-minus"></span>&nbsp;
-                                                برنامه
-                                                نویسی</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="list-group-item "><span class="count">33</span> عکاسی </a>
+                                    }
+                                    ?>
                                 </div>
                             </section>
                             <section id="topArticles">

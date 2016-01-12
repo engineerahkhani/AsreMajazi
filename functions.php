@@ -13,8 +13,18 @@ function progetfrom($table,$what,$where,$result){
 function getnumrows($table,$where,$result){
 	$a="SELECT `id` FROM `".$table."` WHERE `".$where."`='".$result."'";
 	$result2=mysql_num_rows(mysql_query($a));
-	return $result2;
-} 
+	return $result2['0'];
+}
+function getArticlesCount(){
+	$a="select COUNT(*) from article";
+	$result2=mysql_fetch_array(mysql_query($a));
+	return $result2['0'];
+}
+function getCountRows($id){
+	$a="select COUNT(*) from article where grp='$id'";
+	$result2=mysql_fetch_array(mysql_query($a));
+	return $result2['0'];
+}
 function getnumrows2($table){
 	$a="SELECT `id` FROM `".$table."`";
 	$result2=mysql_num_rows(mysql_query($a));
