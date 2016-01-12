@@ -39,50 +39,57 @@ if (isset($_GET['id'])) {
         echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
     }
     ?>"/>
-    <link rel="stylesheet" type="text/css" href="css/hoverex-all.css" media="all"/>
-    <link href="css/style2.css" rel="stylesheet" media="all" type="text/css">
+    <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
 </head>
 <body>
-<div id="wait" class="wait1"><img src="img/wait.gif"/></div>
-<script>
-    $(document).ready(function () {
-        window.setTimeout(function () {
-            $('#wait').removeClass('wait1').addClass('wait0');
-            var time = 500;
-            $('.art-li').each(function () {
-                var $this = $(this);
 
-                function delayed() {
-                    $this.css('display', 'inline-block');
-                    $this.addClass('box a_normal').addClass('fadeInUp');
-                }
+<!--navigation goes here-->
+<div class="row" id="navebar">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Asre Mjazi</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <!--site logo-->
+        <a class="navbar-brand" href="index.html">Asre Mjazi</a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li><span></span><a href="#welcome" class="fa fa-home fa-1x" >&nbsp; تور مجازی</a></li>
+            <li><a href="#rezume" class="fa fa-user fa-1x">&nbsp; بانک مقالات</a></li>
+            <li><a href="#blog" class="fa fa-rss fa-1x">&nbsp;واقعیت افزوده</a></li>
+            <li><a href="#sample" class="fa fa-desktop fa-1x">&nbsp;باشگاه مشتریان</a></li>
+            <li><a href="#friends" class="fa fa-group fa-1x">&nbsp;خیریه</a></li>
 
-                setTimeout(delayed, time);
-                time += 500;
-            });
-        }, 1000)
-        $(".main").fadeIn('slow');
-
-
-    });
-</script>
-<?php include 'top-menu.php'; ?>
+        </ul>
+    </div>
+</nav>
+</div>
+<!--end navigation-->
 <!--head end-->
 <div class="container marginTop">
-
     <!--article section-->
     <div id="articleSection">
         <div class="row ">
             <div id="searchBarSection">
                 <div class="container">
                     <div class="row">
+                        <div  class="col-sm-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-lg" placeholder="جستجو در سایت . . .">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default"><span class="fa fa-search fa-2x "></span></button>
+                        </span>
+                            </div>
+                        </div>
                         <div id="searchBarSectionTitle" class="col-sm-6">
-                            <!--<h4><span class="fa fa-book fa-2x"></span>&nbsp;<a href="#"> all</a> »<a href="#">art</a>-->
-                            <!--</h4>-->
                             <div class="breadcrumb">
                                 <span class="fa fa-2x fa-folder-open-o"></span>
                                 <span><a href="#">صفحه اصلی</a> <span class="divider">/</span></span>
@@ -92,15 +99,6 @@ if (isset($_GET['id'])) {
                                             echo "  » " . strip_tags($article['title']);
                                         }
                                         ?></a> <span class="divider"></span></span>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <input type="text" class="form-control input-lg" placeholder="جستجو در سایت . . .">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default"><span class="fa fa-search fa-2x "></span></button>
-                        </span>
                             </div>
                         </div>
                     </div>
@@ -112,37 +110,32 @@ if (isset($_GET['id'])) {
                     <li data-target="#slideShowSection" data-slide-to="0" class="active"></li>
                     <li data-target="#slideShowSection" data-slide-to="1"></li>
                     <li data-target="#slideShowSection" data-slide-to="2"></li>
-
                 </ol>
 
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="img/ar1.JPG" class="img-responsive">
+                    <?php
+                    $grp2 = mysql_query("select * from article    ORDER BY date and time  LIMIT 3 ");
+                    while ($grp = mysql_fetch_array($grp2)) {
+                        if($grp['id'] == 1){
+                            echo "  <div class=\"item active \">";
+                        }
+                        else
+                        {
+                            echo "  <div class=\"item  \">";
+                        }
 
-                        <div class=" active">
-                            <div class="carousel-caption">
-                                <h2><a href="#" class="carousel-caption-title"> تور مجازی چیست؟ </a></h2>
+                        echo " <img src=\"img/ar1.JPG\" class=\"img-responsive\">";
+                        echo "<a href='#'> <li>" . $grp['title'] . "</li></a>";
+                        echo " <div class=\" active\">";
+                        echo "<div class=\"carousel-caption\">";
+                        echo "<h2><a href=\"#\" class=\"carousel-caption-title\">";
+                        echo $grp['title'];
+                        echo "</a></h2>
                             </div>
                         </div>
-                    </div>
-                    <div class="item ">
-                        <img src="img/ar2.JPG" class="img-responsive">
-
-                        <div class=" active">
-                            <div class="carousel-caption">
-                                <h2><a href="#" class="carousel-caption-title"> عکاسی از نوع پانوراما </a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item ">
-                        <img src="img/ar3.JPG" class="img-responsive">
-
-                        <div class=" active">
-                            <div class="carousel-caption">
-                                <h2><a href="#" class="carousel-caption-title"> عکاسی از نوع پانوراما </a></h2>
-                            </div>
-                        </div>
-                    </div>
+                    </div>";
+                    }
+                    ?>
 
                 </div>
                 <a class="left carousel-control" href="#slideShowSection" data-slide="prev"><span
@@ -151,14 +144,14 @@ if (isset($_GET['id'])) {
                         class="fa fa-chevron-circle-right"></span></a>
             </div>
             <!--end slideShowSection-->
-            <section id="mainSection">
+            <section id="mainSection" class="marginTop">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8">
                             <div id="articles">
                                 <div class="col-sm-12">
                                     <?php
-                                    $grp2 = mysql_query("select * from article");
+                                    $grp2 = mysql_query("select * from article limit 7");
                                     while ($grp = mysql_fetch_array($grp2)) {
                                         echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
                                         echo "<a href='#'> <h4>" . $grp['title'] . "</h4></a>";
@@ -170,22 +163,17 @@ if (isset($_GET['id'])) {
                                     }
                                     ?>
                                     </div>
-<!--                                <div class="col-sm-6">-->
-<!--                                   -->
-<!--<!--                                    <img id="articleImge" src="img/ar2.jpg" class="img-responsive">-->-->
-<!--                                </div>-->
                             </div>
                             <hr>
 
                             <div id="pagination">
                                 <ul class="pagination">
                                     <li><a href="#">&laquo;</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">6</a></li>
+                                    <?php for ($i=1; $i<= getnumrows2('article')/7;$i++) {
+                                        echo "  <li class=\"active\"><a href=\"#\">";
+                                        echo "$i";
+                                        echo "</a></li>";
+                                    }?>
                                     <li><a href="#">&raquo;</a></li>
                                 </ul>
                             </div>
@@ -205,7 +193,6 @@ if (isset($_GET['id'])) {
                                         while ($sgrp = mysql_fetch_array($sgrp2)) {
                                             echo "<div><a href=\"#\" class=\"list-group-item\"><span class='count'>".getCountRows($grp['id'])."</span>" . $sgrp['name'] . "</a></div>";
                                         }
-
                                     }
                                     ?>
                                 </div>

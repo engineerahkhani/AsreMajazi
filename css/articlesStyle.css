@@ -1,0 +1,153 @@
+@font-face {
+    font-family: "yekan";
+    src: url(Yekan.eot);
+    src: url(Yekan.eot?#iefix) format("embedded-opentype"), url(Yekan.woff) format("woff"), url(Yekan.ttf) format("truetype"), url(Yekan.svg#BYekan) format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'naskh';
+    src: url(naskh.eot);
+    src: url(naskh.eot?#iefix) format('embedded-opentype'),
+    url(naskh.woff2) format('woff2'),
+    url(naskh.woff) format('woff'),
+    url(naskh.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'nazanin';
+    src: url('26.eot?#') format('eot'), /* IE6â€“8 */ url('26.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('26.ttf') format('truetype');  /* Saf3â€”5, Chrome4+, FF3.5, Opera 10+ */
+}
+
+/*****************/
+/*style added by ahmad*/
+/******************/
+
+/***** general css styles*/
+body{
+    background-color: #080808;
+}
+.fa{
+    color:#ffcc00;
+}
+.marginTop{
+    margin-top: 10vh;
+
+}
+/***** header css styles*/
+#navebar{
+   color:#080808 !important;
+    /*direction: rtl;*/
+}
+
+/***** search bar section css styles*/
+.breadcrumb {
+    direction: rtl;
+    text-align: right;
+}
+
+#searchBarSection {
+    direction: rtl;
+}
+
+#searchBarSectionTitle {
+
+}
+
+/***** slide show section css styles*/
+#slideShowSection {
+
+    /*background-color: #ffff00;*/
+}
+
+.carousel-caption {
+    z-index: 10;
+
+}
+
+.carousel-inner > .item > img {
+width:100%;
+
+}
+
+.carousel-inner > .item {
+    height: 250px;
+}
+.carousel-control {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.carousel-caption-title{
+    border: 10px solid hsla(0,0%,100%,.5);
+    background: white;
+    background-clip: padding-box;
+
+}
+/***** main section css styles*/
+
+#articleSection * {
+    border-radius: 0;
+}
+#articles{
+    direction: rtl;
+}
+#articleProperties {
+    direction: ltr;
+    text-align: right;
+    font-size: 10px;
+
+
+}
+
+#articleProperties span {
+    /*float: right;*/
+
+}
+
+#articleProperties span {
+    margin-right: 5px;
+}
+
+#articleImage {
+
+}
+
+/**category section*/
+#categorySection {
+    direction: rtl;
+}
+
+.list-group .count {
+    background-color: #ffcc00;
+    float: left;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+
+}
+
+#topArticles{
+    direction: rtl;
+}
+.panel-body a span{
+    float: left;
+}
+/**pagination css*/
+#pagination {
+    margin-top: 15px;
+    clear: both;
+    text-align: center;
+}
+
+/***** footer css styles*/
+footer {
+    width: auto;
+    clear: both;
+    height: 125px;
+    background-color: #2D649C;
+    -ms-text-align-last: right;
+    text-align: center;
+}
