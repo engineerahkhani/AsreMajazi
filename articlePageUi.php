@@ -257,7 +257,10 @@ if (isset($_GET['id'])) {
             });
         });
         $("#pagination a").click(function () {
-            $('footer').load("test.php",{param1: 'value1', param2: 'value2'});
+            var pagNumber = 1;
+            $('#articles .col-sm-12').load("test.php",{param1:pagNumber , param2: 'all'});
+            this.preventDefault();
+
             alert();
 
         });
