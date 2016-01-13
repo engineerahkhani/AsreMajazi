@@ -190,7 +190,7 @@ if (isset($_GET['id'])) {
                                 <ul class="pagination">
                                     <li><a href="#">&laquo;</a></li>
                                     <?php for ($i = 1; $i <= getnumrows2('article') / 7; $i++) {
-                                        echo "  <li class=\"active\"><a href=\"#\">";
+                                        echo "  <li class=\"active\"><a id='$i' href='#'>";
                                         echo "$i";
                                         echo "</a></li>";
                                     } ?>
@@ -250,22 +250,29 @@ if (isset($_GET['id'])) {
 
 
 <script>
+
     $(document).ready(function () {
-        $(function () {
-            $('.carousel').carousel({
-                interval: 3000
-            });
+//        $(function () {
+//            $('.carousel').carousel({
+//                interval: 3000;
+//            });
+//        });
+        $("#pagination a").click(function (e) {
+            var pagNumber = $(this).attr('id').toString();
+            //alert(pagNumber);
+            $('#articles .col-sm-12').load("test.php", {param1: pagNumber, param2: 'all'});
+            e.preventDefault();
+
         });
-        $("#pagination a").click(function () {
+        $("#categorySection .list-group-item").click(function () {
             var pagNumber = 1;
-            $('#articles .col-sm-12').load("test.php",{param1:pagNumber , param2: 'all'});
+            $('#articles .col-sm-12').load("test.php", {param1: pagNumber, param2: 'تور مجازی'});
             this.preventDefault();
-
             alert();
-
         });
     });
-
+//$('pagination').find(a).on('click',function(e){
+    // }
 
 </script>
 </body>
