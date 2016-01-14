@@ -4,6 +4,7 @@ $n = 0;
 $type = 'all';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+
     $n = getnumrows('article', 'id', $id);
     if ($n == 1) {
         $article = mysql_fetch_array(mysql_query("select * from `article` where `id`='" . $id . "'"));
@@ -102,7 +103,8 @@ if (isset($_GET['id'])) {
                     </ul>
                 </div>
             </td>
-            <td><?php if ($type == 'art') {
+            <td>
+                <?php if ($type == 'art') {
                     echo "<div style=\"padding:0 10px\"><div class=\"art-head\">
     <span class=\"arttitle\">" . $article['title'] . "</span>
     &nbsp;

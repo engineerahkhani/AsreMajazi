@@ -42,8 +42,6 @@ if (isset($_GET['id'])) {
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
 </head>
 <body>
 
@@ -117,6 +115,7 @@ if (isset($_GET['id'])) {
                     $grp2 = mysql_query("select * from article    ORDER BY date and time  LIMIT 3 ");
                     $i = 1;
                     while ($grp = mysql_fetch_array($grp2)) {
+                        $id = $grp['id'];
                         if ($i == 1) {
                             echo "  <div class=\"item active \">";
                         } else {
@@ -133,11 +132,16 @@ if (isset($_GET['id'])) {
                         } else {
                             $src = 'img/blankpic.jpg';
                         }
+
+
                         echo "<img class=\"art-thumb\" src=\"" . $src . "\" />";
-                        echo "<a href='#'> <li>" . $grp['title'] . "</li></a>";
+
+                        echo'</a>';
+                       // echo "<a href='#?id='$articleId''> <li>" . $grp['title'] . "</li></a>";
+
                         echo " <div class=\" active\">";
                         echo "<div class=\"carousel-caption\">";
-                        echo "<h2><a href=\"#\" class=\"carousel-caption-title\">";
+                        echo "<h2><a href=detailes.php?id=$id class=\"carousel-caption-title\">";
                         echo $grp['title'];
                         echo "</a></h2>
                             </div>
@@ -160,28 +164,34 @@ if (isset($_GET['id'])) {
                             <div id="articles">
                                 <div class="col-sm-12">
                                     <?php
-                                    $grp2 = mysql_query("select * from article limit 7");
-                                    while ($grp = mysql_fetch_array($grp2)) {
-                                        $doc = new DOMDocument();
-                                        $doc->loadHTML($grp['content']);
-                                        $xml = simplexml_import_dom($doc);
-                                        $images = $xml->xpath('//img');
-                                        $count = count($images);
-                                        if ($count != 0) {
-                                            $src = $images[0]['src'];
-                                        } else {
-                                            $src = 'img/blankpic.jpg';
+                                    if ($type == 'all') {
+                                        $grp2 = mysql_query("select * from article limit 3");
+                                        while ($grp = mysql_fetch_array($grp2)) {
+                                            $doc = new DOMDocument();
+                                            $doc->loadHTML($grp['content']);
+                                            $xml = simplexml_import_dom($doc);
+                                            $images = $xml->xpath('//img');
+                                            $count = count($images);
+                                            if ($count != 0) {
+                                                $src = $images[0]['src'];
+                                            } else {
+                                                $src = 'img/blankpic.jpg';
+                                            }
+                                            echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
+                                            // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
+                                            $id = $grp['id'];
+                                            echo "<a href=detailes.php?id=$id> <h4>" . $grp['title'] . "</h4></a>";
+                                            echo "<div> <p>" . $grp['sum'] . "</p></div>";
+                                            echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
+                                            echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
+                                            echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
+                                            echo " <hr>";
                                         }
-                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
-                                        // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
-                                        echo "<a href='#'> <h4>" . $grp['title'] . "</h4></a>";
-                                        echo "<div> <p>" . $grp['sum'] . "</p></div>";
-                                        echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
-                                        echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
-                                        echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
-                                        echo " <hr>";
                                     }
-                                    ?>
+                                    else if($type =='art')
+                                    {
+                                        echo 'hi';
+                                    }?>
                                 </div>
                             </div>
                             <hr>
@@ -189,7 +199,7 @@ if (isset($_GET['id'])) {
                             <div id="pagination">
                                 <ul class="pagination">
                                     <li><a href="#">&laquo;</a></li>
-                                    <?php for ($i = 1; $i <= getnumrows2('article') / 7; $i++) {
+                                    <?php for ($i = 1; $i <= getnumrows2('article') / 3; $i++) {
                                         echo "  <li class=\"active\"><a id='$i' href='#'>";
                                         echo "$i";
                                         echo "</a></li>";
@@ -209,7 +219,8 @@ if (isset($_GET['id'])) {
                                     <?php
                                     $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
                                     while ($grp = mysql_fetch_array($grp2)) {
-                                        echo "<a href='#' class=\"list-group-item \"><span class='count'>" . getCountRows($grp['id']) . "</span>" . $grp['name'] . "</a>";
+                                        $catId = $grp['name'];
+                                        echo "<a href='#' id='$catId'  class=\"list-group-item \"><span class='count'>" . getCountRows($grp['id']) . "</span>" . $grp['name'] . "</a>";
                                         $sgrp2 = mysql_query("select * from `grp` where `mgrp`='" . $grp['id'] . "'");
                                         while ($sgrp = mysql_fetch_array($sgrp2)) {
                                             echo "<div><a href=\"#\" class=\"list-group-item\"><span class='count'>" . getCountRows($grp['id']) . "</span>" . $sgrp['name'] . "</a></div>";
@@ -227,7 +238,8 @@ if (isset($_GET['id'])) {
                                             <?php
                                             $grp2 = mysql_query("select * from article  ORDER BY view DESC LIMIT 10 ");
                                             while ($grp = mysql_fetch_array($grp2)) {
-                                                echo "<a href='#'> <li>" . $grp['title'] . "</li></a>";
+                                                $id = $grp['id'];
+                                                echo "<a href=detailes.php?id=$id> <li>" . $grp['title'] . "</li></a>";
                                             }
                                             ?>
                                         </ol>
@@ -248,15 +260,22 @@ if (isset($_GET['id'])) {
 <footer id="footer">footer</footer>
 <!--end footer section-->
 
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
 
+<script>
+    $(function (){
+        $('.carousel').carousel({
+            interval: 4000
+        });
+    });
+</script>
 <script>
 
     $(document).ready(function () {
-//        $(function () {
-//            $('.carousel').carousel({
-//                interval: 3000;
-//            });
-//        });
+        var category = 'all';
+        var pageNumber = 1;
+
         $("#pagination a").click(function (e) {
             var pagNumber = $(this).attr('id').toString();
             //alert(pagNumber);
@@ -264,14 +283,15 @@ if (isset($_GET['id'])) {
             e.preventDefault();
 
         });
-        $("#categorySection .list-group-item").click(function () {
-            var pagNumber = 1;
-            $('#articles .col-sm-12').load("test.php", {param1: pagNumber, param2: 'تور مجازی'});
-            this.preventDefault();
-            alert();
+        $("#categorySection .list-group-item").click(function (e) {
+            var category = $(this).attr('id').toString();
+            // var pagNumber = $("#pagination a .active").attr('id').toString();
+            $('#articles .col-sm-12').load("test.php", {param1: '1', param2: category});
+            e.preventDefault();
+
         });
     });
-//$('pagination').find(a).on('click',function(e){
+    //$('pagination').find(a).on('click',function(e){
     // }
 
 </script>

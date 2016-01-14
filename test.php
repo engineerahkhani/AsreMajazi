@@ -3,15 +3,17 @@ include 'config.php';
 include 'functions.php';
 $pageNumber = $_POST['param1'];
 $cat = $_POST['param2'];
-$start = $pageNumber*7;
-$number = 7;
-echo $start,"->",$number;
+$start = $pageNumber;
+$number = 3;
+echo $cat;
+echo $pageNumber;
+
 if ($cat == 'all') {
     $grp2 = mysql_query("select * from article limit $start,$number");
     echo "all";
 } else {
-    $grp2 = mysql_query("select * from article where grp=(select id from grp where name='تور مجازی')  ORDER BY date and time  LIMIT $start,$number");
-    echo "some";
+    $grp2 = mysql_query("select * from article where grp=(select id from grp where name='$cat')  ORDER BY date and time  LIMIT $start,$number");
+    echo "cat";
 }
 while ($grp = mysql_fetch_array($grp2)) {
     $doc = new DOMDocument();
