@@ -260,12 +260,13 @@ echo getnumrows2("article");
     });
 </script>
 <script>
+    $(document).ready(function () {
     var totalArticles=$("footer div").attr('id').toString();
      localStorage.setItem("category", "all");
     var cat =localStorage.getItem("category");
-    alert(cat);
+//    alert(cat);
     totalPage =Math.ceil(totalArticles/3);
-    alert(totalPage);
+//    alert(totalPage);
     $('#pagination').twbsPagination({
         totalPages:totalPage,
         visiblePages:5,
@@ -290,8 +291,18 @@ echo getnumrows2("article");
 
         }
     });
-    $(document).ready(function () {
-
+$(".navbar-nav li input").css("display","none");
+$(".navbar-nav .fa-search").click(function(){
+    $(".navbar-nav li input").css("display","inline");
+});
+        $(".navbar-nav li input").keypress(function (e) {
+            if(e.which == 13)
+            {
+                var serchItem = $(this).val();
+                $('#mainSection .col-sm-12').load("search.php", {param1:serchItem});
+                $('#pagination').css("display","none");
+            }
+        })
     });
     //$('pagination').find(a).on('click',function(e){
     // }
