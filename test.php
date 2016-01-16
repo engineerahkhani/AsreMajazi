@@ -5,16 +5,16 @@ $pageNumber = $_POST['param1'];
 $cat = $_POST['param2'];
 $start =(3*($pageNumber-1));
 $number = 3;
-echo $cat;
-echo $pageNumber;
-echo $start;
+//echo $cat;
+//echo $pageNumber;
+//echo $start;
 
 if ($cat == 'all') {
     $grp2 = mysql_query("select * from article limit $start,$number");
-    echo "all";
+//    echo "all";
 } else {
     $grp2 = mysql_query("select * from article where grp=(select id from grp where name='$cat')  ORDER BY date and time  LIMIT $start,$number");
-    echo "cat";
+//    echo "cat";
 }
 while ($grp = mysql_fetch_array($grp2)) {
     $doc = new DOMDocument();

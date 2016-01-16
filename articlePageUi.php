@@ -57,6 +57,7 @@ if (isset($_GET['id'])) {
             </button>
             <!--site logo-->
             <a class="navbar-brand" href="index.html">Asre Mjazi</a>
+
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -65,10 +66,15 @@ if (isset($_GET['id'])) {
                 <li><a href="#blog" class="fa fa-rss fa-1x">&nbsp;واقعیت افزوده</a></li>
                 <li><a href="#sample" class="fa fa-desktop fa-1x">&nbsp;باشگاه مشتریان</a></li>
                 <li><a href="#friends" class="fa fa-group fa-1x">&nbsp;خیریه</a></li>
+                <li><a href="#friends" class="fa fa-search fa-1x">&nbsp;<input class="input-sm"> </a></li>
+
+
 
             </ul>
         </div>
+
     </nav>
+
 </div>
 <!--end navigation-->
 <!--head end-->
@@ -76,32 +82,7 @@ if (isset($_GET['id'])) {
     <!--article section-->
     <div id="articleSection">
         <div class="row ">
-            <div id="searchBarSection">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <input type="text" class="form-control input-lg" placeholder="جستجو در سایت . . .">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default"><span class="fa fa-search fa-2x "></span></button>
-                        </span>
-                            </div>
-                        </div>
-                        <div id="searchBarSectionTitle" class="col-sm-6">
-                            <div class="breadcrumb">
-                                <span class="fa fa-2x fa-folder-open-o"></span>
-                                <span><a href="#">صفحه اصلی</a> <span class="divider">/</span></span>
-                                <span><a href="#">مقالات</a> <span class="divider"></span></span>
-                                <span><a href="#"> <?php
-                                        if ($n == 1) {
-                                            echo "  » " . strip_tags($article['title']);
-                                        }
-                                        ?></a> <span class="divider"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <!--end searchBarSection-->
             <div id="slideShowSection" class="carousel slide">
                 <ol class="carousel-indicators">
@@ -204,6 +185,16 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="col-sm-4">
                             <section id="categorySection">
+                                <div class="breadcrumb">
+                                    <span class="fa fa-2x fa-folder-open-o"></span>
+                                    <span><a href="#">صفحه اصلی</a> <span class="divider">/</span></span>
+                                    <span><a href="#">مقالات</a> <span class="divider"></span></span>
+                                <span><a href="#"> <?php
+                                        if ($n == 1) {
+                                            echo "  » " . strip_tags($article['title']);
+                                        }
+                                        ?></a> <span class="divider"></span></span>
+                                </div>
                                 <h3>موضوعات</h3>
                                 <hr>
                                 <div class="list-group">
@@ -270,6 +261,9 @@ echo getnumrows2("article");
 </script>
 <script>
     var totalArticles=$("footer div").attr('id').toString();
+     localStorage.setItem("category", "all");
+    var cat =localStorage.getItem("category");
+    alert(cat);
     totalPage =Math.ceil(totalArticles/3);
     alert(totalPage);
     $('#pagination').twbsPagination({
@@ -281,24 +275,23 @@ echo getnumrows2("article");
         last:'پایان',
         onPageClick: function (event, page) {
             $('#page-content').text('Page ' + page);
-            $('#articles .col-sm-12').load("test.php", {param1: page, param2: 'all'});
+            var category = localStorage.getItem("category");
+            $('#articles .col-sm-12').load("test.php", {param1: page, param2:category});
+            //category
+            $("#categorySection .list-group-item").click(function (e) {
+                var categoryName = $(this).attr('id').toString();
+                localStorage.setItem("category", categoryName);
+                var category = localStorage.getItem("category");
+                // var pagNumber = $("#pagination a .active").attr('id').toString();
+                $('#articles .col-sm-12').load("test.php", {param1:page, param2: category});
+                e.preventDefault();
+
+            });
+
         }
     });
     $(document).ready(function () {
-        $("#pagination a").click(function (e) {
-            var pagNumber = $(this).attr('id').toString();
-//            alert(pagNumber);
-            $('#articles .col-sm-12').load("test.php", {param1: pagNumber, param2: 'all'});
-            e.preventDefault();
 
-        });
-        $("#categorySection .list-group-item").click(function (e) {
-            var category = $(this).attr('id').toString();
-            // var pagNumber = $("#pagination a .active").attr('id').toString();
-            $('#articles .col-sm-12').load("test.php", {param1: '1', param2: category});
-            e.preventDefault();
-
-        });
     });
     //$('pagination').find(a).on('click',function(e){
     // }
