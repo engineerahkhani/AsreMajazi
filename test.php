@@ -3,10 +3,11 @@ include 'config.php';
 include 'functions.php';
 $pageNumber = $_POST['param1'];
 $cat = $_POST['param2'];
-$start = $pageNumber;
+$start =(3*($pageNumber-1));
 $number = 3;
 echo $cat;
 echo $pageNumber;
+echo $start;
 
 if ($cat == 'all') {
     $grp2 = mysql_query("select * from article limit $start,$number");

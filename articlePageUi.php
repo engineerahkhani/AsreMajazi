@@ -163,48 +163,42 @@ if (isset($_GET['id'])) {
                         <div class="col-sm-8">
                             <div id="articles">
                                 <div class="col-sm-12">
-                                    <?php
-                                    if ($type == 'all') {
-                                        $grp2 = mysql_query("select * from article limit 3");
-                                        while ($grp = mysql_fetch_array($grp2)) {
-                                            $doc = new DOMDocument();
-                                            $doc->loadHTML($grp['content']);
-                                            $xml = simplexml_import_dom($doc);
-                                            $images = $xml->xpath('//img');
-                                            $count = count($images);
-                                            if ($count != 0) {
-                                                $src = $images[0]['src'];
-                                            } else {
-                                                $src = 'img/blankpic.jpg';
-                                            }
-                                            echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
-                                            // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
-                                            $id = $grp['id'];
-                                            echo "<a href=detailes.php?id=$id> <h4>" . $grp['title'] . "</h4></a>";
-                                            echo "<div> <p>" . $grp['sum'] . "</p></div>";
-                                            echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
-                                            echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
-                                            echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
-                                            echo " <hr>";
-                                        }
-                                    }
-                                    else if($type =='art')
-                                    {
-                                        echo 'hi';
-                                    }?>
+<!--                                    --><?php
+//                                    if ($type == 'all') {
+//                                        $grp2 = mysql_query("select * from article limit 1,3");
+//                                        while ($grp = mysql_fetch_array($grp2)) {
+//                                            $doc = new DOMDocument();
+//                                            $doc->loadHTML($grp['content']);
+//                                            $xml = simplexml_import_dom($doc);
+//                                            $images = $xml->xpath('//img');
+//                                            $count = count($images);
+//                                            if ($count != 0) {
+//                                                $src = $images[0]['src'];
+//                                            } else {
+//                                                $src = 'img/blankpic.jpg';
+//                                            }
+//                                            echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
+//                                            // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
+//                                            $id = $grp['id'];
+//                                            echo "<a href=detailes.php?id=$id> <h4>" . $grp['title'] . "</h4></a>";
+//                                            echo "<div> <p>" . $grp['sum'] . "</p></div>";
+//                                            echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
+//                                            echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
+//                                            echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
+//                                            echo " <hr>";
+//                                        }
+//                                    }
+//                                    else if($type =='art')
+//                                    {
+//                                        echo 'hi';
+//                                    }?>
                                 </div>
                             </div>
                             <hr>
 
                             <div id="pagination">
                                 <ul class="pagination">
-                                    <li><a href="#">&laquo;</a></li>
-                                    <?php for ($i = 1; $i <= getnumrows2('article') / 3; $i++) {
-                                        echo "  <li class=\"active\"><a id='$i' href='#'>";
-                                        echo "$i";
-                                        echo "</a></li>";
-                                    } ?>
-                                    <li><a href="#">&raquo;</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -257,12 +251,16 @@ if (isset($_GET['id'])) {
     <!-- end article section-->
 </div>
 <!--footer section-->
-<footer id="footer">footer</footer>
+<footer id="footer">footer
 <!--end footer section-->
-
+<div id=" <?php
+echo getnumrows2("article");
+?>">
+</div>
+</footer>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
-
+<script src="js/jquery.twbsPagination.min.js"></script>
 <script>
     $(function (){
         $('.carousel').carousel({
@@ -271,36 +269,22 @@ if (isset($_GET['id'])) {
     });
 </script>
 <script>
-
-    $(document).ready(function () {
-//        var category = 'all';
-//        var pageNumber = 1;
-        var i =2
-        $ ("#pagination li:nth-child("+i+")").removeClass("active").addClass("disabled");
-
-
-
-        var pags = [1,2,3,4,5,6,7,8,9];
-        i=1;
-        while(i<pags.length+2)
-        {
-            if (i>6){
-                $ ("#pagination li:nth-child("+i+")").css("display","none");
-            }
-            i++;
+    var totalArticles=$("footer div").attr('id').toString();
+    totalPage =Math.ceil(totalArticles/3);
+    alert(totalPage);
+    $('#pagination').twbsPagination({
+        totalPages:totalPage,
+        visiblePages:5,
+        first:'شروع',
+        prev:'قبلی',
+        next:'بعدی',
+        last:'پایان',
+        onPageClick: function (event, page) {
+            $('#page-content').text('Page ' + page);
+            $('#articles .col-sm-12').load("test.php", {param1: page, param2: 'all'});
         }
-        //display pagination range 5 each time
-//        $("#pagination a #1 ").removeClass("active");
-
-//       for (i=0;i<=pags.length;i++){
-//           if(i>5)
-//           {
-//
-//           }
-//           }
-
-
-
+    });
+    $(document).ready(function () {
         $("#pagination a").click(function (e) {
             var pagNumber = $(this).attr('id').toString();
 //            alert(pagNumber);
