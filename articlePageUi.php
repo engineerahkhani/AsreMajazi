@@ -273,12 +273,37 @@ if (isset($_GET['id'])) {
 <script>
 
     $(document).ready(function () {
-        var category = 'all';
-        var pageNumber = 1;
+//        var category = 'all';
+//        var pageNumber = 1;
+        var i =2
+        $ ("#pagination li:nth-child("+i+")").removeClass("active").addClass("disabled");
+
+
+
+        var pags = [1,2,3,4,5,6,7,8,9];
+        i=1;
+        while(i<pags.length+2)
+        {
+            if (i>6){
+                $ ("#pagination li:nth-child("+i+")").css("display","none");
+            }
+            i++;
+        }
+        //display pagination range 5 each time
+//        $("#pagination a #1 ").removeClass("active");
+
+//       for (i=0;i<=pags.length;i++){
+//           if(i>5)
+//           {
+//
+//           }
+//           }
+
+
 
         $("#pagination a").click(function (e) {
             var pagNumber = $(this).attr('id').toString();
-            //alert(pagNumber);
+//            alert(pagNumber);
             $('#articles .col-sm-12').load("test.php", {param1: pagNumber, param2: 'all'});
             e.preventDefault();
 
