@@ -5,7 +5,7 @@ $pageNumber = $_POST['param1'];
 $cat = $_POST['param2'];
 $start =(3*($pageNumber-1));
 $number = 3;
-//echo $cat;
+echo $cat;
 //echo $pageNumber;
 //echo $start;
 
@@ -13,7 +13,7 @@ if ($cat == 'all') {
     $grp2 = mysql_query("select * from article limit $start,$number");
 //    echo "all";
 } else {
-    $grp2 = mysql_query("select * from article where grp=(select id from grp where name='$cat')  ORDER BY date and time  LIMIT $start,$number");
+    $grp2 = mysql_query("select * from article where grp='$cat'  ORDER BY date and time  LIMIT $start,$number");
 //    echo "cat";
 }
 while ($grp = mysql_fetch_array($grp2)) {
@@ -22,6 +22,7 @@ while ($grp = mysql_fetch_array($grp2)) {
     $xml = simplexml_import_dom($doc);
     $images = $xml->xpath('//img');
     $count = count($images);
+    $id = $grp['id'];
     if ($count != 0) {
         $src = $images[0]['src'];
     } else {
@@ -29,7 +30,7 @@ while ($grp = mysql_fetch_array($grp2)) {
     }
     echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
     // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
-    echo "<a href='#'> <h4>" . $grp['title'] . "</h4></a>";
+    echo "<a href=\"detailes.php?id=".$id."\" target=\"_blank\"> <h4>" . $grp['title'] . "</h4></a>";
     echo "<div> <p>" . $grp['sum'] . "</p></div>";
     echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
     echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";

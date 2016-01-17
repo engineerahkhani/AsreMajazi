@@ -1,50 +1,22 @@
 <?php include 'config.php';
 include 'functions.php';
-$n = 0;
-$type = 'all';
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $n = getnumrows('article', 'id', $id);
-    if ($n == 1) {
-        $article = mysql_fetch_array(mysql_query("select * from `article` where `id`='" . $id . "'"));
-        $type = 'art';
-        $v = $article['view'];
-        ++$v;
-        mysql_query("UPDATE `article` SET `view`='" . $v . "' WHERE `id`='" . $id . "'");
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
-    <title><?php
-        if ($n == 1) {
-            echo "عصر مجازی  » " . strip_tags($article['title']);
-        } else {
-            echo "مقالات | Articles";
-        }
-        ?></title>
+    <title>عصرمجازی | مقالات</title>
     <meta name="description" content="<?php
-    if ($n == 1) {
-        echo "عصر مجازی  » " . strip_tags($article['title']);
-    } else {
         echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
-    }
     ?>"/>
     <meta name="keywords" content="<?php
-    if ($n == 1) {
-        echo "عصر مجازی  » " . strip_tags($article['sum']);
-    } else {
         echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
-    }
     ?>"/>
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
 </head>
 <body>
-
 <!--navigation goes here-->
 <div class="row" id="navebar">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -57,24 +29,18 @@ if (isset($_GET['id'])) {
             </button>
             <!--site logo-->
             <a class="navbar-brand" href="index.html">Asre Mjazi</a>
-
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><span></span><a href="#welcome" class="fa fa-home fa-1x">&nbsp; تور مجازی</a></li>
-                <li><a href="#rezume" class="fa fa-user fa-1x">&nbsp; بانک مقالات</a></li>
-                <li><a href="#blog" class="fa fa-rss fa-1x">&nbsp;واقعیت افزوده</a></li>
-                <li><a href="#sample" class="fa fa-desktop fa-1x">&nbsp;باشگاه مشتریان</a></li>
-                <li><a href="#friends" class="fa fa-group fa-1x">&nbsp;خیریه</a></li>
-                <li><a href="#friends" class="fa fa-search fa-1x">&nbsp;<input class="input-sm"> </a></li>
-
-
-
+                <li><span></span><a href="#" class="fa fa-home fa-1x">&nbsp; تور مجازی</a></li>
+                <li><a href="#" class="fa fa-user fa-1x">&nbsp; بانک مقالات</a></li>
+                <li><a href="#" class="fa fa-rss fa-1x">&nbsp;واقعیت افزوده</a></li>
+                <li><a href="#" class="fa fa-desktop fa-1x">&nbsp;باشگاه مشتریان</a></li>
+                <li><a href="#" class="fa fa-group fa-1x">&nbsp;خیریه</a></li>
+                <li><a href="#" class="fa fa-search fa-1x">&nbsp;<input class="input-sm"> </a></li>
             </ul>
         </div>
-
     </nav>
-
 </div>
 <!--end navigation-->
 <!--head end-->
@@ -82,7 +48,6 @@ if (isset($_GET['id'])) {
     <!--article section-->
     <div id="articleSection">
         <div class="row ">
-
             <!--end searchBarSection-->
             <div id="slideShowSection" class="carousel slide">
                 <ol class="carousel-indicators">
@@ -90,7 +55,6 @@ if (isset($_GET['id'])) {
                     <li data-target="#slideShowSection" data-slide-to="1"></li>
                     <li data-target="#slideShowSection" data-slide-to="2"></li>
                 </ol>
-
                 <div class="carousel-inner">
                     <?php
                     $grp2 = mysql_query("select * from article    ORDER BY date and time  LIMIT 3 ");
@@ -113,16 +77,12 @@ if (isset($_GET['id'])) {
                         } else {
                             $src = 'img/blankpic.jpg';
                         }
-
-
                         echo "<img class=\"art-thumb\" src=\"" . $src . "\" />";
-
                         echo'</a>';
                        // echo "<a href='#?id='$articleId''> <li>" . $grp['title'] . "</li></a>";
-
                         echo " <div class=\" active\">";
                         echo "<div class=\"carousel-caption\">";
-                        echo "<h2><a href=detailes.php?id=$id class=\"carousel-caption-title\">";
+                        echo "<h2><a href=\"detailes.php?id=".$id."\"  class=\"carousel-caption-title\" target=_blank>";
                         echo $grp['title'];
                         echo "</a></h2>
                             </div>
@@ -130,7 +90,6 @@ if (isset($_GET['id'])) {
                     </div>";
                     }
                     ?>
-
                 </div>
                 <a class="left carousel-control" href="#slideShowSection" data-slide="prev"><span
                         class="fa fa-chevron-circle-left"></span></a>
@@ -144,71 +103,32 @@ if (isset($_GET['id'])) {
                         <div class="col-sm-8">
                             <div id="articles">
                                 <div class="col-sm-12">
-<!--                                    --><?php
-//                                    if ($type == 'all') {
-//                                        $grp2 = mysql_query("select * from article limit 1,3");
-//                                        while ($grp = mysql_fetch_array($grp2)) {
-//                                            $doc = new DOMDocument();
-//                                            $doc->loadHTML($grp['content']);
-//                                            $xml = simplexml_import_dom($doc);
-//                                            $images = $xml->xpath('//img');
-//                                            $count = count($images);
-//                                            if ($count != 0) {
-//                                                $src = $images[0]['src'];
-//                                            } else {
-//                                                $src = 'img/blankpic.jpg';
-//                                            }
-//                                            echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
-//                                            // echo"<img id=\"articleImge\" src=\"img/ar2.jpg\" class=\"img-responsive\">" ;
-//                                            $id = $grp['id'];
-//                                            echo "<a href=detailes.php?id=$id> <h4>" . $grp['title'] . "</h4></a>";
-//                                            echo "<div> <p>" . $grp['sum'] . "</p></div>";
-//                                            echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
-//                                            echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
-//                                            echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
-//                                            echo " <hr>";
-//                                        }
-//                                    }
-//                                    else if($type =='art')
-//                                    {
-//                                        echo 'hi';
-//                                    }?>
+<!--                                  show article list here-->
                                 </div>
                             </div>
                             <hr>
 
-                            <div id="pagination">
-                                <ul class="pagination">
-
+                                <ul class="pagination"  id="pagination">
                                 </ul>
-                            </div>
+
                         </div>
                         <div class="col-sm-4">
                             <section id="categorySection">
-                                <div class="breadcrumb">
-                                    <span class="fa fa-2x fa-folder-open-o"></span>
-                                    <span><a href="#">صفحه اصلی</a> <span class="divider">/</span></span>
-                                    <span><a href="#">مقالات</a> <span class="divider"></span></span>
-                                <span><a href="#"> <?php
-                                        if ($n == 1) {
-                                            echo "  » " . strip_tags($article['title']);
-                                        }
-                                        ?></a> <span class="divider"></span></span>
-                                </div>
                                 <h3>موضوعات</h3>
                                 <hr>
                                 <div class="list-group">
                                     <a href="#" class="list-group-item active"><span
-                                            class="count"><?php echo getArticlesCount(); ?></span>همه مقالات
+                                            class="count" id="catAll"><?php echo getArticlesCount(); ?></span>همه مقالات
                                     </a>
                                     <?php
                                     $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
                                     while ($grp = mysql_fetch_array($grp2)) {
-                                        $catId = $grp['name'];
+                                        $catId = $grp['id'];
                                         echo "<a href='#' id='$catId'  class=\"list-group-item \"><span class='count'>" . getCountRows($grp['id']) . "</span>" . $grp['name'] . "</a>";
                                         $sgrp2 = mysql_query("select * from `grp` where `mgrp`='" . $grp['id'] . "'");
                                         while ($sgrp = mysql_fetch_array($sgrp2)) {
-                                            echo "<div><a href=\"#\" class=\"list-group-item\"><span class='count'>" . getCountRows($grp['id']) . "</span>" . $sgrp['name'] . "</a></div>";
+                                            $catId = $sgrp['id'];
+                                            echo "<div><a href=\"panaroma.php?id='$catId' \" class=\"list-group-item\" id='$catId'  ><span class='count'>" . getCountRows($grp['id']) . "</span>" . $sgrp['name'] . "</a></div>";
                                         }
                                     }
                                     ?>
@@ -224,7 +144,7 @@ if (isset($_GET['id'])) {
                                             $grp2 = mysql_query("select * from article  ORDER BY view DESC LIMIT 10 ");
                                             while ($grp = mysql_fetch_array($grp2)) {
                                                 $id = $grp['id'];
-                                                echo "<a href=detailes.php?id=$id> <li>" . $grp['title'] . "</li></a>";
+                                                echo "<a href=\"detailes.php?id=".$id."\" target=\"_blank\"> <li>" . $grp['title'] . "</li></a>";
                                             }
                                             ?>
                                         </ol>
@@ -232,7 +152,6 @@ if (isset($_GET['id'])) {
                                 </div>
                             </section>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -260,38 +179,96 @@ echo getnumrows2("article");
     });
 </script>
 <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
     var totalArticles=$("footer div").attr('id').toString();
-     localStorage.setItem("category", "all");
-    var cat =localStorage.getItem("category");
+//     localStorage.setItem("category", "all");
+//    var cat =localStorage.getItem("category");
 //    alert(cat);
     totalPage =Math.ceil(totalArticles/3);
 //    alert(totalPage);
-    $('#pagination').twbsPagination({
-        totalPages:totalPage,
-        visiblePages:5,
-        first:'شروع',
-        prev:'قبلی',
-        next:'بعدی',
-        last:'پایان',
-        onPageClick: function (event, page) {
-            $('#page-content').text('Page ' + page);
-            var category = localStorage.getItem("category");
-            $('#articles .col-sm-12').load("test.php", {param1: page, param2:category});
-            //category
-            $("#categorySection .list-group-item").click(function (e) {
-                var categoryName = $(this).attr('id').toString();
-                localStorage.setItem("category", categoryName);
-                var category = localStorage.getItem("category");
-                // var pagNumber = $("#pagination a .active").attr('id').toString();
-                $('#articles .col-sm-12').load("test.php", {param1:page, param2: category});
-                e.preventDefault();
+//            $("#catAll").click(function(){
+//                alert("all");
+//                $('#pagination').twbsPagination({
+//                    totalPages:totalPage,
+//                    visiblePages:5,
+//                    first:'شروع',
+//                    prev:'قبلی',
+//                    next:'بعدی',
+//                    last:'پایان',
+//                    onPageClick: function (event, page) {
+//                        $('#page-content').text('Page ' + page);
+////            var category = localStorage.getItem("category");
+//                        $('#articles .col-sm-12').load("test.php", {param1: page, param2:'all'});
+//                    }
+//                });
+//            });
+            $(".list-group-item").click(function () {
+               var $id =  $(this).attr('id');
+                switch ($id){
+                    case '168':
+                        alert("168");
+//                        $('#mainSection .col-sm-8').empty();
+                            $('#pagination').twbsPagination({
+                                totalPages:10,
+                                visiblePages:5,
+                                first:'شروع',
+                                prev:'قبلی',
+                                next:'بعدی',
+                                last:'پایان',
+                                onPageClick: function (event, page) {
+                                    $('#page-content').text('Page ' + page);
+                                    $('#articles .col-sm-12').load("test.php", {param1: page, param2:'168'});
+                                }
+                            });
+                        break;
+                    case '169':
+//                        $('#mainSection .col-sm-8').empty();
+                        $('#pagination').twbsPagination({
+                            totalPages:10,
+                            visiblePages:5,
+                            first:'شروع',
+                            prev:'قبلی',
+                            next:'بعدی',
+                            last:'پایان',
+                            onPageClick: function (event, page) {
+                                $('#page-content').text('Page ' + page);
+                                $('#articles .col-sm-12').load("test.php", {param1: page, param2:'169'});
+                            }
+                        });
+                        break;
+                    case '171':
+                        alert("171");
+                        break;
+                    case '175':
+                        alert("175");
+                        break;
+                    case '174':
+//                        alert("174");
+                        break;
+                }
+//                alert($id);
 
             });
+            $("#catAll").click(function(){
+//                $('#mainSection .col-sm-8').empty();
+                alert("all");
+                $('#pagination').twbsPagination({
+                    totalPages:10,
+                    visiblePages:5,
+                    first:'شروع',
+                    prev:'قبلی',
+                    next:'بعدی',
+                    last:'پایان',
+                    onPageClick: function (event, page) {
+                        $('#page-content').text('Page ' + page);
+//            var category = localStorage.getItem("category");
+                        $('#articles .col-sm-12').load("test.php", {param1: page, param2:'all'});
+                    }
+                });
+            });
 
-        }
-    });
-$(".navbar-nav li input").css("display","none");
+
+            $(".navbar-nav li input").css("display","none");
 $(".navbar-nav .fa-search").click(function(){
     $(".navbar-nav li input").css("display","inline");
 });
@@ -303,10 +280,10 @@ $(".navbar-nav .fa-search").click(function(){
                 $('#pagination').css("display","none");
             }
         })
+            $("#catAll").click();
     });
     //$('pagination').find(a).on('click',function(e){
     // }
-
 </script>
 </body>
 </html>

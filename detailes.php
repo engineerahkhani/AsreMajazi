@@ -25,6 +25,18 @@ if (isset($_GET['id'])) {
     <div class="row">
         <div class="col-sm-12">
             <div class="container marginTop">
+<!--                navigation-->
+                <div class="breadcrumb">
+                    <span class="fa fa-2x fa-folder-open-o"></span>
+                    <span><a href="#">صفحه اصلی</a> <span class="divider">/</span></span>
+                    <span><a href="#">مقالات</a> <span class="divider"></span></span>
+                                <span><a href="#"> <?php
+                                        if ($n == 1) {
+                                            echo "  » " . strip_tags($article['title']);
+                                        }
+                                        ?></a> <span class="divider"></span></span>
+                </div>
+<!--                end navigation-->
                 <?php
                 $grp2 = mysql_query("select * from article WHERE id = $id limit 3");
                 while ($grp = mysql_fetch_array($grp2)) {
