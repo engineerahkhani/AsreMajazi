@@ -49,59 +49,53 @@ include 'functions.php';
     <div id="articleSection">
         <div class="row ">
             <!--end searchBarSection-->
-            <div class="col-sm-8 col-xs-12">
-                <div id="slideShowSection" class="carousel slide">
-                    <ol class="carousel-indicators">
-                        <li data-target="#slideShowSection" data-slide-to="0" class="active"></li>
-                        <li data-target="#slideShowSection" data-slide-to="1"></li>
-                        <li data-target="#slideShowSection" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <?php
-                        $grp2 = mysql_query("select * from article    ORDER BY date and time  LIMIT 3 ");
-                        $i = 1;
-                        while ($grp = mysql_fetch_array($grp2)) {
-                            $id = $grp['id'];
-                            if ($i == 1) {
-                                echo "  <div class=\"item active \">";
-                            } else {
-                                echo "  <div class=\"item  \">";
-                            }
-                            ++$i;
-                            $doc = new DOMDocument();
-                            $doc->loadHTML($grp['content']);
-                            $xml = simplexml_import_dom($doc);
-                            $images = $xml->xpath('//img');
-                            $count = count($images);
-                            if ($count != 0) {
-                                $src = $images[0]['src'];
-                            } else {
-                                $src = 'img/blankpic.jpg';
-                            }
-                            echo "<img class=\"art-thumb\" src=\"" . $src . "\" />";
-                            echo'</a>';
-                            // echo "<a href='#?id='$articleId''> <li>" . $grp['title'] . "</li></a>";
-                            echo " <div class=\" active\">";
-                            echo "<div class=\"carousel-caption\">";
-                            echo "<h2><a href=\"detailes.php?id=".$id."\"  class=\"carousel-caption-title\" target=_blank>";
-                            echo $grp['title'];
-                            echo "</a></h2>
+            <div id="slideShowSection" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#slideShowSection" data-slide-to="0" class="active"></li>
+                    <li data-target="#slideShowSection" data-slide-to="1"></li>
+                    <li data-target="#slideShowSection" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <?php
+                    $grp2 = mysql_query("select * from article    ORDER BY date and time  LIMIT 3 ");
+                    $i = 1;
+                    while ($grp = mysql_fetch_array($grp2)) {
+                        $id = $grp['id'];
+                        if ($i == 1) {
+                            echo "  <div class=\"item active \">";
+                        } else {
+                            echo "  <div class=\"item  \">";
+                        }
+                        ++$i;
+                        $doc = new DOMDocument();
+                        $doc->loadHTML($grp['content']);
+                        $xml = simplexml_import_dom($doc);
+                        $images = $xml->xpath('//img');
+                        $count = count($images);
+                        if ($count != 0) {
+                            $src = $images[0]['src'];
+                        } else {
+                            $src = 'img/blankpic.jpg';
+                        }
+                        echo "<img class=\"art-thumb\" src=\"" . $src . "\" />";
+                        echo'</a>';
+                       // echo "<a href='#?id='$articleId''> <li>" . $grp['title'] . "</li></a>";
+                        echo " <div class=\" active\">";
+                        echo "<div class=\"carousel-caption\">";
+                        echo "<h2><a href=\"detailes.php?id=".$id."\"  class=\"carousel-caption-title\" target=_blank>";
+                        echo $grp['title'];
+                        echo "</a></h2>
                             </div>
                         </div>
                     </div>";
-                        }
-                        ?>
-                    </div>
-                    <a class="left carousel-control" href="#slideShowSection" data-slide="prev"><span
-                            class="fa fa-chevron-circle-left"></span></a>
-                    <a class="right carousel-control" href="#slideShowSection" data-slide="next"><span
-                            class="fa fa-chevron-circle-right"></span></a>
+                    }
+                    ?>
                 </div>
+                <a class="left carousel-control" href="#slideShowSection" data-slide="prev"><span
+                        class="fa fa-chevron-circle-left"></span></a>
+                <a class="right carousel-control" href="#slideShowSection" data-slide="next"><span
+                        class="fa fa-chevron-circle-right"></span></a>
             </div>
-            <div class="col-sm-4 col-xs-12">
-                
-            </div>
-
             <!--end slideShowSection-->
             <section id="mainSection" class="marginTop">
                 <div class="container">
@@ -140,7 +134,23 @@ include 'functions.php';
                                     ?>
                                 </div>
                             </section>
-
+                            <section id="topArticles">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><span class="fa fa-star-o"></span>&nbsp; محبوبترین مقالات
+                                    </div>
+                                    <div class="panel-body">
+                                        <ol>
+                                            <?php
+                                            $grp2 = mysql_query("select * from article  ORDER BY view DESC LIMIT 10 ");
+                                            while ($grp = mysql_fetch_array($grp2)) {
+                                                $id = $grp['id'];
+                                                echo "<a href=\"detailes.php?id=".$id."\" target=\"_blank\"> <li>" . $grp['title'] . "</li></a>";
+                                            }
+                                            ?>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
