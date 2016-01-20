@@ -26,9 +26,6 @@
 
 /***** general css styles*/
 body{
-    background: url("../img/bg.jpg") 50% 0 no-repeat fixed;
-    filter:blur(5px);
-    background-size: cover;
 }
 .dirRtl{
     direction: rtl;
@@ -120,7 +117,17 @@ width:100%;
 #articleImage {
 
 }
-
+#rowActive{
+    border: 1px solid black;
+}
+#rowinActive{
+    border: 1px solid black;
+}
+#rowActiveItems{
+    background-color: #2b542c;
+    padding:5px;
+    margin: 2px;
+}
 /**category section*/
 #categorySection {
     direction: rtl;
@@ -143,9 +150,7 @@ width:100%;
 }
 #panel-raw{
     background-color: #e6e6e6;
-    padding: 7px;
-    margin-top: 10px;
-    box-shadow: 10px 10px 5px #aaaaaa;
+
 }
 #panel-raw:hover{
     background-color: #e1e1e1;
@@ -154,8 +159,11 @@ width:100%;
 #panel-raw a{
     color: #ffffff;
 }
-#panel-raw a:hover{
+#panel-raw a:hover {
     color: #000;
+}
+.padded{
+    padding:100px;
 }
 /**pagination css*/
 #pagination {
