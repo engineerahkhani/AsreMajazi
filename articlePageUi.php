@@ -99,13 +99,13 @@ include 'functions.php';
                     <a class="right carousel-control" href="#slideShowSection" data-slide="next"><span
                             class="fa fa-chevron-circle-right"></span></a>
                 </div>
-<!--                end slideShowSection-->
+                <!--                end slideShowSection-->
             </div>
             <div class="col-xs-12 col-md-4 dirRtl">
-<ul class="nav nav-tabs nav-justified">
-    <li class="active"><a data-toggle="tab" href="#topArticles">جدیدترین</a> </li>
-    <li><a data-toggle="tab" href="#recentArticles">پربازدیدترین</a> </li>
-</ul>
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a data-toggle="tab" href="#topArticles">جدیدترین</a></li>
+                    <li><a data-toggle="tab" href="#recentArticles">پربازدیدترین</a></li>
+                </ul>
                 <div class="tab-content">
                     <div id="topArticles" class="tab-pane fade in active">
                         <div class="panel panel-default">
@@ -134,72 +134,39 @@ include 'functions.php';
                                     }
                                     ?>
                                 </ol>
-                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
+        </div>
 
-            <section id="mainSection" >
+        <section id="mainSection">
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div id="articles">
-                                <section id="categorySection">
-                                    <?php
-                                    $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
-                                    while ($grp = mysql_fetch_array($grp2)) {
-                                        $catId = $grp['id'];
-                                        echo "<div class=\" panel panel-default\">";
-                                        echo "<div class=\"panel-heading\">";
-                                        echo "<span id='$catId' >" . $grp['name'] . "</span>";
-                                        echo "</div>";
-                                        echo "<div class=\"panel-body\">";
-                                        $article = mysql_query("select * from article where grp = $catId ORDER BY date DESC LIMIT 7");
-                                        $i = 0;
-                                        while ($articleDetail = mysql_fetch_array($article)) {
-                                            $id = $articleDetail['id'];
-//                                                echo "<div>";
-                                            if ($i == 0) {
-                                                echo "<div class='active'>";
-                                                $doc = new DOMDocument();
-                                                $doc->loadHTML($articleDetail['content']);
-                                                $xml = simplexml_import_dom($doc);
-                                                $images = $xml->xpath('//img');
-                                                $count = count($images);
-                                                $id = $articleDetail['id'];
-                                                if ($count != 0) {
-                                                    $src = $images[0]['src'];
-                                                } else {
-                                                    $src = 'img/blankpic.jpg';
-                                                }
-                                                echo "<a href=\"detailes.php?id=" . $id . "\" target=\"_blank\"> <h4>" . $articleDetail['title'] . "</h4></a>";
-                                                echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
-                                                echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
-                                                echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></div>";
-                                                echo "</div>";
-                                                echo " <hr>";
-?>
-<div class="col-xs-6">
-                                    <?php
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="articles">
+                        <section id="categorySection">
+                            <?php
+                            $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
+                            while ($grp = mysql_fetch_array($grp2)) {
+                                $catId = $grp['id'];
+                                //start panel
+                                echo "<div class=\" panel panel-default\">";
+                                echo "<div class=\"panel-heading\">";
+                                echo "<span id='$catId' >" . $grp['name'] . "</span>";
+                                echo "</div>";
+                                //panel body
+                                echo "<div class=\"panel-body\">";
 
-//                                                echo "  <div class=\"col-xs-6\">";
-                                                       echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
-//                                                echo "</div";
-//                                                echo "  <div class=\"col-xs-6\">";
-                                                ?>
-                                               </div>
+                                $article = mysql_query("select * from article where grp = $catId ORDER BY date DESC LIMIT 7");
+                                $j = 0;
+                                while ($articleDetail = mysql_fetch_array($article)) {
+                                    $id = $articleDetail['id'];
 
-                                                <?php
-                                                     echo " <p>" . $articleDetail['sum'] . "</p>";
-//                                                echo "</div";
-                                            } else {
-                                    ?>
-
-                                    <div class="col-xs-12"  id="panel-raw">
-                                        <?php
+                                    if ($j == 0) {
+                                        echo "<div class='active'>";
                                         $doc = new DOMDocument();
                                         $doc->loadHTML($articleDetail['content']);
                                         $xml = simplexml_import_dom($doc);
@@ -211,50 +178,87 @@ include 'functions.php';
                                         } else {
                                             $src = 'img/blankpic.jpg';
                                         }
-                                        ?>
-                                        <div class="col-xs-8">
-                                        <?php
-                                        echo "<a href=\"detailes.php?id=" . $id . "\" target=\"_blank\"> <h6>" . $articleDetail['title'] . "</h6></a>";
+                                        echo "<a href=\"detailes.php?id=" . $id . "\" target=\"_blank\"> <h4>" . $articleDetail['title'] . "</h4></a>";
                                         echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
                                         echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
                                         echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></div>";
-                                        ?>
-                                            </div>
-                                        <div class="col-xs-4">
-                                            <?php
-                                            echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
-                                        ?>
-                                       </div>
 
-                                    </div>
-                                    <?php
+                                        echo " <hr>";
+
+                                        echo "  <div class=\"col-xs-6\">";
+                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
+                                        echo "</div";
+                                        echo "  <div class=\"col-xs-6\">";
+
+                                        echo " <p>" . $articleDetail['sum'] . "</p></div>";
+                                        echo "</div";
+//
+
+
+                                    } else {
+                                        ?>
+                                        <div class="row">
+                                        <div class="col-xs-12 col-md-6" id="panel-raw">
+                                            <?php
+//                                            $doc = new DOMDocument();
+                                            $doc->loadHTML($articleDetail['content']);
+                                            $xml = simplexml_import_dom($doc);
+                                            $images = $xml->xpath('//img');
+                                            $count = count($images);
+                                            $id = $articleDetail['id'];
+                                            if ($count != 0) {
+                                                $src = $images[0]['src'];
+                                            } else {
+                                                $src = 'img/blankpic.jpg';
                                             }
-                                            ++$i;
-                                        }
-                                        echo "</div>";
-//                                            echo "</div>";
-                                        echo "<div class=\"panel-footer\">";
-                                        echo "<a href=\"loadMore.php?id=".$catId."\" target=\"_blank\">
+                                            ?>
+                                            <div class="col-xs-8">
+                                                <?php
+                                                echo "<a href=\"detailes.php?id=" . $id . "\" target=\"_blank\"> <h6>" . $articleDetail['title'] . "</h6></a>";
+//                                                echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
+//                                                echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
+//                                                echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></div>";
+                                                ?>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <?php
+//                                                echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
+                                                ?>
+                                            </div>
+
+                                        </div>
+                                        </div>
+                                        <?php
+                                  }
+                                    ++$j;
+
+                                }
+//end panel body
+                                echo "</div>";
+                                echo "<div class=\"panel-footer\">";
+                                echo "<a href=\"loadMore.php?id=" . $catId . "\" target=\"_blank\">
                                          مشاهده عنوان‌های بیشتر
                                          </a>";
-//                                        echo "<a href='loadMore.php'? id='$catId' ></a>";
-                                        echo "</div>";
-                                        echo "</div>";
-//                                            end panel
-                                    }
-                                    ?>
+//                                end panel footer
+
+                                echo "</div>";
+//                                end panel
+                                echo "</div>";
+
+                            }
+                            ?>
 
 
-                                </section>
-                            </div>
-                        </div>
+                        </section>
                     </div>
+                </div>
+            </div>
 
-            </section>
-            <!--end mainSection-->
-        </div>
+        </section>
+        <!--end mainSection-->
     </div>
-    <!-- end article section-->
+</div>
+<!-- end article section-->
 </div>
 <!--footer section-->
 <footer id="footer">footer
