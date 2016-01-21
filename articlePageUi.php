@@ -19,7 +19,7 @@ include 'functions.php';
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 <!--navigation goes here-->
 <div class="row" id="navebar">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top ">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Asre Mjazi</span>
@@ -33,11 +33,14 @@ include 'functions.php';
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><span></span><a href="#168" class="fa fa-home fa-1x">&nbsp; تور مجازی</a></li>
-                <li><a href="#" class="fa fa-user fa-1x">&nbsp; تکنولوژی</a></li>
-                <li><a href="#169" class="fa fa-rss fa-1x">&nbsp;عکاسی</a></li>
-                <li><a href="#171" class="fa fa-desktop fa-1x">&nbsp;واقعیت افزوده</a></li>
-                <li><a href="#175" class="fa fa-group fa-1x">&nbsp;هلی شات</a></li>
+                <?php
+                $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
+                while ($grp = mysql_fetch_array($grp2)) {
+                    $catId = $grp['id'];
+                    ?>
+                    <li><span></span><a href="#<?php echo $grp['id'] ?>" >
+                            &nbsp; <?php echo $grp['name'] ?></a></li>
+                <?php } ?>
                 <li><a href="#" class="fa fa-search fa-1x">&nbsp;<input class="input-sm"> </a></li>
             </ul>
         </div>
@@ -95,13 +98,13 @@ include 'functions.php';
                         ?>
                     </div>
                     <a class="left carousel-control" href="#slideShowSection" data-slide="prev"><span
-                            class="fa fa-chevron-circle-left"></span></a>
+                            class="fa fa-chevron-circle-left fa-2x"></span></a>
                     <a class="right carousel-control" href="#slideShowSection" data-slide="next"><span
-                            class="fa fa-chevron-circle-right"></span></a>
+                            class="fa fa-chevron-circle-right fa-2x"></span></a>
                 </div>
                 <!--                end slideShowSection-->
             </div>
-            <div class="col-xs-12 col-md-4 dirRtl">
+            <div class="col-xs-12 col-md-4 ">
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active"><a data-toggle="tab" href="#topArticles">جدیدترین</a></li>
                     <li><a data-toggle="tab" href="#recentArticles">پربازدیدترین</a></li>
@@ -122,7 +125,7 @@ include 'functions.php';
                             </div>
                         </div>
                     </div>
-                    <div id="recentArticles" class="tab-pane fade in ">
+                    <div id="recentArticles" class="tab-pane fade in dirRtl">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <ol>
@@ -151,67 +154,106 @@ include 'functions.php';
             <div class="col-sm-12">
                 <div id="articles">
                     <section id="categorySection">
-                        
+                        <?php
+                        $p = 6;
+                        $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
+                        while ($grp = mysql_fetch_array($grp2)) {
+                            $catId = $grp['id'];
+                            ?>
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Panel Heading</div>
-                            <div class="panel-body">
-                                <div class="row" id="rowActive">
-                                    <div class="active">
-                                        <div class="col-xs-6">
-                                            <img src="img/ar.jpg" class="img-responsive">
-                                        </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading"
+                                     id="<?php echo $grp['id'] ?>"><?php echo $grp['name'] ?> </div>
+                                <div class="panel-body">
+                                    <?php
+                                    $j = 0;
 
-                                        <h3>this tis title</h3>
-                                        <hr>
-                                        <p>Programmers Stack Exchange is a question
-                                            and answer site for professional programmers
-                                            interested in conceptual questions about software
-                                            development.Programmers Stack Exchange is a question
-                                            and answer site for professional programmers
-                                            interested in conceptual questions about software
-                                            development.Programmers Stack Exchange is a question
-                                            and answer site for professional programmers
-                                            interested in conceptual questions about software
-                                            development.Programmers Stack Exchange is a question
-                                            and answer site for professional programmers
-                                            interested in conceptual questions about software
-                                            development.d answer site for professional programmers
-                                            interested in conceptual questions about software
-                                            development.Programmers Stack Exchange is a question
-                                            and answer site for professional programmers
-                                            interested in conceptual questions about software
-                                            development.Programmers Stack Exchange is a question
-                                            and answer site for professional programmers
-                                            interested in conceptual questions about software
-                                            development.Programmers Stack Exchange is a question
-                                            and answer site for professional programmers
-                                            interested in conceptual questions about software
-                                            development.
-                                        </p>
+                                    $article = mysql_query("select * from article where grp = $catId ORDER BY date DESC LIMIT 7");
+                                    while ($articleDetail = mysql_fetch_array($article)) {
+                                        $id = $articleDetail['id'];
 
-                                    </div>
-                                </div>
-                                <div class="row" id="rowinActive">
-                                    <div class="inactive">
-                                        <div class="col-xs-12 col-md-6">
-                                            <div class="row" id="rowActiveItems">
-                                                <div class="col-xs-8">
-                                                    <h5>titletitletitle</h5>
-                                                    <span>user</span>
-                                                    <span>view</span>
-                                                    <span>date</span>
-                                                </div>
-                                                <div class="col-xs-4">
-                                                    <img src="img/ar.jpg" class="img-responsive">
+                                        if ($j == 0) {
+                                            ?>
+                                            <div class="row" id="rowActive">
+                                                <div class="active">
+                                                    <div class="col-xs-6">
+                                                        <?php
+                                                        $doc = new DOMDocument();
+                                                        $doc->loadHTML($articleDetail['content']);
+                                                        $xml = simplexml_import_dom($doc);
+                                                        $images = $xml->xpath('//img');
+                                                        $count = count($images);
+                                                        $id = $articleDetail['id'];
+                                                        if ($count != 0) {
+                                                            $src = $images[0]['src'];
+                                                        } else {
+                                                            $src = 'img/blankpic.jpg';
+                                                        }
+                                                        ?>
+                                                        <?php echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />"; ?>
+                                                    </div>
+
+                                                    <h3><?php echo $articleDetail['title']; ?></h3>
+                                                    <?php echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
+                                                    echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
+                                                    echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></div>"; ?>
+                                                    <hr>
+                                                    <p>
+                                                        <?php echo $articleDetail['sum']; ?>
+                                                    </p>
+
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!--pandel body end -->
-                            <div class="panel-footer">Panel Footer</div>
-                        </div><!-- panel end -->
+                                            <?php
+
+                                        } else {
+                                            if ($p == 6) {
+                                                ?>
+                                                <div class="row  " id="rowinActive">
+                                                <div class="inactive  ">
+                                            <?php } ?>
+                                            <div class="col-xs-12 col-md-6 ">
+                                                <div class="row " >
+                                                    <div class="col-xs-8">
+                                                        <h5><?php
+                                                            echo limitword($articleDetail['title'], 6);
+                                                            --$p;
+                                                            ?>
+                                                        </h5>
+                                                        <?php echo "<span id=\"articlePropertiesRowITem\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
+                                                        echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
+                                                        echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></span>"; ?>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <?php $doc = new DOMDocument();
+                                                        $doc->loadHTML($articleDetail['content']);
+                                                        $xml = simplexml_import_dom($doc);
+                                                        $images = $xml->xpath('//img');
+                                                        $count = count($images);
+                                                        $id = $articleDetail['id'];
+                                                        if ($count != 0) {
+                                                            $src = $images[0]['src'];
+                                                        } else {
+                                                            $src = 'img/blankpic.jpg';
+                                                        }
+                                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\" height=\"60\" width=\"90\" />";
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php if ($p == 0) { ?>
+
+                                                </div>
+                                                </div>
+                                            <?php }
+                                        }
+                                        $j = 1;
+                                    } ?>
+                                </div><!--pandel body end -->
+                                <div class="panel-footer"><a href="loadMore.php?id=<?php echo $grp['id'] ?>"
+                                                             target="_blank">مشاهده عناوین بیشتر</a></div>
+                            </div><!-- panel end -->
+                        <?php } ?>
                     </section>
                 </div>
             </div>

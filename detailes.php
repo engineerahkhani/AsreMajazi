@@ -8,8 +8,12 @@ $id = $_GET['id'];
 //echo $id;
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+
     $n = getnumrows('article', 'id', $id);
     try {
+        $articleGrp = mysql_fetch_array(mysql_query("select grp from article where id='$id'"));
+        $categoryId = $articleGrp['grp'];
+        $cat = mysql_fetch_array(mysql_query("select * from `grp` where `id`='" . $categoryId . "'"));
         $article = mysql_fetch_array(mysql_query("select * from `article` where `id`='" . $id . "'"));
         $type = 'art';
         $v = $article['view'];
@@ -28,13 +32,12 @@ if (isset($_GET['id'])) {
 <!--                navigation-->
                 <div class="breadcrumb">
                     <span class="fa fa-2x fa-folder-open-o"></span>
-                    <span><a href="#">صفحه اصلی</a> <span class="divider">/</span></span>
-                    <span><a href="#">مقالات</a> <span class="divider"></span></span>
-                                <span><a href="#"> <?php
-                                        if ($n == 1) {
-                                            echo "  » " . strip_tags($article['title']);
-                                        }
-                                        ?></a> <span class="divider"></span></span>
+                    <span><a href="articlePageUi.php">صفحه اصلی</a> <span class="divider">/</span></span>
+
+                                <span>
+                                    <a href="loadMore.php?id=<?php echo $categoryId ?>"> <?php echo strip_tags($cat['name']); ?> </a><span class="divider">/</span>
+                                    <a href="#"> <?php echo strip_tags($article['title']); ?> </a>
+                                </span>
                 </div>
 <!--                end navigation-->
                 <?php

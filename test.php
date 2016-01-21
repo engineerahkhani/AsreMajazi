@@ -5,7 +5,7 @@ $pageNumber = $_POST['param1'];
 $cat = $_POST['param2'];
 $start =(3*($pageNumber-1));
 $number = 3;
-echo $cat;
+//echo $cat;
 //echo $pageNumber;
 //echo $start;
 
