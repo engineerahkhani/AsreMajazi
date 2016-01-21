@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ee207be-d267-44f3-8a9e-4929e2f405c7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/articlePageUi.php" afterPath="$PROJECT_DIR$/articlePageUi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/articlesStyle.css" afterPath="$PROJECT_DIR$/css/articlesStyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/bootstrap.css" afterPath="$PROJECT_DIR$/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/detailes.php" afterPath="$PROJECT_DIR$/detailes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loadMore.php" afterPath="$PROJECT_DIR$/loadMore.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.php" afterPath="$PROJECT_DIR$/test.php" />
-    </list>
+    <list default="true" id="7ee207be-d267-44f3-8a9e-4929e2f405c7" name="Default" comment="" />
     <ignored path="root.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
