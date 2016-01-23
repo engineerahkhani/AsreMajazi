@@ -177,7 +177,19 @@ include 'functions.php';
                                             ?>
                                             <div class="row" id="rowActive">
                                                 <div class="active">
-                                                    <div class="col-xs-6">
+
+                                                    <div class="col-xs-8">
+                                                    <h3><a class="rowActiveTitle" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" ><?php echo $articleDetail['title']; ?></a></h3>
+                                                    <?php echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
+                                                    echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
+                                                    echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></div>"; ?>
+                                                    <hr>
+                                                    <p>
+                                                        <?php echo limitword($articleDetail['sum'],80); ?><br>
+                                                        <a class="readMore" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" >بیشتر بخوانید...</a>
+                                                    </p>
+                                                    </div>
+                                                    <div class="col-xs-4">
                                                         <?php
                                                         $doc = new DOMDocument();
                                                         $doc->loadHTML($articleDetail['content']);
@@ -191,18 +203,9 @@ include 'functions.php';
                                                             $src = 'img/blankpic.jpg';
                                                         }
                                                         ?>
-                                                        <?php echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />"; ?>
-                                                    </div>
+                                                        <?php echo "<img class=\"img-responsive\" src=\"" . $src . "\"  width=\"300\" height=\"180\" />"; ?>
 
-                                                    <h3><?php echo $articleDetail['title']; ?></h3>
-                                                    <?php echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
-                                                    echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
-                                                    echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></div>"; ?>
-                                                    <hr>
-                                                    <p>
-                                                        <?php echo $articleDetail['sum']; ?>
-                                                    </p>
-
+                                                </div>
                                                 </div>
                                             </div>
                                             <?php
@@ -215,9 +218,9 @@ include 'functions.php';
                                             <?php } ?>
                                             <div class="col-xs-12 col-md-6 ">
                                                 <div class="row " >
-                                                    <div class="col-xs-8">
+                                                    <div class="col-xs-9" id="rowinActiveItem">
                                                         <h5><?php
-                                                            echo limitword($articleDetail['title'], 6);
+                                                            echo limitword($articleDetail['title'], 8);
                                                             --$p;
                                                             ?>
                                                         </h5>
@@ -225,7 +228,7 @@ include 'functions.php';
                                                         echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
                                                         echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></span>"; ?>
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-3">
                                                         <?php $doc = new DOMDocument();
                                                         $doc->loadHTML($articleDetail['content']);
                                                         $xml = simplexml_import_dom($doc);
@@ -237,7 +240,7 @@ include 'functions.php';
                                                         } else {
                                                             $src = 'img/blankpic.jpg';
                                                         }
-                                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\" height=\"60\" width=\"90\" />";
+                                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\" height=\"50\" width=\"80\" />";
                                                         ?>
                                                     </div>
                                                 </div>

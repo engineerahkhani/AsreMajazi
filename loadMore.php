@@ -31,7 +31,7 @@ try {
 
 <!--end navigation-->
 <!--head end-->
-<div class="row marginTop">
+<div class="row marginTop ">
     <div class="container">
         <div class="breadcrumb">
             <span class="fa fa-2x fa-folder-open-o"></span>
@@ -51,7 +51,7 @@ try {
     <div id="articleSection">
         <div class="row ">
 
-            <section id="mainSection" class="marginTop">
+            <section id="mainSection">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8">
@@ -78,7 +78,7 @@ try {
                         </div>
                         <div class="col-sm-4">
                             <section id="categorySection">
-                                <h3>موضوعات</h3>
+                                <h4>دسته بندی ها</h4>
                                 <hr>
                                 <div class="list-group">
                                     <a href="#" class="list-group-item active"  id="catAll"><span
@@ -147,30 +147,30 @@ try {
 
         $(".list-group div a").click(function () {
 
-            $("#articles .col-sm-12").load("test.php", {param1: '1', param2: '174'});
+            $("#articles .col-sm-12").load("load.php", {param1: '1', param2: '174'});
         });
 
         $("#catAll").click(function () {
-                    $('#articles .col-sm-12').load("test.php", {param1: '1', param2: categoryId});
+                    $('#articles .col-sm-12').load("load.php", {param1: '1', param2: categoryId});
 
         });
 
         $("#pagination ul li a").click(function(){
             var $page = $(this).attr("id");
           $currentPage = $page;
-            $('#articles .col-sm-12').load("test.php", {param1:$page, param2: categoryId});
+            $('#articles .col-sm-12').load("load.php", {param1:$page, param2: categoryId});
        alert($currentPage);
         });
 
         $("#pagination #next").click(function(){
             var $page = parseInt($currentPage.text(),10);
-            alert($page);
-            //$('#articles .col-sm-12').load("test.php", {param1:$page, param2: categoryId});
+
+            //$('#articles .col-sm-12').load("load.php", {param1:$page, param2: categoryId});
         });
 
         $("#pagination #prev").click(function(){
             var $page = --$currentPage;
-            $('#articles .col-sm-12').load("test.php", {param1:$page, param2: categoryId});
+            $('#articles .col-sm-12').load("load.php", {param1:$page, param2: categoryId});
         });
 
         $(".navbar-nav li input").css("display", "none");

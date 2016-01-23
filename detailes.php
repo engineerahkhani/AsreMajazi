@@ -26,9 +26,9 @@ if (isset($_GET['id'])) {
 }
 ?>
 <div id="articles">
-    <div class="row">
+    <div class="row marginTop">
         <div class="col-sm-12">
-            <div class="container marginTop">
+            <div class="container ">
 <!--                navigation-->
                 <div class="breadcrumb">
                     <span class="fa fa-2x fa-folder-open-o"></span>
@@ -54,7 +54,7 @@ if (isset($_GET['id'])) {
                         $src = 'img/blankpic.jpg';
                     }
 
-                    echo " <h4>" . $grp['title'] . "</h4>";
+                    echo " <h2 class='modal-title'>" . $grp['title'] . "</h2>";
                     echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
                     echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
                     echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
