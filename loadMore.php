@@ -22,8 +22,11 @@ try {
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/animsition.min.css" media="all" rel="stylesheet" type="text/css">
+
 </head>
 <body>
+
 <!--navigation goes here-->
 
 <!--end navigation-->
@@ -59,7 +62,17 @@ try {
                             </div>
                             <hr>
 
-                            <ul class="pagination" id="pagination">
+                            <div id="pagination">
+                                <ul class="pagination">
+                                    <li><a href="#" id="prev">&raquo;</a></li>
+                                    <?php for ($i = 1; $i <= getCountRows($categoryId) / 3; $i++) {
+                                        echo "<li class=\"active\"><a id='$i' href='#'>";
+                                        echo "$i";
+                                        echo "</a></li>";
+                                    } ?>
+                                    <li><a href="#" id="next">&laquo;</a></li>
+                                </ul>
+                            </div>
                             </ul>
 
                         </div>
@@ -68,8 +81,8 @@ try {
                                 <h3>موضوعات</h3>
                                 <hr>
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item active"><span
-                                            class="count" id="catAll"><?php echo getArticlesCount(); ?></span>همه مقالات
+                                    <a href="#" class="list-group-item active"  id="catAll"><span
+                                            class="count"><?php echo getArticlesCount(); ?></span>همه مقالات
                                     </a>
                                     <?php
                                     $sgrp2 = mysql_query("select * from `grp` where `mgrp`=$categoryId");
@@ -119,47 +132,47 @@ try {
     </div>
 </footer>
 <script src="js/jquery.min.js"></script>
+<script src="js/animsition.min.js"></script>
+
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.twbsPagination.min.js"></script>
 <script>
     $(document).ready(function () {
+
+
         var totalArticles = $("footer div:first-child").attr('id').toString();
         var categoryId = $("footer div:nth-child(2)").attr('id').toString();
         var totalPage = Math.ceil(totalArticles / 3);
+         $currentPage=1;
 
         $(".list-group div a").click(function () {
-            alert();
+
             $("#articles .col-sm-12").load("test.php", {param1: '1', param2: '174'});
-            $('#pagination').twbsPagination({
-                totalPages: 3,
-                visiblePages: 5,
-                first: 'شروع',
-                prev: 'قبلی',
-                next: 'بعدی',
-                last: 'پایان',
-                onPageClick: function (event, page) {
-                    $('#page-content').text('Page ' + page);
-                    $('#articles .col-sm-12').load("test.php", {param1: page, param2: '174'});
-                }
-            });
-
-
         });
 
         $("#catAll").click(function () {
-            $('#pagination').twbsPagination({
-                totalPages: totalPage,
-                visiblePages: 5,
-                first: 'شروع',
-                prev: 'قبلی',
-                next: 'بعدی',
-                last: 'پایان',
-                onPageClick: function (event, page) {
-                    $('#page-content').text('Page ' + page);
-                    $('#articles .col-sm-12').load("test.php", {param1: page, param2: categoryId});
-                }
-            });
+                    $('#articles .col-sm-12').load("test.php", {param1: '1', param2: categoryId});
+
         });
+
+        $("#pagination ul li a").click(function(){
+            var $page = $(this).attr("id");
+          $currentPage = $page;
+            $('#articles .col-sm-12').load("test.php", {param1:$page, param2: categoryId});
+       alert($currentPage);
+        });
+
+        $("#pagination #next").click(function(){
+            var $page = parseInt($currentPage.text(),10);
+            alert($page);
+            //$('#articles .col-sm-12').load("test.php", {param1:$page, param2: categoryId});
+        });
+
+        $("#pagination #prev").click(function(){
+            var $page = --$currentPage;
+            $('#articles .col-sm-12').load("test.php", {param1:$page, param2: categoryId});
+        });
+
         $(".navbar-nav li input").css("display", "none");
         $(".navbar-nav .fa-search").click(function () {
             $(".navbar-nav li input").css("display", "inline");
@@ -171,7 +184,7 @@ try {
                 $('#pagination').css("display", "none");
             }
         })
-        $("#catAll").click();
+      $("#catAll").click();
     });
 
 </script>

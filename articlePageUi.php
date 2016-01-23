@@ -17,6 +17,7 @@ include 'functions.php';
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
 <!--navigation goes here-->
 <div class="row" id="navebar">
     <nav class="navbar navbar-inverse navbar-fixed-top ">
@@ -127,7 +128,7 @@ include 'functions.php';
                     </div>
                     <div id="recentArticles" class="tab-pane fade in dirRtl">
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                           <div class="panel-body">
                                 <ol>
                                     <?php
                                     $grp2 = mysql_query("select * from article  ORDER BY date DESC LIMIT 5 ");
@@ -260,6 +261,7 @@ include 'functions.php';
         </div>
     </div>
 </section>
+
 <!--end mainSection-->
 <!--footer section-->
 <footer id="footer">footer
@@ -281,93 +283,6 @@ include 'functions.php';
 </script>
 <script>
     $(document).ready(function () {
-//    var totalArticles=$("footer div").attr('id').toString();
-//     localStorage.setItem("category", "all");
-//    var cat =localStorage.getItem("category");
-//    alert(cat);
-//    totalPage =Math.ceil(totalArticles/3);
-//    alert(totalPage);
-//            $("#catAll").click(function(){
-//                alert("all");
-//                $('#pagination').twbsPagination({
-//                    totalPages:totalPage,
-//                    visiblePages:5,
-//                    first:'شروع',
-//                    prev:'قبلی',
-//                    next:'بعدی',
-//                    last:'پایان',
-//                    onPageClick: function (event, page) {
-//                        $('#page-content').text('Page ' + page);
-////            var category = localStorage.getItem("category");
-//                        $('#articles .col-sm-12').load("test.php", {param1: page, param2:'all'});
-//                    }
-//                });
-//            });
-//            $(".list-group-item").click(function () {
-//               var $id =  $(this).attr('id');
-//                switch ($id){
-//                    case '168':
-//                        alert("168");
-////                        $('#mainSection .col-sm-8').empty();
-//                            $('#pagination').twbsPagination({
-//                                totalPages:10,
-//                                visiblePages:5,
-//                                first:'شروع',
-//                                prev:'قبلی',
-//                                next:'بعدی',
-//                                last:'پایان',
-//                                onPageClick: function (event, page) {
-//                                    $('#page-content').text('Page ' + page);
-//                                    $('#articles .col-sm-12').load("test.php", {param1: page, param2:'168'});
-//                                }
-//                            });
-//                        break;
-//                    case '169':
-////                        $('#mainSection .col-sm-8').empty();
-//                        $('#pagination').twbsPagination({
-//                            totalPages:10,
-//                            visiblePages:5,
-//                            first:'شروع',
-//                            prev:'قبلی',
-//                            next:'بعدی',
-//                            last:'پایان',
-//                            onPageClick: function (event, page) {
-//                                $('#page-content').text('Page ' + page);
-//                                $('#articles .col-sm-12').load("test.php", {param1: page, param2:'169'});
-//                            }
-//                        });
-//                        break;
-//                    case '171':
-//                        alert("171");
-//                        break;
-//                    case '175':
-//                        alert("175");
-//                        break;
-//                    case '174':
-////                        alert("174");
-//                        break;
-//                }
-////                alert($id);
-//
-//            });
-//            $("#catAll").click(function(){
-////                $('#mainSection .col-sm-8').empty();
-//                alert("all");
-//                $('#pagination').twbsPagination({
-//                    totalPages:10,
-//                    visiblePages:5,
-//                    first:'شروع',
-//                    prev:'قبلی',
-//                    next:'بعدی',
-//                    last:'پایان',
-//                    onPageClick: function (event, page) {
-//                        $('#page-content').text('Page ' + page);
-////            var category = localStorage.getItem("category");
-//                        $('#articles .col-sm-12').load("test.php", {param1: page, param2:'all'});
-//                    }
-//                });
-//            });
-
 
         $(".navbar-nav li input").css("display", "none");
         $(".navbar-nav .fa-search").click(function () {
@@ -380,7 +295,7 @@ include 'functions.php';
                 $('#pagination').css("display", "none");
             }
         })
-        $("#catAll").click();
+
     });
     //$('pagination').find(a).on('click',function(e){
     // }
