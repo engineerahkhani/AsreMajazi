@@ -28,7 +28,34 @@ try {
 <body>
 
 <!--navigation goes here-->
+<div class="row" id="navebar">
+    <nav class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Asre Mjazi</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--site logo-->
+            <a class="navbar-brand" href="index.html"> عصر مجازی</a>
 
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <?php
+                $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
+                while ($grp = mysql_fetch_array($grp2)) {
+                    $catId = $grp['id'];
+                    ?>
+                    <li><span></span><a href=loadMore.php?id=<?php echo $grp['id'] ?>>
+                            &nbsp; <?php echo $grp['name'] ?></a></li>
+                <?php } ?>
+                <li><a href="#" class="fa fa-search fa-1x">&nbsp;<input class="input-sm"> </a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
 <!--end navigation-->
 <!--head end-->
 <div class="row marginTop ">
@@ -88,7 +115,7 @@ try {
                                     $sgrp2 = mysql_query("select * from `grp` where `mgrp`=$categoryId");
                                     while ($sgrp = mysql_fetch_array($sgrp2)) {
                                         $catId = $sgrp['id'];
-                                        echo "<div><a  class=\"list-group-item\" id='$catId'  ><span class='count'>" . getCountRows($catId) . "</span>" . $sgrp['name'] . "</a></div>";
+                                        echo "<div><a  class=\"list-group-item\" id='$catId'  ><span class='count'>" . getCountRows($categoryId) . "</span>" . $sgrp['name'] . "</a></div>";
                                     }
                                     ?>
                                 </div>

@@ -1,7 +1,3 @@
-<meta charset="utf-8" lang="fa">
-<link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
-<link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
-<link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
 <?php include 'config.php';
 include 'functions.php';
 $id = $_GET['id'];
@@ -25,47 +21,121 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" lang="fa">
+    <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
+    <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="row" id="navebar">
+    <nav class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Asre Mjazi</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--site logo-->
+            <a class="navbar-brand" href="index.html"> عصر مجازی</a>
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <?php
+                $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
+                while ($grp = mysql_fetch_array($grp2)) {
+                    $catId = $grp['id'];
+                    ?>
+                    <li><span></span><a href=loadMore.php?id=<?php echo $grp['id'] ?>>
+                            &nbsp; <?php echo $grp['name'] ?></a></li>
+                <?php } ?>
+                <li><a href="#" class="fa fa-search fa-1x">&nbsp;<input class="input-sm"> </a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--end navebar-->
 <div id="articles">
     <div class="row marginTop">
-        <div class="col-sm-12">
             <div class="container ">
-<!--                navigation-->
+                <!--                navigation-->
                 <div class="breadcrumb">
                     <span class="fa fa-2x fa-folder-open-o"></span>
                     <span><a href="articlePageUi.php">صفحه اصلی</a> <span class="divider">/</span></span>
-
                                 <span>
-                                    <a href="loadMore.php?id=<?php echo $categoryId ?>"> <?php echo strip_tags($cat['name']); ?> </a><span class="divider">/</span>
+                                    <a href="loadMore.php?id=<?php echo $categoryId ?>"> <?php echo strip_tags($cat['name']); ?> </a><span
+                                        class="divider">/</span>
                                     <a href="#"> <?php echo strip_tags($article['title']); ?> </a>
                                 </span>
                 </div>
-<!--                end navigation-->
-                <?php
-                $grp2 = mysql_query("select * from article WHERE id = $id limit 3");
-                while ($grp = mysql_fetch_array($grp2)) {
-                    $doc = new DOMDocument();
-                    $doc->loadHTML($grp['content']);
-                    $xml = simplexml_import_dom($doc);
-                    $images = $xml->xpath('//img');
-                    $count = count($images);
-                    if ($count != 0) {
-                        $src = $images[0]['src'];
-                    } else {
-                        $src = 'img/blankpic.jpg';
-                    }
-
-                    echo " <h2 class='modal-title'>" . $grp['title'] . "</h2>";
-                    echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
-                    echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
-                    echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
-                    echo "<img class=\"img-responsive\" src=\"" . $src . "\"  />";
-                    echo "<div> <p>" . $grp['sum'] . "</p></div>";
-                    echo " <hr>";
-                    echo "<div> <p>" . $grp['content'] . "</p></div>";
-
-                }
-                ?>
+                <!--                end navigation-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-10">
+                            <?php
+                            $grp2 = mysql_query("select * from article WHERE id = $id ");
+                            while ($grp = mysql_fetch_array($grp2)) {
+                                $doc = new DOMDocument();
+                                $doc->loadHTML($grp['content']);
+                                $xml = simplexml_import_dom($doc);
+                                $images = $xml->xpath('//img');
+                                $count = count($images);
+                                if ($count != 0) {
+                                    $src = $images[0]['src'];
+                                } else {
+                                    $src = 'img/blankpic.jpg';
+                                }
+                                echo " <h3 class='modal-title rowActiveTitle'>" . $grp['title'] . "</h3>";
+                                echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
+                                echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
+                                echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
+                                echo " <hr>";
+                                echo "<div> <p class='justified'>" . $grp['content'] . "</p></div>";
+                            }
+                            ?>
+                        </div>
+                        <div class="col-xs-1"></div>
+                    </div>
+                </div>
             </div>
-        </div>
     </div>
 </div>
+<div class="row">
+
+        <div class="col-xs-12">
+            <footer>
+
+            </footer>
+        </div>
+
+</div>
+<script src="js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".col-xs-10").find('img').addClass('img-responsive img-thumbnail');
+        $(".col-xs-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
+
+        $(".navbar-nav li input").css("display", "none");
+        $(".navbar-nav .fa-search").click(function () {
+            $(".navbar-nav li input").toggle();
+
+
+        });
+        $(".navbar-nav li input").keypress(function (e) {
+            if (e.which == 13) {
+                var serchItem = $(this).val();
+                $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
+                $('#pagination').css("display", "none");
+            }
+        })
+    });
+</script>
+</body>
+</html>

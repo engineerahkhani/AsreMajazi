@@ -30,7 +30,7 @@ include 'functions.php';
             </button>
             <!--site logo-->
             <a class="navbar-brand" href="index.html"> عصر مجازی</a>
-            <a class="navbar-brand" href="index.html">صفحه ی اصلی</a>
+
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -86,7 +86,6 @@ include 'functions.php';
                             }
                             echo "<img class=\"art-thumb\" src=\"" . $src . "\" />";
                             echo '</a>';
-                            // echo "<a href='#?id='$articleId''> <li>" . $grp['title'] . "</li></a>";
                             echo " <div class=\" active\">";
                             echo "<div class=\"carousel-caption\">";
                             echo "<h2><a href=\"detailes.php?id=" . $id . "\"  class=\"carousel-caption-title\" target=_blank>";
@@ -164,7 +163,7 @@ include 'functions.php';
 
                             <div class="panel panel-default">
                                 <div class="panel-heading"
-                                     id="<?php echo $grp['id'] ?>"><?php echo $grp['name'] ?> </div>
+                                     id="<?php echo $grp['id'] ?>"><h5 ><?php echo $grp['name'] ?> </h5></div>
                                 <div class="panel-body">
                                     <?php
                                     $j = 0;
@@ -213,17 +212,17 @@ include 'functions.php';
                                         } else {
                                             if ($p == 6) {
                                                 ?>
-                                                <div class="row  " id="rowinActive">
+                                                <div class="row" id="rowinActive">
                                                 <div class="inactive  ">
                                             <?php } ?>
                                             <div class="col-xs-12 col-md-6 ">
                                                 <div class="row " >
                                                     <div class="col-xs-9" id="rowinActiveItem">
-                                                        <h5><?php
+                                                        <h5><a class="rowActiveTitle" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" ><?php
                                                             echo limitword($articleDetail['title'], 8);
                                                             --$p;
                                                             ?>
-                                                        </h5>
+                                                            </a></h5>
                                                         <?php echo "<span id=\"articlePropertiesRowITem\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
                                                         echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
                                                         echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></span>"; ?>
@@ -240,7 +239,7 @@ include 'functions.php';
                                                         } else {
                                                             $src = 'img/blankpic.jpg';
                                                         }
-                                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\" height=\"50\" width=\"80\" />";
+                                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\" height=\"60\" width=\"90\" />";
                                                         ?>
                                                     </div>
                                                 </div>
@@ -254,8 +253,8 @@ include 'functions.php';
                                         $j = 1;
                                     } ?>
                                 </div><!--pandel body end -->
-                                <div class="panel-footer"><a href="loadMore.php?id=<?php echo $grp['id'] ?>"
-                                                             target="_blank">مشاهده عناوین بیشتر</a></div>
+                                <div class="panel-footer "><a class="readMore" href="loadMore.php?id=<?php echo $grp['id'] ?>"
+                                                             target="_blank">مشاهده عناوین بیشتر...</a></div>
                             </div><!-- panel end -->
                         <?php } ?>
                     </section>
@@ -267,7 +266,23 @@ include 'functions.php';
 
 <!--end mainSection-->
 <!--footer section-->
-<footer id="footer">footer
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="social-icons">
+                <ul>
+                    <li><a class="envelope" href="#"><i class="fa fa-envelope fa-2x"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                    <li><a class="tumblr" href="#"><i class="fa fa-tumblr-square fa-2x"></i></a></li>
+                </ul>
+            </div>
+            <hr>
+            <h5> asremajazi.com &nbsp;<span class="fa fa-copyright"></span> &nbsp;2016</h5>
+        </div>
+    </div>
     <!--end footer section-->
     <div id=" <?php
     echo getnumrows2("article");
@@ -287,9 +302,11 @@ include 'functions.php';
 <script>
     $(document).ready(function () {
 
-        $(".navbar-nav li input").css("display", "none");
+       $(".navbar-nav li input").css("display", "none");
         $(".navbar-nav .fa-search").click(function () {
-            $(".navbar-nav li input").css("display", "inline");
+            $(".navbar-nav li input").toggle();
+
+
         });
         $(".navbar-nav li input").keypress(function (e) {
             if (e.which == 13) {
@@ -300,8 +317,7 @@ include 'functions.php';
         })
 
     });
-    //$('pagination').find(a).on('click',function(e){
-    // }
+
 </script>
 </body>
 </html>

@@ -1103,7 +1103,7 @@ a {
 a:hover,
 a:focus {
   color: #8e8e8e;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:focus {
   outline: thin dotted;
@@ -1936,6 +1936,7 @@ pre code {
 @media (min-width: 992px) {
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
+
   }
   .col-md-12 {
     width: 100%;
@@ -4179,10 +4180,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-header {
-    float: left;
+    float: right;
   }
 }
 .navbar-collapse {
+    text-align: center;
   padding-right: 15px;
   padding-left: 15px;
   overflow-x: visible;
@@ -4197,6 +4199,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-collapse {
     width: auto;
+
     border-top: 0;
     -webkit-box-shadow: none;
             box-shadow: none;
@@ -4275,6 +4278,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-width: 1px 0 0;
 }
 .navbar-brand {
+  margin-right: 20px;
   float: left;
   height: 50px;
   padding: 15px 15px;
@@ -4356,11 +4360,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-nav {
-    float: left;
+    float: right;
     margin: 0;
+
   }
   .navbar-nav > li {
-    float: left;
+    float: right;
   }
   .navbar-nav > li > a {
     padding-top: 15px;
@@ -5469,8 +5474,7 @@ button.list-group-item-danger.active:focus {
 .panel-heading {
   padding: 10px ;
   border-bottom: 1px solid transparent;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+
 }
 .panel-heading > .dropdown .dropdown-toggle {
   color: inherit;
