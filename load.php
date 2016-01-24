@@ -32,9 +32,9 @@ while ($grp = mysql_fetch_array($grp2)) {
     echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
     echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
     echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
-    echo "<img class=\"img-responsive\" src=\"" . $src . "\" width=\"auto\" max-height: \"200px\"; />";
-    echo "<div> <p>" .limitword($grp['sum'],90) . "</p></div>";
-    echo "<a  href=\"detailes.php?id=".$id."\" target=\"_blank\"> <h4 class=\"readMore\">"."ادامه مطلب . . ."."</h4></a>";
+    echo "<img class=\"img-responsive\" src=\"" . $src . "\" width=\"auto\" max-height: \"200px\"; /> <br>";
+    echo "<div> <p class='justified'>" .limitword($grp['sum'],120) . "</p></div>";
+    echo "<a  href=\"detailes.php?id=".$id."\" target=\"_blank\"> <h4 class=\"readMore\">"."بیشتر بخوانید ..."."</h4></a>";
     echo " <hr>";
 }
 ?>

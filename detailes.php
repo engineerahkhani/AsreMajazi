@@ -24,14 +24,14 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="utf-8" lang="fa">
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div class="container-fluid">
 <div class="row" id="navebar">
     <nav class="navbar navbar-inverse navbar-fixed-top ">
         <div class="navbar-header">
@@ -134,8 +134,10 @@ if (isset($_GET['id'])) {
                 $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
                 $('#pagination').css("display", "none");
             }
-        })
+        });
+
     });
 </script>
+</div>
 </body>
 </html>

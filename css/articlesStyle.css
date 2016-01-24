@@ -50,8 +50,7 @@ body{
 }
 /***** header css styles*/
 #navebar{
-  // color:#080808 !important;
-    /*direction: rtl;*/
+
 }
 
 /***** search bar section css styles*/
@@ -106,6 +105,7 @@ body{
     direction: ltr;
     text-align: right;
     font-size: 14px;
+    margin-bottom: 8px;
 
 
 }
@@ -159,7 +159,7 @@ background-color: #d43f3a;
 }
 
 .panel-body  .col-xs-12  .row {
-    border-top: 1px dashed darkgray;
+    border-top: 1px solid darkgray;
     margin-bottom: 2px;
     padding: 15px 8px 15px 15px;
 
@@ -222,7 +222,7 @@ background-color: #d43f3a;
 /****************************/
 /*footer section css style*/
 /****************************/
-footer {
+#footer {
    background-image: url("../img/bg-footer.png");
     background-repeat: no-repeat;
     background-position: right top;
@@ -235,9 +235,9 @@ footer {
 
 }
 
-footer .social-icons {
+.social-icons {
     margin-top: 20px;
-    color: #ffffff;
+    color: #ffcc00;
 
 }
 
@@ -250,7 +250,7 @@ footer h5{
     color: #fff;
 }
 footer h5 span{
-    color: red;;
+    color: red;
 }
 footer .social-icons ul li {
     display: inline;
@@ -267,7 +267,7 @@ footer .social-icons ul li a {
     color: #fff
 }
 
-footer .social-icons ul li a.envelope:hover {
+#footer .social-icons ul li a.envelope:hover {
     color: #CECB26;
 }
 
@@ -283,7 +283,7 @@ footer .social-icons ul li a.dribbble:hover {
     color: #ff5b92;
 }
 
-footer .social-icons ul li a.linkedin:hover {
+.linkedin:hover {
     color: #036dc0;
 }
 

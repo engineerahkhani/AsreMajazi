@@ -13,6 +13,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>عصرمجازی | مقالات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="<?php
     echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
     ?>"/>
@@ -26,8 +27,9 @@ try {
 
 </head>
 <body>
-
+<div class="container">
 <!--navigation goes here-->
+
 <div class="row" id="navebar">
     <nav class="navbar navbar-inverse navbar-fixed-top ">
         <div class="navbar-header">
@@ -137,6 +139,40 @@ try {
                                     </div>
                                 </div>
                             </section>
+                            <section id="topArticles">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><span class="fa fa-star-o"></span>&nbsp; آخرین مقالات
+                                    </div>
+                                    <div class="panel-body">
+                                        <ol>
+                                            <?php
+                                            $grp2 = mysql_query("select * from article where grp = $categoryId ORDER BY Date DESC LIMIT 10 ");
+                                            while ($grp = mysql_fetch_array($grp2)) {
+                                                $id = $grp['id'];
+                                                echo "<a href=\"detailes.php?id=" . $id . "\" target=\"_blank\"> <li >" . $grp['title'] . "</li></a>";
+                                            }
+                                            ?>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
+                            <section id="topArticles">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><span class="fa fa-star-o"></span>&nbsp; مقالات مشابه
+                                    </div>
+                                    <div class="panel-body">
+                                        <ol>
+                                            <?php
+                                            $grp2 = mysql_query("select * from article where grp = $categoryId ORDER BY Date DESC LIMIT 10 ");
+                                            while ($grp = mysql_fetch_array($grp2)) {
+                                                $id = $grp['id'];
+                                                echo "<a href=\"detailes.php?id=" . $id . "\" target=\"_blank\"> <li >" . $grp['title'] . "</li></a>";
+                                            }
+                                            ?>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -145,6 +181,7 @@ try {
         </div>
     </div>
     <!-- end article section-->
+</div>
 </div>
 <!--footer section-->
 <footer id="footer">footer
@@ -170,7 +207,7 @@ try {
         var totalArticles = $("footer div:first-child").attr('id').toString();
         var categoryId = $("footer div:nth-child(2)").attr('id').toString();
         var totalPage = Math.ceil(totalArticles / 3);
-         $currentPage=1;
+         currentPage=1;
 
         $(".list-group div a").click(function () {
 
@@ -183,16 +220,17 @@ try {
         });
 
         $("#pagination ul li a").click(function(){
-            var $page = $(this).attr("id");
-          $currentPage = $page;
-            $('#articles .col-sm-12').load("load.php", {param1:$page, param2: categoryId});
+            var page = $(this).attr("id");
+          currentPage = page;
+            $('#articles .col-sm-12').load("load.php", {param1:currentPage, param2: categoryId});
        alert($currentPage);
         });
 
         $("#pagination #next").click(function(){
-            var $page = parseInt($currentPage.text(),10);
+//            var $page = parseInt($currentPage.text(),10);
+            var page = $
 
-            //$('#articles .col-sm-12').load("load.php", {param1:$page, param2: categoryId});
+           $('#articles .col-sm-12').load("load.php", {param1:$page, param2: categoryId});
         });
 
         $("#pagination #prev").click(function(){
@@ -202,7 +240,7 @@ try {
 
         $(".navbar-nav li input").css("display", "none");
         $(".navbar-nav .fa-search").click(function () {
-            $(".navbar-nav li input").css("display", "inline");
+            $(".navbar-nav li input").toggle();
         });
         $(".navbar-nav li input").keypress(function (e) {
             if (e.which == 13) {
@@ -215,5 +253,6 @@ try {
     });
 
 </script>
+
 </body>
 </html>

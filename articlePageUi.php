@@ -6,6 +6,7 @@ include 'functions.php';
 <head>
     <meta charset="UTF-8">
     <title>عصرمجازی | مقالات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="<?php
     echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
     ?>"/>
@@ -176,13 +177,12 @@ include 'functions.php';
                                             ?>
                                             <div class="row" id="rowActive">
                                                 <div class="active">
-
                                                     <div class="col-xs-8">
-                                                    <h3><a class="rowActiveTitle" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" ><?php echo $articleDetail['title']; ?></a></h3>
+                                                    <h4><a class="rowActiveTitle" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" ><?php echo $articleDetail['title']; ?></a></h4>
                                                     <?php echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
                                                     echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
                                                     echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></div>"; ?>
-                                                    <hr>
+
                                                     <p>
                                                         <?php echo limitword($articleDetail['sum'],80); ?><br>
                                                         <a class="readMore" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" >بیشتر بخوانید...</a>
@@ -269,7 +269,7 @@ include 'functions.php';
 <footer id="footer">
     <div class="container">
         <div class="row">
-            <div class="social-icons">
+            <div class="social-icons">klkl;
                 <ul>
                     <li><a class="envelope" href="#"><i class="fa fa-envelope fa-2x"></i></a></li>
                     <li><a class="twitter" href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
