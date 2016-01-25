@@ -30,11 +30,8 @@ include 'functions.php';
                 <span class="icon-bar"></span>
             </button>
             <!--site logo-->
-            <div class="navbar-brand">
-            <a id="logo" href="asremajazi.com">
-                <img alt="Brand" src="img/asr1.png"><span>عصرمجازی</span>
-            </a>
-            </div>
+            <a class="navbar-brand" href="index.html"> عصر مجازی</a>
+
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -58,8 +55,8 @@ include 'functions.php';
     <div id="articleSection">
         <div class="row ">
             <!--end searchBarSection-->
-            <div class="col-xs-12 col-md-8">
-
+<div class="col-sm-1"></div>
+            <div class="col-xs-12 col-md-6">
                 <div id="slideShowSection" class="carousel slide">
                     <ol class="carousel-indicators">
                         <li data-target="#slideShowSection" data-slide-to="0" class="active"></li>
@@ -147,17 +144,18 @@ include 'functions.php';
                 </div>
 
             </div>
+            <div class="col-sm-1"></div>
+
         </div>
     </div>
 </div>
 <!-- end article section-->
-</div>
+
 <section id="mainSection">
     <div class="container">
         <div class="row">
-<!--            <div class="hidden-xs col-sm-3">test</div>-->
-<!--            <div class="col-xs-12 col-sm-9">-->
-                <div class="col-xs-12">
+            <div class="col-sm-1 "></div>
+            <div class="col-sm-10 ">
                 <div id="articles">
                     <section id="categorySection">
                         <?php
@@ -182,34 +180,32 @@ include 'functions.php';
                                             ?>
                                             <div class="row" id="rowActive">
                                                 <div class="active">
-                                                    <div class="col-xs-8">
-                                                    <h4><a class="rowActiveTitle" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" ><?php echo $articleDetail['title']; ?></a></h4>
-                                                    <?php echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
-                                                    echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
-                                                    echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></div>"; ?>
-
-                                                    <p>
-                                                        <?php echo limitword($articleDetail['sum'],80); ?><br>
-                                                        <a class="readMore" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" >بیشتر بخوانید...</a>
-                                                    </p>
+                                                    <div class="media">
+                                                        <div class="media-right">
+                                                            <a href="#">
+                                                                <?php $doc = new DOMDocument();
+                                                                $doc->loadHTML($articleDetail['content']);
+                                                                $xml = simplexml_import_dom($doc);
+                                                                $images = $xml->xpath('//img');
+                                                                $count = count($images);
+                                                                $id = $articleDetail['id'];
+                                                                if ($count != 0) {
+                                                                    $src = $images[0]['src'];
+                                                                } else {
+                                                                    $src = 'img/blankpic.jpg';
+                                                                }
+                                                                ?>
+                                                                <img width="90" height="60" class="media-object" src="<?php $src ?>" alt="...">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading"><?php echo limitword($articleDetail['title'], 8); ?></h4>
+                                                            <p>
+                                                                <?php echo limitword($articleDetail['sum'],80); ?><br>
+                                                                <a class="readMore" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" >بیشتر بخوانید...</a>
+                                                            </p>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-xs-4">
-                                                        <?php
-                                                        $doc = new DOMDocument();
-                                                        $doc->loadHTML($articleDetail['content']);
-                                                        $xml = simplexml_import_dom($doc);
-                                                        $images = $xml->xpath('//img');
-                                                        $count = count($images);
-                                                        $id = $articleDetail['id'];
-                                                        if ($count != 0) {
-                                                            $src = $images[0]['src'];
-                                                        } else {
-                                                            $src = 'img/blankpic.jpg';
-                                                        }
-                                                        ?>
-                                                        <?php echo "<img class=\"img-responsive\" src=\"" . $src . "\"  width=\"300\" height=\"180\" />"; ?>
-
-                                                </div>
                                                 </div>
                                             </div>
                                             <?php
@@ -220,32 +216,30 @@ include 'functions.php';
                                                 <div class="row" id="rowinActive">
                                                 <div class="inactive  ">
                                             <?php } ?>
-                                            <div class="col-xs-12 col-sm-6 ">
-                                                <div class="row " >
-                                                    <div class="col-xs-9" id="rowinActiveItem">
-                                                        <h5><a class="rowActiveTitle" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" ><?php
-                                                            echo limitword($articleDetail['title'], 8);
-                                                            --$p;
-                                                            ?>
-                                                            </a></h5>
-                                                        <?php echo "<span id=\"articlePropertiesRowITem\"> <span><span class=\"fa fa-user\">&nbsp;" . $articleDetail['user'] . "</span></span>";
-                                                        echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
-                                                        echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></span>"; ?>
-                                                    </div>
-                                                    <div class="col-xs-3 ">
-                                                        <?php $doc = new DOMDocument();
-                                                        $doc->loadHTML($articleDetail['content']);
-                                                        $xml = simplexml_import_dom($doc);
-                                                        $images = $xml->xpath('//img');
-                                                        $count = count($images);
-                                                        $id = $articleDetail['id'];
-                                                        if ($count != 0) {
-                                                            $src = $images[0]['src'];
-                                                        } else {
-                                                            $src = 'img/blankpic.jpg';
-                                                        }
-                                                        echo "<img class=\"img-responsive\" src=\"" . $src . "\" height=\"60\" width=\"90\" />";
-                                                        ?>
+                                            <div class="col-xs-12 col-sm-6">
+                                                <div class="row" >
+                                                    <div class="media">
+                                                        <div class="media-right">
+                                                            <a href="#">
+                                                                <?php $doc = new DOMDocument();
+                                                                $doc->loadHTML($articleDetail['content']);
+                                                                $xml = simplexml_import_dom($doc);
+                                                                $images = $xml->xpath('//img');
+                                                                $count = count($images);
+                                                                $id = $articleDetail['id'];
+                                                                if ($count != 0) {
+                                                                    $src = $images[0]['src'];
+                                                                } else {
+                                                                    $src = 'img/blankpic.jpg';
+                                                                }
+                                                                ?>
+                                                                <img width="90" height="60" class="media-object" src="<?php $src ?>" alt="...">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading"><?php --$p; echo limitword($articleDetail['title'], 8); ?></h4>
+                                                            ...
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -265,6 +259,7 @@ include 'functions.php';
                     </section>
                 </div>
             </div>
+            <div class="col-sm-1"></div>
         </div>
     </div>
 </section>

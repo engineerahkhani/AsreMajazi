@@ -2713,6 +2713,7 @@ fieldset[disabled] .checkbox label {
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
+  color: #000000;
 }
 select.input-sm {
   height: 30px;
@@ -5252,6 +5253,7 @@ a.thumbnail.active {
 .media-heading {
   margin-top: 0;
   margin-bottom: 5px;
+
 }
 .media-list {
   padding-left: 0;

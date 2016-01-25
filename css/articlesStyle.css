@@ -183,12 +183,16 @@ background-color: #d43f3a;
 }
 .list-group .count {
     background-color: #ffcc00;
+    color: #000000;
     float: left;
     width: 30px;
     height: 20px;
     text-align: center;
     line-height: 20px;
     white-space: nowrap;
+    font-family:Arial;
+    font-weight: 500;
+
 
 }
 

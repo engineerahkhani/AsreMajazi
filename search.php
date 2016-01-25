@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <?php
 include 'config.php';
 include 'functions.php';
@@ -7,10 +8,15 @@ include 'functions.php';
  * Date: 1/16/2016
  * Time: 1:52 PM
  */
-$searchItem = $_POST['param1'];
+$searchItem = $_GET['key'];
 echo $searchItem;
+//validate se
     $grp2 = mysql_query("SELECT * FROM article WHERE title LIKE '%$searchItem%'");
 $sum = mysql_num_rows($grp2);
+if($sum == 0){
+    echo "not found";
+}
+else {
 echo $sum;
 while ($grp = mysql_fetch_array($grp2)) {
     $doc = new DOMDocument();
@@ -31,5 +37,6 @@ while ($grp = mysql_fetch_array($grp2)) {
     echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
     echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
     echo " <hr>";
+}
 }
 ?>
