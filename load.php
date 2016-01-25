@@ -28,7 +28,7 @@ while ($grp = mysql_fetch_array($grp2)) {
     } else {
         $src = 'img/blankpic.jpg';
     }
-    echo "<a href=\"detailes.php?id=".$id."\" target=\"_blank\"> <h4>" . $grp['title'] . "</h4></a>";
+    echo "<a href=\"detailes.php?id=".$id."\" target=\"_blank\"> <h4 class=\"rowActiveTitle \">" . $grp['title'] . "</h4></a>";
     echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
     echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
     echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";

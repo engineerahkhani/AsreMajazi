@@ -30,8 +30,11 @@ include 'functions.php';
                 <span class="icon-bar"></span>
             </button>
             <!--site logo-->
-            <a class="navbar-brand" href="index.html"> عصر مجازی</a>
-
+            <div class="navbar-brand">
+            <a id="logo" href="asremajazi.com">
+                <img alt="Brand" src="img/asr1.png"><span>عصرمجازی</span>
+            </a>
+            </div>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -152,7 +155,9 @@ include 'functions.php';
 <section id="mainSection">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
+<!--            <div class="hidden-xs col-sm-3">test</div>-->
+<!--            <div class="col-xs-12 col-sm-9">-->
+                <div class="col-xs-12">
                 <div id="articles">
                     <section id="categorySection">
                         <?php
@@ -215,7 +220,7 @@ include 'functions.php';
                                                 <div class="row" id="rowinActive">
                                                 <div class="inactive  ">
                                             <?php } ?>
-                                            <div class="col-xs-12 col-md-6 ">
+                                            <div class="col-xs-12 col-sm-6 ">
                                                 <div class="row " >
                                                     <div class="col-xs-9" id="rowinActiveItem">
                                                         <h5><a class="rowActiveTitle" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" ><?php
@@ -227,7 +232,7 @@ include 'functions.php';
                                                         echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($articleDetail['date']) . "</span></span>";
                                                         echo " <span><span class=\"fa fa-eye\">&nbsp;" . $articleDetail['view'] . "</span></span></span>"; ?>
                                                     </div>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 ">
                                                         <?php $doc = new DOMDocument();
                                                         $doc->loadHTML($articleDetail['content']);
                                                         $xml = simplexml_import_dom($doc);

@@ -63,16 +63,16 @@ try {
 <div class="row marginTop ">
     <div class="container">
         <div class="breadcrumb">
-            <span class="fa fa-2x fa-folder-open-o"></span>
-            <span><a href="articlePageUi.php">صفحه اصلی</a> <span class="divider">/</span></span>
 
+            <span class="fa fa-2x fa-folder-open-o"></span>&nbsp;&nbsp;
+            <span><a href="articlePageUi.php">صفحه اصلی</a> <span class="divider">/</span></span>
                                 <span>
                                     <a href="#"> <?php echo strip_tags($article['name']); ?>
                                     </a>
                                 </span>
+
         </div>
 
-        <hr>
     </div>
 </div>
 <div class="container">
@@ -83,7 +83,7 @@ try {
             <section id="mainSection">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 col-lg-7">
                             <div id="articles">
                                 <div class="col-sm-12">
                                     <!--                                  show article list here-->
@@ -107,7 +107,7 @@ try {
                         </div>
                         <div class="col-sm-4">
                             <section id="categorySection">
-                                <h4>دسته بندی ها</h4>
+                                <h4 class="rowActiveTitle">دسته بندی ها</h4>
                                 <hr>
                                 <div class="list-group">
                                     <a href="#" class="list-group-item active"  id="catAll"><span
@@ -127,16 +127,37 @@ try {
                                     <div class="panel-heading"><span class="fa fa-star-o"></span>&nbsp; محبوبترین مقالات
                                     </div>
                                     <div class="panel-body">
-                                        <ol>
-                                            <?php
-                                            $grp2 = mysql_query("select * from article where grp = $categoryId ORDER BY view DESC LIMIT 10 ");
-                                            while ($grp = mysql_fetch_array($grp2)) {
-                                                $id = $grp['id'];
-                                                echo "<a href=\"detailes.php?id=" . $id . "\" target=\"_blank\"> <li>" . $grp['title'] . "</li></a>";
+                                        <?php
+                                        $grp2 = mysql_query("select * from article where grp = $categoryId ORDER BY view DESC LIMIT 10 ");
+                                        while ($grp = mysql_fetch_array($grp2)) {
+                                            $doc = new DOMDocument();
+                                            $doc->loadHTML($grp['content']);
+                                            $xml = simplexml_import_dom($doc);
+                                            $images = $xml->xpath('//img');
+                                            $count = count($images);
+                                            $id = $grp['id'];
+                                            if ($count != 0) {
+                                                $src = $images[0]['src'];
+                                            } else {
+                                                $src = 'img/blankpic.jpg';
                                             }
                                             ?>
-                                        </ol>
-                                    </div>
+
+                                        <div class="media">
+                                            <div class="media-right">
+                                                <span class="fa fa-2x fa-book"></span>
+<!--                                                <a href="detailes.php?id=--><?php //echo $grp['id'] ?><!--">-->
+<!--                                                    --><?php //echo "<img alt=\" sss\" class=\"media-object\" src=\"" . $src . "\"  width=\"40\" height=\"18\" />"; ?>
+<!--                                                </a>-->
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="detailes.php?id=<?php echo $grp['id'] ?>">
+                                                <h6 class="media-heading"><?php echo limitword($grp['title'],7) ?></h6>
+                                                    </a>
+                                            </div>
+                                        </div>
+                                        <?php  } ?>
+
                                 </div>
                             </section>
                             <section id="topArticles">
@@ -174,6 +195,7 @@ try {
                                 </div>
                             </section>
                         </div>
+
                     </div>
                 </div>
             </section>

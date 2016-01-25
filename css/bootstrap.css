@@ -4023,7 +4023,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-bottom: 1px solid #ddd;
 }
 .nav-tabs > li {
-  float: left;
+  float: right;
   margin-bottom: -1px;
 }
 .nav-tabs > li > a {
@@ -4281,7 +4281,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-right: 20px;
   float: left;
   height: 50px;
-  padding: 15px 15px;
+  padding: 0px 15px;
   font-size: 18px;
   line-height: 20px;
 }
@@ -4707,8 +4707,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 8px 15px;
   margin-bottom: 20px;
   list-style: none;
-  background-color: #f5f5f5;
-  border-radius: 4px;
+  background-color: #d4d4d4;
+
 }
 .breadcrumb > li {
   display: inline-block;
@@ -5207,7 +5207,10 @@ a.thumbnail.active {
   background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
 }
 .media {
-  margin-top: 15px;
+  margin:7px -10px 0px 0px ;
+
+  padding:8px 2px ;
+ border-bottom: 2px solid #e1e1e1;
 }
 .media:first-child {
   margin-top: 0;

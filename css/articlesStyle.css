@@ -52,11 +52,28 @@ body{
 #navebar{
 
 }
-
+#logo{
+    padding: 2px 15px 1px 0px;
+    line-height:48px;
+}
+#logo span{
+    padding: 2px 3px 1px 0px;
+    line-height:48px;
+    color: #ffcc00;
+}
 /***** search bar section css styles*/
 .breadcrumb {
     direction: rtl;
     text-align: right;
+}
+.breadcrumb .fa{
+    color: #ffcc00;
+   vertical-align: middle;
+}
+.breadcrumb a {
+    height:40px;
+    line-height: 40px;
+    white-space: nowrap;
 }
 
 #searchBarSection {
@@ -81,7 +98,7 @@ body{
     justify-content: center;
     flex-direction: column;
 }
-.carousel-control .fa {
+.carousel-control .fa,.media-right .fa {
  color: #ffcc00;
 }
 .carousel-caption-title{
@@ -167,9 +184,11 @@ background-color: #d43f3a;
 .list-group .count {
     background-color: #ffcc00;
     float: left;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 20px;
     text-align: center;
+    line-height: 20px;
+    white-space: nowrap;
 
 }
 
