@@ -118,25 +118,10 @@ body{
 #articles{
     direction: rtl;
 }
-#articleProperties {
-    direction: ltr;
-    text-align: right;
-    font-size: 14px;
-    margin-bottom: 8px;
-
-
-}
 #articlePropertiesRowITem {
 
     font-size: 12px;
 
-
-}
-#ItemsArticleProperties{
-
-}
-#articleProperties span {
-    /*float: right;*/
 
 }
 
@@ -149,15 +134,19 @@ body{
 
 }
 #rowActive{
-    padding: 8px;
+    padding: 5px;
 }
 .rowActiveTitle{
 color:#080808;
     padding-bottom: 10px;
 }
 .readMore{
- color:#d9534f;
+ color:#c9302c;
 }
+#margin-right5 {
+    margin-right: 5px;
+}
+
 #rowinActive{
 
 }
@@ -166,21 +155,14 @@ color:#080808;
 
 }
 .rowActiveItems{
-    margin-top: 5px;
-background-color: #d43f3a;
-    padding: 3px;
+
 }
 /**category section*/
 #categorySection {
     direction: rtl;
 }
 
-.panel-body  .col-xs-12  .row {
-    border-top: 1px solid darkgray;
-    margin-bottom: 2px;
-    padding: 15px 8px 15px 15px;
 
-}
 .list-group .count {
     background-color: #ffcc00;
     color: #000000;
@@ -196,30 +178,7 @@ background-color: #d43f3a;
 
 }
 
-#topArticles{
-    direction: rtl;
-}
-.panel-body a span{
-    float: left;
-}
-#panel-raw{
-    background-color: #e6e6e6;
 
-}
-#panel-raw:hover{
-    background-color: #e1e1e1;
-    box-shadow: 5px 5px 2px #999;
-}
-#panel-raw a{
-    color: #ffffff;
-}
-#panel-raw a:hover {
-    color: #000;
-
-}
-.padded{
-    padding:100px;
-}
 /**pagination css*/
 #pagination {
     margin-top: 15px;
@@ -228,18 +187,6 @@ background-color: #d43f3a;
 }
 .justified{
     text-align: justify;
-}
-#actions{
-    background-color: #9d9d9d;
-    color: #ffffff;
-    direction: rtl;
-
-}
-#actions ul{
-  direction: rtl;
-}
-#actions ul li{
-    display: inline;
 }
 /***** footer css styles*/
 /****************************/

@@ -164,14 +164,12 @@ include 'functions.php';
                         while ($grp = mysql_fetch_array($grp2)) {
                             $catId = $grp['id'];
                             ?>
-
                             <div class="panel panel-default">
                                 <div class="panel-heading"
                                      id="<?php echo $grp['id'] ?>"><h5 ><?php echo $grp['name'] ?> </h5></div>
                                 <div class="panel-body">
                                     <?php
                                     $j = 0;
-
                                     $article = mysql_query("select * from article where grp = $catId ORDER BY date DESC LIMIT 7");
                                     while ($articleDetail = mysql_fetch_array($article)) {
                                         $id = $articleDetail['id'];
@@ -180,7 +178,7 @@ include 'functions.php';
                                             ?>
                                             <div class="row" id="rowActive">
                                                 <div class="active">
-                                                    <div class="media">
+                                                    <div class="media" id="margin-right5">
                                                         <div class="media-right">
                                                             <a href="#">
                                                                 <?php $doc = new DOMDocument();
@@ -195,15 +193,21 @@ include 'functions.php';
                                                                     $src = 'img/blankpic.jpg';
                                                                 }
                                                                 ?>
-                                                                <img width="90" height="60" class="media-object" src="<?php $src ?>" alt="...">
+                                                                <img width="360" height="200" class="media-object" src="<?php echo $src ?>" alt="...">
                                                             </a>
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="media-heading"><?php echo limitword($articleDetail['title'], 8); ?></h4>
-                                                            <p>
+                                                            <p class="text-justify">
                                                                 <?php echo limitword($articleDetail['sum'],80); ?><br>
                                                                 <a class="readMore" target="_blank" href="detailes.php?id=<?php echo $articleDetail['id']; ?>" >بیشتر بخوانید...</a>
                                                             </p>
+                                                            <div  class=" dirRtl btn-group btn-group-justified " role="group" aria-label="...">
+                                                                <span class="label label-danger "><span><span class="fa fa fa-user-md"></span> <?php echo"احمد حسین خانی" ;?></span>&nbsp;</span>
+                                                                <span class="label label-danger "><span><span class="fa fa fa-clock-o"></span> <?php echo dateconvertfromdb($articleDetail['date']); ?></span>&nbsp;</span>
+                                                                <span class="label label-danger "><span><span class="fa fa fa-eye"></span> <?php echo ($articleDetail['view']); ?></span>&nbsp;</span>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -213,13 +217,13 @@ include 'functions.php';
                                         } else {
                                             if ($p == 6) {
                                                 ?>
-                                                <div class="row" id="rowinActive">
-                                                <div class="inactive  ">
+                                                <div class="row" >
+                                                <div class="inactive" id="margin-right5">
                                             <?php } ?>
                                             <div class="col-xs-12 col-sm-6">
-                                                <div class="row" >
-                                                    <div class="media">
-                                                        <div class="media-right">
+                                                <div class="row" id="margin-right5" >
+                                                    <div class="media" >
+                                                        <div class="media-right"  >
                                                             <a href="#">
                                                                 <?php $doc = new DOMDocument();
                                                                 $doc->loadHTML($articleDetail['content']);
@@ -233,12 +237,16 @@ include 'functions.php';
                                                                     $src = 'img/blankpic.jpg';
                                                                 }
                                                                 ?>
-                                                                <img width="90" height="60" class="media-object" src="<?php $src ?>" alt="...">
+                                                                <img width="120" height="64" class="media-object" src="<?php echo $src ?>" >
                                                             </a>
                                                         </div>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading"><?php --$p; echo limitword($articleDetail['title'], 8); ?></h4>
-                                                            ...
+                                                        <div class="media-body" >
+                                                            <h6 class="media-heading"><?php --$p; echo limitword($articleDetail['title'], 8); ?></h6>
+                                                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                                                <span class="label label-danger ">Left</span>
+                                                                <span  class="label label-danger ">Middle</span>
+                                                                <span  class="label label-danger ">Right</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
