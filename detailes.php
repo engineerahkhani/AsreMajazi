@@ -32,53 +32,25 @@ if (isset($_GET['id'])) {
 </head>
 <body>
 <div class="container-fluid">
-<div class="row" id="navebar">
-    <nav class="navbar navbar-inverse navbar-fixed-top ">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Asre Mjazi</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!--site logo-->
-            <a class="navbar-brand" href="index.html"> عصر مجازی</a>
-
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <?php
-                $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
-                while ($grp = mysql_fetch_array($grp2)) {
-                    $catId = $grp['id'];
-                    ?>
-                    <li><span></span><a href=loadMore.php?id=<?php echo $grp['id'] ?>>
-                            &nbsp; <?php echo $grp['name'] ?></a></li>
-                <?php } ?>
-                <li><a href="#" class="fa fa-search fa-1x">&nbsp;<input class="input-sm"> </a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
-<!--end navebar-->
-<div id="articles">
-    <div class="row marginTop">
+    <?php require 'navbar.php'; ?>
+    <!--end navebar-->
+    <div id="articles">
+        <div class="row marginTop">
             <div class="container ">
-                <!--                navigation-->
-                <div class="breadcrumb">
-                    <span class="fa fa-2x fa-folder-open-o"></span>
-                    <span><a href="articlePageUi.php">صفحه اصلی</a> <span class="divider">/</span></span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-10">
+                            <div class="breadcrumb">
+                                <span class="fa fa-2x fa-folder-open-o"></span>
+                                <span><a href="articlePageUi.php">صفحه اصلی</a> <span class="divider">/</span></span>
                                 <span>
                                     <a href="loadMore.php?id=<?php echo $categoryId ?>"> <?php echo strip_tags($cat['name']); ?> </a><span
                                         class="divider">/</span>
                                     <a href="#"> <?php echo strip_tags($article['title']); ?> </a>
                                 </span>
-                </div>
-                <!--                end navigation-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-1"></div>
-                        <div class="col-xs-10">
+                            </div>
+                            <!--                            end breadcrumb-->
                             <?php
                             $grp2 = mysql_query("select * from article WHERE id = $id ");
                             while ($grp = mysql_fetch_array($grp2)) {
@@ -105,39 +77,29 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
-<div class="row">
+    <?php require 'footer.php' ?>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".col-xs-10").find('img').addClass('img-responsive img-thumbnail');
+            $(".col-xs-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
 
-        <div class="col-xs-12">
-            <footer>
-
-            </footer>
-        </div>
-
-</div>
-<script src="js/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(".col-xs-10").find('img').addClass('img-responsive img-thumbnail');
-        $(".col-xs-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
-
-        $(".navbar-nav li input").css("display", "none");
-        $(".navbar-nav .fa-search").click(function () {
-            $(".navbar-nav li input").toggle();
-
-
+            $(".navbar-nav li input").css("display", "none");
+            $(".navbar-nav .fa-search").click(function () {
+                $(".navbar-nav li input").toggle();
+            });
+            $(".navbar-nav li input").keypress(function (e) {
+                if (e.which == 13) {
+                    var serchItem = $(this).val();
+                    $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
+                    $('#pagination').css("display", "none");
+                }
+            });
         });
-        $(".navbar-nav li input").keypress(function (e) {
-            if (e.which == 13) {
-                var serchItem = $(this).val();
-                $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
-                $('#pagination').css("display", "none");
-            }
-        });
+    </script>
 
-    });
-</script>
-</div>
 </body>
 </html>

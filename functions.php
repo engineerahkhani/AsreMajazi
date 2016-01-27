@@ -39,6 +39,12 @@ function limitword($string, $limit){
 	if ($num > $limit)$s=" ... ";
 	return $output.$s;
 }
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
 function showdate(){
 	date_default_timezone_set('Asia/Tehran');
 	list($gyear, $gmonth, $gday ) = preg_split ('/-/', date("Y-m-d"));

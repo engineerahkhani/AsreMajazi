@@ -20,34 +20,7 @@ include 'functions.php';
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <!--navigation goes here-->
-<div class="row" id="navebar">
-    <nav class="navbar navbar-inverse navbar-fixed-top ">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Asre Mjazi</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!--site logo-->
-            <a class="navbar-brand" href="index.html"> عصر مجازی</a>
-
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <?php
-                $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
-                while ($grp = mysql_fetch_array($grp2)) {
-                    $catId = $grp['id'];
-                    ?>
-                    <li><span></span><a href="#<?php echo $grp['id'] ?>" >
-                            &nbsp; <?php echo $grp['name'] ?></a></li>
-                <?php } ?>
-                <li><a href="#" class="fa fa-search fa-1x">&nbsp;<input class="input-sm"> </a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
+<?php require 'navbar.php'; ?>
 <!--end navigation-->
 <!--head end-->
 <div class="container marginTop">
@@ -62,10 +35,14 @@ include 'functions.php';
                         <li data-target="#slideShowSection" data-slide-to="0" class="active"></li>
                         <li data-target="#slideShowSection" data-slide-to="1"></li>
                         <li data-target="#slideShowSection" data-slide-to="2"></li>
+                        <li data-target="#slideShowSection" data-slide-to="3"></li>
+                        <li data-target="#slideShowSection" data-slide-to="4"></li>
+                        <li data-target="#slideShowSection" data-slide-to="5"></li>
+                        <li data-target="#slideShowSection" data-slide-to="6"></li>
                     </ol>
                     <div class="carousel-inner">
                         <?php
-                        $grp2 = mysql_query("select * from article    ORDER BY date and time  LIMIT 3 ");
+                        $grp2 = mysql_query("select * from article ORDER BY date and time  LIMIT 7 ");
                         $i = 1;
                         while ($grp = mysql_fetch_array($grp2)) {
                             $id = $grp['id'];
@@ -193,7 +170,7 @@ include 'functions.php';
                                                                     $src = 'img/blankpic.jpg';
                                                                 }
                                                                 ?>
-                                                                <img width="360" height="200" class="media-object" src="<?php echo $src ?>" alt="...">
+                                                                <img  class="media-object img-responsive" src="<?php echo $src ?>">
                                                             </a>
                                                         </div>
                                                         <div class="media-body">
@@ -274,29 +251,7 @@ include 'functions.php';
 
 <!--end mainSection-->
 <!--footer section-->
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="social-icons">klkl;
-                <ul>
-                    <li><a class="envelope" href="#"><i class="fa fa-envelope fa-2x"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
-                    <li><a class="facebook" href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin fa-2x"></i></a></li>
-                    <li><a class="tumblr" href="#"><i class="fa fa-tumblr-square fa-2x"></i></a></li>
-                </ul>
-            </div>
-            <hr>
-            <h5> asremajazi.com &nbsp;<span class="fa fa-copyright"></span> &nbsp;2016</h5>
-        </div>
-    </div>
-    <!--end footer section-->
-    <div id=" <?php
-    echo getnumrows2("article");
-    ?>">
-    </div>
-</footer>
+<?php require 'footer.php'; ?>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.twbsPagination.min.js"></script>
@@ -309,21 +264,23 @@ include 'functions.php';
 </script>
 <script>
     $(document).ready(function () {
-
-       $(".navbar-nav li input").css("display", "none");
+      $(".navbar-nav li input").css("display", "none");
         $(".navbar-nav .fa-search").click(function () {
-            $(".navbar-nav li input").toggle();
-
-
+            $(".navbar-nav li input").slideDown();
+            $('.navbar-nav li input').keydown(function (event) {
+                if (event.keyCode == '13') {
+                    var serchItem = $(this).val();
+                    if(empty(serchItem))
+                    {
+                        alert("برای شروع جستجو کلمه مورد نظر را در فیلد وارد نمایید.");
+                    }else
+                    {
+                    window.location.replace("search.php?key=" + serchItem);
+                    $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
+                    $('#pagination').css("display", "none");
+                }}
+            });
         });
-        $(".navbar-nav li input").keypress(function (e) {
-            if (e.which == 13) {
-                var serchItem = $(this).val();
-                $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
-                $('#pagination').css("display", "none");
-            }
-        })
-
     });
 
 </script>

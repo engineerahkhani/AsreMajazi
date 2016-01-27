@@ -98,8 +98,11 @@ body{
     justify-content: center;
     flex-direction: column;
 }
-.carousel-control .fa,.media-right .fa {
+.carousel-control .fa,.fa-star-o{
  color: #ffcc00;
+}
+.media-right .fa {
+    color:#c9302c;
 }
 .carousel-caption-title{
 
@@ -204,24 +207,29 @@ color:#080808;
     font-family: sans-serif;
 
 }
-
-.social-icons {
-    margin-top: 20px;
-    color: #ffcc00;
-
-}
-
-footer .social-icons ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-footer h5{
+#copy-right{
     color: #fff;
 }
-footer h5 span{
+#copy-right span{
     color: red;
 }
+#social-icons .fa{
+    color: #ffcc00;
+    margin-left: 10px;
+}
+#social-icons .fa-envelope:hover {
+    color: #fff;
+}
+#social-icons .fa-film:hover {
+    color: darkred;
+}
+#social-icons .fa-facebook:hover {
+    color: #3b5999;
+}
+
+
+
+
 footer .social-icons ul li {
     display: inline;
     margin-left: 10px;
@@ -233,11 +241,9 @@ footer .social-icons ul li a {
     line-height: 33px;
 }
 
-footer .social-icons ul li a {
-    color: #fff
-}
 
-#footer .social-icons ul li a.envelope:hover {
+
+.envelope:hover {
     color: #CECB26;
 }
 
