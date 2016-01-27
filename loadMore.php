@@ -143,7 +143,7 @@ try {
                                 </section>
                                 <section id="topArticles" class="hidden-xs">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading"><span class="fa fa-star-o"></span>&nbsp; مقالات مشابه
+                                        <div class="panel-heading"><span class="fa fa-tags"></span>&nbsp; مقالات مشابه
                                         </div>
                                         <div class="panel-body">
                                             <?php
@@ -152,7 +152,7 @@ try {
                                                 ?>
                                                 <div class="media">
                                                     <div class="media-right">
-                                                        <span class="fa fa-clock-o"></span>
+                                                        <span class="fa fa-tags"></span>
                                                     </div>
                                                     <div class="media-body">
                                                         <a href="detailes.php?id=<?php echo $grp['id'] ?>">
@@ -198,11 +198,12 @@ try {
 <script>
     $(document).ready(function () {
 
-
         var totalArticles = $("article div:first-child").attr('id').toString();
         var categoryId = $("article div:nth-child(2)").attr('id').toString();
         var totalPage = Math.ceil(totalArticles / 3);
         currentPage = 1;
+
+
 
         $(".list-group div a").click(function () {
 
@@ -229,7 +230,7 @@ try {
         });
 
         $("#pagination #prev").click(function () {
-            var $page = --$currentPage;
+            var $page = $currentPage;
             $('#articles .col-sm-12').load("load.php", {param1: $page, param2: categoryId});
         });
 
@@ -249,7 +250,8 @@ try {
                         $('#pagination').css("display", "none");
                     }}
             });
-        });
+        })
+        $("#catAll").click();
     });
 
 </script>

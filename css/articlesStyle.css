@@ -121,6 +121,12 @@ body{
 #articles{
     direction: rtl;
 }
+.articleProperties{
+    /*background-color: rgba(201, 48, 44, 0.8);*/
+    background-color: rgba(0, 0, 0, 0.3);
+    margin-top: 6px;
+}
+
 #articlePropertiesRowITem {
 
     font-size: 12px;
@@ -213,6 +219,10 @@ color:#080808;
 #copy-right span{
     color: red;
 }
+
+#social-icons{
+padding-top: 50px;
+}
 #social-icons .fa{
     color: #ffcc00;
     margin-left: 10px;
@@ -220,11 +230,23 @@ color:#080808;
 #social-icons .fa-envelope:hover {
     color: #fff;
 }
+#social-icons .fa-envelope {
+    border-bottom: 5px solid #fff;
+    padding-bottom: 5px;
+}
 #social-icons .fa-film:hover {
     color: darkred;
 }
-#social-icons .fa-facebook:hover {
-    color: #3b5999;
+#social-icons .fa-film {
+     border-bottom: 5px solid darkred;
+    padding-bottom: 5px;
+ }
+#social-icons .fa-send:hover {
+    color: blue;
+}
+#social-icons .fa-send {
+    border-bottom: 5px solid blue;
+    padding-bottom: 5px;
 }
 
 

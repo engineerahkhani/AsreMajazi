@@ -29,10 +29,18 @@ while ($grp = mysql_fetch_array($grp2)) {
         $src = 'img/blankpic.jpg';
     }
     echo "<a href=\"detailes.php?id=".$id."\" target=\"_blank\"> <h4 class=\"rowActiveTitle \">" . $grp['title'] . "</h4></a>";
-    echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
-    echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
-    echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
-    echo "<img class=\"img-responsive\" src=\"" . $src . "\" width=\"auto\" max-height: \"200px\"; /> <br>";
+   ?>
+    <div class=" dirRtl btn-group btn-group-justified "
+         role="group" aria-label="...">
+                                                                <span class="label  articleProperties "><span><span
+                                                                            class="fa fa fa-user-md"></span> <?php echo $grp['user']; ?></span>&nbsp;</span>
+                                                                <span class="label articleProperties "><span><span
+                                                                            class="fa fa fa-clock-o"></span> <?php echo dateconvertfromdb($grp['date']); ?></span>&nbsp;</span>
+                                                                <span class="label articleProperties "><span><span
+                                                                            class="fa fa fa-eye"></span> <?php echo($grp['view']); ?></span>&nbsp;</span>
+    </div><br>
+<?php
+    echo "<img class=\"img-responsive\" src=\"" . $src . "\"  /> <br>";
     echo "<div> <p class='justified'>" .limitword($grp['sum'],120) . "</p></div>";
     echo "<a  href=\"detailes.php?id=".$id."\" target=\"_blank\"> <h4 class=\"readMore\">"."بیشتر بخوانید ..."."</h4></a>";
     echo " <hr>";

@@ -5468,7 +5468,7 @@ button.list-group-item-danger.active:focus {
 .panel {
   margin-bottom: 20px;
   background-color: #efefef;
-  border: 1px solid transparent;
+  border: 1px solid #000000;
 
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -5499,8 +5499,9 @@ button.list-group-item-danger.active:focus {
 }
 .panel-footer {
   padding: 10px 15px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #ddd;
+  background-color: rgba(0,0,0,0.9);
+  border-top: 1px solid transparent;
+
 
   text-align: center;
 }
@@ -5614,7 +5615,7 @@ button.list-group-item-danger.active:focus {
 .panel > .panel-body + .table-responsive,
 .panel > .table + .panel-body,
 .panel > .table-responsive + .panel-body {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #000;
 }
 .panel > .table > tbody:first-child > tr:first-child th,
 .panel > .table > tbody:first-child > tr:first-child td {
@@ -5700,11 +5701,11 @@ button.list-group-item-danger.active:focus {
   border-bottom: 1px solid #ddd;
 }
 .panel-default {
-  border-color: #ddd;
+  border-color: #000;
 }
 .panel-default > .panel-heading {
-  color: #333;
-  background-color: #f5f5f5;
+  color: #ffcc00;
+  background-color:rgba(0,0,0,0.9);
   border-color: #ddd;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
@@ -6414,6 +6415,7 @@ button.close {
   margin-left: -30%;
   text-align: center;
   list-style: none;
+
 }
 .carousel-indicators li {
   display: inline-block;
@@ -6431,7 +6433,7 @@ button.close {
   width: 12px;
   height: 12px;
   margin: 0;
-  background-color: #fff;
+  background-color: #ffcc00;
 }
 .carousel-caption {
   position: absolute;

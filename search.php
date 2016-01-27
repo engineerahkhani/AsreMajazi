@@ -1,3 +1,10 @@
+<!--            $flag = preg_match("#(=|'|\")#", test_input($_GET['key']));
+            if (!$flag) {
+
+            }
+            else
+                echo "no";
+                -->
 <meta charset="utf-8">
 <?php
 include 'config.php';
@@ -25,25 +32,31 @@ include 'functions.php';
         <div class="col-xs-12 col-sm-1  col-lg-2"></div>
         <div class="col-xs-12 col-sm-10  col-lg-8">
             <?php
-if(empty($_GET['key']))
-{
-    ?>
-    <div class="row ">
-        <div class="alert alert-danger " role="alert">
-            <span class="fa fa-2x fa-frown-o text-warning" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
-            برای شروع جستجو مقداری را در فیلد وارد کنید.
-            <a href="articlePageUi.php">بازگشت</a>
-        </div>
-    </div>
-    <?php
-}else
-{
-$searchItem = test_input($_GET['key']);
-$grp2 = mysql_query("SELECT * FROM article WHERE title LIKE '%$searchItem%'");
-$sum = mysql_num_rows($grp2);
-?>
-<?php
+            if (empty($_GET['key']))
+            {
+                ?>
+                <div class="row ">
+                    <div class="alert alert-danger " role="alert">
+                        <span class="fa fa-2x fa-frown-o text-warning" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        برای شروع جستجو مقداری را در فیلد وارد کنید.
+                        <a href="articlePageUi.php">بازگشت</a>
+                    </div>
+                </div>
+                <?php
+            }else
+            {
+            $flag = preg_match("#(=|'|\")#", test_input($_GET['key']));
+            if (!$flag) {
+
+            }
+            else
+                echo "no";
+            $searchItem = test_input($_GET['key']);
+            $grp2 = mysql_query("SELECT * FROM article WHERE title LIKE '%$searchItem%'");
+            $sum = mysql_num_rows($grp2);
+            ?>
+            <?php
             if ($sum == 0) {
                 ?>
                 <div class="row">
@@ -107,6 +120,28 @@ $sum = mysql_num_rows($grp2);
     </div>
 </div>
 <?php include 'footer.php'; ?>
+<script src="js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".navbar-nav li input").css("display", "none");
+        $(".navbar-nav .fa-search").click(function () {
+            $(".navbar-nav li input").slideDown();
+            $('.navbar-nav li input').keydown(function (event) {
+                if (event.keyCode == '13') {
+                    var serchItem = $(this).val();
+                    if (serchItem.length === 0 ) {
+                        alert("برای شروع جستجو کلمه مورد نظر را در فیلد وارد نمایید.");
+                    } else {
+                        window.location.replace("search.php?key=" + serchItem);
+                        $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
+                        $('#pagination').css("display", "none");
+                    }
+                }
+            });
+        });
+    });
+
+</script>
 </body>
 </html>
 <?php

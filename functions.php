@@ -39,6 +39,24 @@ function limitword($string, $limit){
 	if ($num > $limit)$s=" ... ";
 	return $output.$s;
 }
+
+function limitchar($string,$limit){
+	$s='';
+	$output='';
+	$string=strip_tags($string);
+	$words = explode(" ",$string);
+	$num=count($words);
+	$len=0;
+	foreach ($words as $word){
+		$len+=strlen($word);
+		++$len;
+		if ($len<$limit)$output .= $word." ";
+	}
+
+	if (strlen($string) > $limit)$s=" ... ";
+	return $output.$s;
+}
+
 function test_input($data) {
 	$data = trim($data);
 	$data = stripslashes($data);

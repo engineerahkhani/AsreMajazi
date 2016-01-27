@@ -72,6 +72,32 @@ if (isset($_GET['id'])) {
                                 echo "<div> <p class='justified'>" . $grp['content'] . "</p></div>";
                             }
                             ?>
+                            <div class="row">
+                                <div class="container">
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">مطالب مرتبط</div>
+                                <div class="panel-body">
+                                    <?php
+                                    $grp2 = mysql_query("select * from article LIMIT 6 ");
+                                    while ($grp = mysql_fetch_array($grp2)) {
+
+                                    ?>
+                                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                                        <div class="thumbnail">
+                                            <img src="..." alt="...">
+                                            <div class="caption">
+                                                <h5><?php echo $grp['title']; ?></h5>
+                                                <p>...</p>
+                                                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-xs-1"></div>
                     </div>

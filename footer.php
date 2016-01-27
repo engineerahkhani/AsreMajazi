@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row">
             <div id="social-icons" class="btn-group btn-group-justified" role="group">
-                <span><span class="fa fa-1x fa-envelope"></span></span>
+                <span><span class="fa fa-2x fa-envelope"></span></span>
                 <span><span class="fa fa-2x fa-film"></span></span>
-                <span><span class="fa fa-3x fa-send"></span></span>
+                <span><span class="fa fa-2x fa-send"></span></span>
 
             </div>
             <br>
