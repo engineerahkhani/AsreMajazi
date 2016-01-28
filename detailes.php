@@ -79,53 +79,95 @@ if (isset($_GET['id'])) {
                             <div class="panel panel-default">
                                 <div class="panel-heading">مطالب مرتبط</div>
                                 <div class="panel-body">
-                                    <?php
-                                    $grp2 = mysql_query("select * from article LIMIT 6 ");
-                                    while ($grp = mysql_fetch_array($grp2)) {
+                                    <div class="row">
+                                        <?php
+                                        $grp2 = mysql_query("select * from article WHERE  grp = $categoryId LIMIT 3 ");
+                                        while ($grp = mysql_fetch_array($grp2)) {
+                                            ?>
+                                            <div class="col-sm-6 col-md-4">
+                                                <div class="thumbnail">
+                                                    <?php
+                                                    $doc = new DOMDocument();
+                                                    $doc->loadHTML($grp['content']);
+                                                    $xml = simplexml_import_dom($doc);
+                                                    $images = $xml->xpath('//img');
+                                                    $count = count($images);
+                                                    if ($count != 0) {
+                                                        $src = $images[0]['src'];
+                                                    } else {
+                                                        $src = 'img/blankpic.jpg';
+                                                    } ?>
+                                                    <img src="<?php echo $src ?>" alt="..." height="60">
 
-                                    ?>
-                                    <div class="col-xs-12 col-sm-6 col-md-4 ">
-                                        <div class="thumbnail">
-                                            <img src="..." alt="...">
-                                            <div class="caption">
-                                                <h5><?php echo $grp['title']; ?></h5>
-                                                <p>...</p>
-                                                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                                    <div class="caption">
+                                                        <a href="detailes.php?id=<?php echo $grp['id']; ?>">
+                                                            <h5><?php echo limitchar($grp['title'], 50); ?></h5></a>
+
+                                                        <div class=" dirRtl btn-group btn-group-justified "
+                                                             role="group">
+
+                                                                                                                            <span
+                                                                                                                                class="label articleProperties "><span><span
+                                                                                                                                        class="fa fa fa-user-md"></span> <?php echo $grp['user'] ?></span>&nbsp;</span>
+                                                                                                                            <span
+                                                                                                                                class="label articleProperties "><span><span
+                                                                                                                                        class="fa fa fa-clock-o"></span> <?php echo dateconvertfromdb($grp['date']); ?></span>&nbsp;</span>
+                                                                                                                            <span
+                                                                                                                                class="label articleProperties "><span><span
+                                                                                                                                        class="fa fa fa-eye"></span> <?php echo($grp['view']); ?></span>&nbsp;</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php } ?>
                                     </div>
-                                    <?php } ?>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="col-xs-1"></div>
+                        <div class="col-xs-1">
+                            <div href="#" class="scrollup"><span class="fa fa-1x fa-chevron-up "></span></div></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    <?php require 'footer.php' ?>
-    <script src="js/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".col-xs-10").find('img').addClass('img-responsive img-thumbnail');
-            $(".col-xs-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
+<?php require 'footer.php' ?>
+<script src="js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".col-xs-10").find('img').addClass('img-responsive img-thumbnail');
+        $(".col-xs-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
 
-            $(".navbar-nav li input").css("display", "none");
-            $(".navbar-nav .fa-search").click(function () {
-                $(".navbar-nav li input").toggle();
-            });
-            $(".navbar-nav li input").keypress(function (e) {
-                if (e.which == 13) {
-                    var serchItem = $(this).val();
-                    $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
-                    $('#pagination').css("display", "none");
-                }
-            });
+        $(".navbar-nav li input").css("display", "none");
+        $(".navbar-nav .fa-search").click(function () {
+            $(".navbar-nav li input").toggle();
         });
-    </script>
+        $(".navbar-nav li input").keypress(function (e) {
+            if (e.which == 13) {
+                var serchItem = $(this).val();
+                $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
+                $('#pagination').css("display", "none");
+            }
+        });
+//        scrool to top
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup').fadeIn();
+            } else {
+                $('.scrollup').fadeOut();
+            }
+        });
+
+        $('.scrollup').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+    });
+</script>
 
 </body>
 </html>

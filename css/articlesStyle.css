@@ -131,7 +131,6 @@ body{
 
     font-size: 12px;
 
-
 }
 
 #articleProperties span {
@@ -196,6 +195,19 @@ color:#080808;
 }
 .justified{
     text-align: justify;
+}
+.scrollup {
+    text-align: center;
+    line-height:40px;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 50px;
+    display: none;
+    background-color: #000000;
+}
+.scrollup .fa{
+    color: #c9302c;
 }
 /***** footer css styles*/
 /****************************/
