@@ -29,6 +29,8 @@ if (isset($_GET['id'])) {
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -134,23 +136,10 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 <?php require 'footer.php' ?>
-<script src="js/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $(".col-xs-10").find('img').addClass('img-responsive img-thumbnail');
         $(".col-xs-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
-
-        $(".navbar-nav li input").css("display", "none");
-        $(".navbar-nav .fa-search").click(function () {
-            $(".navbar-nav li input").toggle();
-        });
-        $(".navbar-nav li input").keypress(function (e) {
-            if (e.which == 13) {
-                var serchItem = $(this).val();
-                $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
-                $('#pagination').css("display", "none");
-            }
-        });
 //        scrool to top
         $(window).scroll(function () {
             if ($(this).scrollTop() > 100) {
@@ -159,7 +148,6 @@ if (isset($_GET['id'])) {
                 $('.scrollup').fadeOut();
             }
         });
-
         $('.scrollup').click(function () {
             $("html, body").animate({
                 scrollTop: 0

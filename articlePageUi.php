@@ -16,6 +16,8 @@ include 'functions.php';
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
@@ -83,9 +85,9 @@ include 'functions.php';
                 <!--                end slideShowSection-->
             </div>
             <div class="col-xs-12 col-md-4 ">
-                <ul class="nav nav-tabs nav-justified">
-                    <li class="active"><a data-toggle="tab" href="#topArticles">جدیدترین</a></li>
-                    <li><a data-toggle="tab" href="#recentArticles">پربازدیدترین</a></li>
+                <ul id="topNave" class="nav nav-tabs ">
+                    <li class="active"><a data-toggle="tab" href="#recentArticles">جدیدترین</a></li>
+                    <li><a data-toggle="tab" href="#topArticles">پربازدیدترین</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="topArticles" class="tab-pane fade in active">
@@ -188,7 +190,7 @@ include 'functions.php';
                                                         <div class="col-xs-12 col-sm-6 col-md-6 col-sm-pull-6">
                                                             <a target="_blank"
                                                                href="detailes.php?id=<?php echo $articleDetail['id']; ?>">
-                                                                <h4 class="rowactivetitle"><?php echo limitchar($articleDetail['title'], 100); ?></h4>
+                                                                <h4 class="rowactivetitle rowActiveTitle"><?php echo limitchar($articleDetail['title'], 100); ?></h4>
                                                             </a>
 
                                                             <div class=" dirRtl btn-group btn-group-justified "
@@ -243,7 +245,7 @@ include 'functions.php';
                                                             </a>
                                                         </div>
                                                         <div class="media-body">
-                                                            <h5 class="media-heading"><?php --$p;
+                                                            <h5 class="media-heading rowActiveTitle"><?php --$p;
                                                                 echo limitchar($articleDetail['title'], 100); ?></h5>
 
                                                             <div class=" dirRtl btn-group btn-group-justified "
@@ -285,36 +287,12 @@ include 'functions.php';
 <!--end mainSection-->
 <!--footer section-->
 <?php require 'footer.php'; ?>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery.twbsPagination.min.js"></script>
 <script>
     $(function () {
         $('.carousel').carousel({
             interval: 4000
         });
     });
-</script>
-<script>
-    $(document).ready(function () {
-        $(".navbar-nav li input").css("display", "none");
-        $(".navbar-nav .fa-search").click(function () {
-            $(".navbar-nav li input").slideDown();
-            $('.navbar-nav li input').keydown(function (event) {
-                if (event.keyCode == '13') {
-                    var serchItem = $(this).val();
-                    if (serchItem.length === 0 ) {
-                        alert("برای شروع جستجو کلمه مورد نظر را در فیلد وارد نمایید.");
-                    } else {
-                        window.location.replace("search.php?key=" + serchItem);
-                        $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
-                        $('#pagination').css("display", "none");
-                    }
-                }
-            });
-        });
-    });
-
 </script>
 </body>
 </html>

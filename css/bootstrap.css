@@ -4041,7 +4041,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a:focus {
   color: #555;
   cursor: default;
-  background-color: #fff;
+  background-color: #000;
+  color:#ffcc00;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
 }
@@ -5477,7 +5478,7 @@ button.list-group-item-danger.active:focus {
   padding: 15px;
 }
 .panel-heading {
-  padding: 10px ;
+  padding: 1px ;
   border-bottom: 1px solid transparent;
 
 }
@@ -5498,8 +5499,8 @@ button.list-group-item-danger.active:focus {
   color: inherit;
 }
 .panel-footer {
-  padding: 10px 15px;
-  background-color: rgba(0,0,0,0.9);
+  padding: 3px 15px;
+  background-color: rgba(0,0,0,0.5);
   border-top: 1px solid transparent;
 
 

@@ -24,7 +24,7 @@ try {
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
     <link href="css/animsition.min.css" media="all" rel="stylesheet" type="text/css">
-
+    <script src="js/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -90,7 +90,7 @@ try {
                                         $sgrp2 = mysql_query("select * from `grp` where `mgrp`=$categoryId");
                                         while ($sgrp = mysql_fetch_array($sgrp2)) {
                                             $catId = $sgrp['id'];
-                                            echo "<div><a  class=\"list-group-item\" id='$catId'  ><span class='count'>" . getCountRows($categoryId) . "</span>" . $sgrp['name'] . "</a></div>";
+                                            echo "<div><a href='#' class=\"list-group-item\" id='$catId'  ><span class='count'>" . getCountRows($categoryId) . "</span>" . $sgrp['name'] . "</a></div>";
                                         }
                                         ?>
                                     </div>
@@ -165,7 +165,6 @@ try {
                                     </div>
                                 </section>
                             </div>
-
                         </div>
                     </div>
                 </section>
@@ -190,7 +189,6 @@ try {
 <!--footer section-->
 <?php require 'footer.php' ?>
 
-<script src="js/jquery.min.js"></script>
 <script src="js/animsition.min.js"></script>
 
 <script src="js/bootstrap.js"></script>
@@ -201,57 +199,50 @@ try {
         var totalArticles = $("article div:first-child").attr('id').toString();
         var categoryId = $("article div:nth-child(2)").attr('id').toString();
         var totalPage = Math.ceil(totalArticles / 3);
-        currentPage = 1;
+        currentPage = 0;
+
+        //pagination setup
+        $(".list-group div a")
 
 
 
-        $(".list-group div a").click(function () {
-
-            $("#articles .col-sm-12").load("load.php", {param1: '1', param2: '174'});
+        $(".list-group div a").click(function (e) {
+          e.preventDefault();
+           var categorySubId = $(this).attr("id");
+            $("#articles .col-sm-12").load("load.php", {param1: '1', param2:categorySubId});
         });
 
         $("#catAll").click(function () {
             $('#articles .col-sm-12').load("load.php", {param1: '1', param2: categoryId});
-
         });
 
         $("#pagination ul li a").click(function () {
             var page = $(this).attr("id");
-            currentPage = page;
-            $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});
-            alert($currentPage);
+            if(page =="next"){
+                currentPage++;
+            }
+            if(page =="prev"){
+                currentPage--;
+            }
+            if(parseInt(page)>0){
+              currentPage =parseInt(page);
+            }
+//            currentPage = page;
+//            alert(currentPage);
+           $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});
         });
 
-        $("#pagination #next").click(function () {
-//            var $page = parseInt($currentPage.text(),10);
-            var page = $
+        //        scroll to top
 
-            $('#articles .col-sm-12').load("load.php", {param1: $page, param2: categoryId});
+        $('#pagination ul li a').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 900);
+            return false;
         });
-
-        $("#pagination #prev").click(function () {
-            var $page = $currentPage;
-            $('#articles .col-sm-12').load("load.php", {param1: $page, param2: categoryId});
-        });
-
-        $(".navbar-nav li input").css("display", "none");
-        $(".navbar-nav .fa-search").click(function () {
-            $(".navbar-nav li input").slideDown();
-            $('.navbar-nav li input').keydown(function (event) {
-                if (event.keyCode == '13') {
-                    var serchItem = $(this).val();
-                    if(serchItem.length==0)
-                    {
-                        alert("برای شروع جستجو کلمه مورد نظر را در فیلد وارد نمایید.");
-                    }else
-                    {
-                        window.location.replace("search.php?key=" + serchItem);
-                        $('#mainSection .col-sm-12').load("search.php", {param1: serchItem});
-                        $('#pagination').css("display", "none");
-                    }}
-            });
-        })
+//        cat all clik
         $("#catAll").click();
+
     });
 
 </script>
