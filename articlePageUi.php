@@ -94,7 +94,7 @@ include 'functions.php';
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <?php
-                                $grp2 = mysql_query("select title,id from article  ORDER BY view DESC LIMIT 4 ");
+                                $grp2 = mysql_query("select title,id from article  ORDER BY view DESC LIMIT 6 ");
                                 while ($grp = mysql_fetch_array($grp2)) {
                                     ?>
                                     <div class="media">
@@ -103,7 +103,7 @@ include 'functions.php';
                                         </div>
                                         <div class="media-body">
                                             <a href="detailes.php?id=<?php echo $grp['id'] ?>">
-                                                <h6 class="media-heading"><?php echo limitword($grp['title'], 7) ?></h6>
+                                                <h6 class="media-heading"><?php echo limitchar($grp['title'], 100) ?></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -114,21 +114,21 @@ include 'functions.php';
                     <div id="recentArticles" class="tab-pane fade in dirRtl">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                    <?php
-                                    $grp2 = mysql_query("select title,id from article  ORDER BY DaTE DESC LIMIT 4 ");
-                                    while ($grp = mysql_fetch_array($grp2)) {
-                                        ?>
-                                        <div class="media">
-                                            <div class="media-right">
-                                                <span class="fa fa-clock-o"></span>
-                                            </div>
-                                            <div class="media-body">
-                                                <a href="detailes.php?id=<?php echo $grp['id'] ?>">
-                                                    <h6 class="media-heading"><?php echo limitword($grp['title'], 7) ?></h6>
-                                                </a>
-                                            </div>
+                                <?php
+                                $grp2 = mysql_query("select title,id from article  ORDER BY DaTE DESC LIMIT 4 ");
+                                while ($grp = mysql_fetch_array($grp2)) {
+                                    ?>
+                                    <div class="media">
+                                        <div class="media-right">
+                                            <span class="fa fa-clock-o"></span>
                                         </div>
-                                    <?php } ?>
+                                        <div class="media-body">
+                                            <a href="detailes.php?id=<?php echo $grp['id'] ?>">
+                                                <h6 class="media-heading"><?php echo limitword($grp['title'], 7) ?></h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -245,8 +245,11 @@ include 'functions.php';
                                                             </a>
                                                         </div>
                                                         <div class="media-body">
-                                                            <h5 class="media-heading rowActiveTitle"><?php --$p;
-                                                                echo limitchar($articleDetail['title'], 100); ?></h5>
+                                                            <a target="_blank"
+                                                               href="detailes.php?id=<?php echo $articleDetail['id']; ?>">
+                                                                <h5 class="media-heading rowActiveTitle"><?php --$p;
+                                                                    echo limitchar($articleDetail['title'], 100); ?></h5>
+                                                            </a>
 
                                                             <div class=" dirRtl btn-group btn-group-justified "
                                                                  role="group" aria-label="...">
@@ -271,9 +274,9 @@ include 'functions.php';
                                         $j = 1;
                                     } ?>
                                 </div><!--pandel body end -->
-                                <div class="panel-footer "><a class="readMore"
-                                                              href="loadMore.php?id=<?php echo $grp['id'] ?>"
-                                                              target="_blank">مشاهده عناوین بیشتر...</a></div>
+                                <div class="panel-footer"><a class="readMore"
+                                                             href="loadMore.php?id=<?php echo $grp['id'] ?>"
+                                                             target="_blank">مشاهده عناوین بیشتر...</a></div>
                             </div><!-- panel end -->
                         <?php } ?>
                     </section>

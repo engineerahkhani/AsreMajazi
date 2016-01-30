@@ -127,8 +127,8 @@ if (isset($_GET['id'])) {
                             </div>
 
                         </div>
-                        <div class="col-xs-1">
-                            <div href="#" class="scrollup"><span class="fa fa-1x fa-chevron-up "></span></div></div>
+                        <div class="col-xs-1"></div>
+
                     </div>
                 </div>
             </div>
@@ -140,20 +140,7 @@ if (isset($_GET['id'])) {
     $(document).ready(function () {
         $(".col-xs-10").find('img').addClass('img-responsive img-thumbnail');
         $(".col-xs-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
-//        scrool to top
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('.scrollup').fadeIn();
-            } else {
-                $('.scrollup').fadeOut();
-            }
-        });
-        $('.scrollup').click(function () {
-            $("html, body").animate({
-                scrollTop: 0
-            }, 600);
-            return false;
-        });
+
     });
 </script>
 

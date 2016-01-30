@@ -23,7 +23,7 @@ try {
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
-    <link href="css/animsition.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/simplePagination.css" media="all" rel="stylesheet" type="text/css">
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
@@ -66,15 +66,15 @@ try {
                                 <hr>
 
                                 <div id="pagination">
-                                    <ul class="pagination">
-                                        <li><a href="#" id="prev">&raquo;</a></li>
-                                        <?php for ($i = 1; $i <= getCountRows($categoryId) / 3; $i++) {
-                                            echo "<li class=\"active\"><a id='$i' href='#'>";
-                                            echo "$i";
-                                            echo "</a></li>";
-                                        } ?>
-                                        <li><a href="#" id="next">&laquo;</a></li>
-                                    </ul>
+<!--                                    <ul class="pagination">-->
+<!--                                        <li><a href="#" id="prev">&raquo;</a></li>-->
+<!--                                        --><?php //for ($i = 1; $i <= getCountRows($categoryId) / 3; $i++) {
+//                                            echo "<li class=\"active\"><a id='$i' href='#'>";
+//                                            echo "$i";
+//                                            echo "</a></li>";
+//                                        } ?>
+<!--                                        <li><a href="#" id="next">&laquo;</a></li>-->
+<!--                                    </ul>-->
                                 </div>
                                 </ul>
                             </div>
@@ -192,23 +192,16 @@ try {
 <script src="js/animsition.min.js"></script>
 
 <script src="js/bootstrap.js"></script>
-<script src="js/jquery.twbsPagination.min.js"></script>
+<script type="text/javascript" src="js/jquery.simplePagination.js"></script>
 <script>
-    $(document).ready(function () {
-
+    $(document).ready(function() {
         var totalArticles = $("article div:first-child").attr('id').toString();
         var categoryId = $("article div:nth-child(2)").attr('id').toString();
         var totalPage = Math.ceil(totalArticles / 3);
-        currentPage = 0;
-
-        //pagination setup
-        $(".list-group div a")
-
-
 
         $(".list-group div a").click(function (e) {
-          e.preventDefault();
-           var categorySubId = $(this).attr("id");
+            e.preventDefault();
+            var categorySubId = $(this).attr("id");
             $("#articles .col-sm-12").load("load.php", {param1: '1', param2:categorySubId});
         });
 
@@ -217,19 +210,13 @@ try {
         });
 
         $("#pagination ul li a").click(function () {
+            alert();
             var page = $(this).attr("id");
-            if(page =="next"){
-                currentPage++;
-            }
-            if(page =="prev"){
-                currentPage--;
-            }
-            if(parseInt(page)>0){
-              currentPage =parseInt(page);
-            }
-//            currentPage = page;
-//            alert(currentPage);
-           $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});
+            $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});
+        });
+
+        $("#pagination").pagination({
+
         });
 
         //        scroll to top
@@ -244,8 +231,47 @@ try {
         $("#catAll").click();
 
     });
-
 </script>
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!---->
+<!--        var totalArticles = $("article div:first-child").attr('id').toString();-->
+<!--        var categoryId = $("article div:nth-child(2)").attr('id').toString();-->
+<!--        var totalPage = Math.ceil(totalArticles / 3);-->
+<!--        //pagination setup-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--        $(".list-group div a").click(function (e) {-->
+<!--          e.preventDefault();-->
+<!--           var categorySubId = $(this).attr("id");-->
+<!--            $("#articles .col-sm-12").load("load.php", {param1: '1', param2:categorySubId});-->
+<!--        });-->
+<!---->
+<!--        $("#catAll").click(function () {-->
+<!--            $('#articles .col-sm-12').load("load.php", {param1: '1', param2: categoryId});-->
+<!--        });-->
+<!---->
+<!--        $("#pagination ul li a").click(function () {-->
+<!--            var page = $(this).attr("id");-->
+<!--           $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});-->
+<!--        });-->
+<!---->
+<!--        //        scroll to top-->
+<!---->
+<!--        $('#pagination ul li a').click(function () {-->
+<!--            $("html, body").animate({-->
+<!--                scrollTop: 0-->
+<!--            }, 900);-->
+<!--            return false;-->
+<!--        });-->
+<!--//        cat all clik-->
+<!--        $("#catAll").click();-->
+<!---->
+<!--    });-->
+<!---->
+<!--</script>-->
 
 </body>
 </html>

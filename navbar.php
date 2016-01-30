@@ -19,7 +19,8 @@
             <ul class="nav navbar-nav">
                 <li><span></span><a href="articlePageUi.php">صفحه اصلی</a> </li>
                 <?php
-
+                $curentUrl = $_SERVER['REQUEST_URI'];
+                    echo $curentUrl;
                 $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
                 while ($grp = mysql_fetch_array($grp2)) {
                     $catId = $grp['id'];

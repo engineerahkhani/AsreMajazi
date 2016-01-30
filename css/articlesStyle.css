@@ -109,14 +109,25 @@ body{
 }
 .carousel-caption-title{
 
-    background: #ffcc00;
+    background: #c9302c;
     color: #fff;
-    padding: 5px;
-    font-size:16px;
+    padding: 6px;
+    font-size:14px;
+}
+#articleSection .nav > li > a {
+
+    padding: 4px 15px;
+
+}
+#articleSection #topArticles .media{
+    margin:3px -10px 0px 0px ;
+    padding:3px 2px ;
+    border-bottom: 2px solid #e1e1e1;
+
 }
 /***** main section css styles*/
 #articleSection{
-    margin-bottom: 7px;
+    margin-bottom: 0px;
 }
 #articleSection * {
     border-radius: 0;
@@ -127,7 +138,7 @@ body{
 .articleProperties{
     /*background-color: rgba(201, 48, 44, 0.8);*/
     background-color: rgba(0, 0, 0, 0.3);
-    margin-top: 6px;
+    margin-top: 3px;
 }
 
 #articlePropertiesRowITem {
@@ -145,11 +156,11 @@ body{
 
 }
 #rowActive{
-    padding: 5px;
+    padding: 1px 4px 2px 4px;
 }
 .rowActiveTitle{
 color:#080808;
-    padding-bottom: 7px;
+    padding-bottom: 5px;
 }
 .readMore{
  color:#c9302c;
@@ -206,6 +217,7 @@ color:#080808;
     height: 40px;
     position: fixed;
     bottom: 50px;
+    right:50px;
     display: none;
     background-color: #000000;
 }

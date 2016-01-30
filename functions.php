@@ -63,6 +63,7 @@ function test_input($data) {
 	$data = htmlspecialchars($data);
 	return $data;
 }
+
 function showdate(){
 	date_default_timezone_set('Asia/Tehran');
 	list($gyear, $gmonth, $gday ) = preg_split ('/-/', date("Y-m-d"));
