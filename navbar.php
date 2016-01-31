@@ -20,12 +20,19 @@
                 <li><span></span><a href="articlePageUi.php">صفحه اصلی</a> </li>
                 <?php
                 $curentUrl = $_SERVER['REQUEST_URI'];
-                    echo $curentUrl;
+
+
+
                 $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
                 while ($grp = mysql_fetch_array($grp2)) {
                     $catId = $grp['id'];
                     ?>
-                    <li><span></span><a href="#<?php echo $grp['id'] ?>" >
+                    <li><span></span><a href="<?php if($curentUrl == "/AsreMajazi/articlePageUi.php")
+                        {
+                    echo '#'.$grp['id'];
+                }else{
+                            echo "loadMore.php?id=". $grp['id'];
+                        } ?>" >
                             &nbsp; <?php echo $grp['name'] ?></a></li>
                 <?php } ?>
                 <li><a href="#" class="fa fa-search fa-1x">&nbsp;<input type="text" required class="input-sm" style="display: none;"> </a></li>

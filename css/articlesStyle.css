@@ -125,6 +125,12 @@ body{
     border-bottom: 2px solid #e1e1e1;
 
 }
+#articleSection #recentArticles .media{
+    margin:3px -10px 0px 0px ;
+    padding:3px 2px ;
+    border-bottom: 2px solid #e1e1e1;
+
+}
 /***** main section css styles*/
 #articleSection{
     margin-bottom: 0px;
@@ -207,6 +213,9 @@ color:#080808;
     clear: both;
     text-align: center;
 }
+.pagActive{
+    background-color: #264C71;
+}
 .justified{
     text-align: justify;
 }
@@ -217,7 +226,7 @@ color:#080808;
     height: 40px;
     position: fixed;
     bottom: 50px;
-    right:50px;
+    left:20px;
     display: none;
     background-color: #000000;
 }
@@ -249,6 +258,7 @@ color:#080808;
 
 #social-icons{
 padding-top: 50px;
+    margin-left: 50px;
 }
 #social-icons .fa{
     color: #ffcc00;
