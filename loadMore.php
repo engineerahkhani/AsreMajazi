@@ -193,85 +193,43 @@ try {
 
 <script src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/jquery.simplePagination.js"></script>
-<script>
-    $(document).ready(function() {
-        var totalArticles = $("article div:first-child").attr('id').toString();
-        var categoryId = $("article div:nth-child(2)").attr('id').toString();
-        var totalPage = Math.ceil(totalArticles / 3);
-
-        $(".list-group div a").click(function (e) {
-            e.preventDefault();
-            var categorySubId = $(this).attr("id");
-            $("#articles .col-sm-12").load("load.php", {param1: '1', param2:categorySubId});
-        });
-
-        $("#catAll").click(function () {
-            $('#articles .col-sm-12').load("load.php", {param1: '1', param2: categoryId});
-        });
-
-        $("#pagination ul li a").click(function () {
-            alert();
-            var page = $(this).attr("id");
-            $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});
-        });
-
-        $("#pagination").pagination({
-
-        });
-
-        //        scroll to top
-
-        $('#pagination ul li a').click(function () {
-            $("html, body").animate({
-                scrollTop: 0
-            }, 900);
-            return false;
-        });
-//        cat all clik
-        $("#catAll").click();
-
-    });
-</script>
 <!--<script>-->
-<!--    $(document).ready(function () {-->
+<!-- $(document).ready(function () {-->-->
 <!---->
-<!--        var totalArticles = $("article div:first-child").attr('id').toString();-->
-<!--        var categoryId = $("article div:nth-child(2)").attr('id').toString();-->
-<!--        var totalPage = Math.ceil(totalArticles / 3);-->
-<!--        //pagination setup-->
+<!--      var totalArticles = $("article div:first-child").attr('id').toString();-->-->
+<!--        var categoryId = $("article div:nth-child(2)").attr('id').toString();-->-->
+<!--       var totalPage = Math.ceil(totalArticles / 3);-->-->
+<!--        //pagination setup-->-->
 <!---->
-<!---->
-<!---->
-<!---->
-<!--        $(".list-group div a").click(function (e) {-->
-<!--          e.preventDefault();-->
-<!--           var categorySubId = $(this).attr("id");-->
-<!--            $("#articles .col-sm-12").load("load.php", {param1: '1', param2:categorySubId});-->
-<!--        });-->
-<!---->
-<!--        $("#catAll").click(function () {-->
-<!--            $('#articles .col-sm-12').load("load.php", {param1: '1', param2: categoryId});-->
-<!--        });-->
-<!---->
-<!--        $("#pagination ul li a").click(function () {-->
-<!--            var page = $(this).attr("id");-->
-<!--           $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});-->
-<!--        });-->
-<!---->
-<!--        //        scroll to top-->
-<!---->
-<!--        $('#pagination ul li a').click(function () {-->
-<!--            $("html, body").animate({-->
-<!--                scrollTop: 0-->
-<!--            }, 900);-->
-<!--            return false;-->
-<!--        });-->
-<!--//        cat all clik-->
-<!--        $("#catAll").click();-->
-<!---->
+<!--      $(".list-group div a").click(function (e) {-->-->
+<!--          e.preventDefault();-->-->
+<!--         var categorySubId = $(this).attr("id");-->-->
+<!--          $("#articles .col-sm-12").load("load.php", {param1: '1', param2:categorySubId});-->-->
 <!--    });-->
 <!---->
-<!--</script>-->
+<!--     $("#catAll").click(function () {-->-->
+<!--           $('#articles .col-sm-12').load("load.php", {param1: '1', param2: categoryId});-->-->
+<!--       });-->
+<!--<!---->-->
+<!--<!--        $("#pagination ul li a").click(function () {-->-->
+<!--<!--            var page = $(this).attr("id");-->-->
+<!--<!--           $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});-->-->
+<!--<!--        });-->-->
+<!--<!---->-->
+<!--<!--        //        scroll to top-->-->
+<!--<!---->-->
+<!--<!--        $('#pagination ul li a').click(function () {-->-->
+<!--<!--            $("html, body").animate({-->-->
+<!--<!--                scrollTop: 0-->-->
+<!--<!--            }, 900);-->-->
+<!--<!--            return false;-->-->
+<!--<!--        });-->-->
+<!--<!--//        cat all clik-->-->
+<!--<!--        $("#catAll").click();-->-->
+<!--<!---->-->
+<!--<!--    });-->-->
+<!--<!---->-->
+<!--<!--</script>-->-->
 
 </body>
 </html>
