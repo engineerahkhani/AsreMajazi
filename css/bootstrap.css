@@ -5499,13 +5499,14 @@ button.list-group-item-danger.active:focus {
   color: inherit;
 }
 .panel-footer {
-  width:300px;
+  width:200px;
   padding: 3px 15px;
-  background-color: rgba(0,0,0,0.9);
+  /*text-shadow: 0px 0px 1px #f8f8f8;*/
+  background-color: rgba(0,0,0,0.7);
   border-top: 1px solid transparent;
-
-
-  text-align: center;
+  border-top-left-radius: 6px;
+  color:#d43f3a;
+  text-align: right;
 }
 .panel > .list-group,
 .panel > .panel-collapse > .list-group {

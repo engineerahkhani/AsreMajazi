@@ -115,7 +115,7 @@ include 'functions.php';
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <?php
-                                $grp2 = mysql_query("select title,id from article  ORDER BY DaTE DESC LIMIT 4 ");
+                                $grp2 = mysql_query("select title,id from article  ORDER BY DaTE DESC LIMIT 6 ");
                                 while ($grp = mysql_fetch_array($grp2)) {
                                     ?>
                                     <div class="media">
