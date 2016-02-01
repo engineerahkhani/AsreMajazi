@@ -27,6 +27,7 @@ try {
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
+<div class="loader"></div>
 <div class="container">
     <!--navigation goes here-->
 

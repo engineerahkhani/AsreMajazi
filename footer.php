@@ -18,6 +18,17 @@
     </div>
     <script>
         $(document).ready(function () {
+            $(".loader").slideUp(1000);
+            var $height = $(window).height();
+
+
+
+            $('footer').css('opacity','0');
+
+
+
+
+
 //        scrool to top
             $(window).scroll(function () {
                 if ($(this).scrollTop() > 100) {
@@ -30,6 +41,16 @@
 
                 $("html, body").animate({ scrollTop: 0 }, "slow");
                 return false;
+            });
+            $(window).scroll(function (event) {
+                var scrollTop = $(window).scrollTop();
+
+                if(scrollTop >= 1000)
+                {
+                    $("footer").addClass("animated zoomIn");
+
+                }
+
             });
         });
     </script>

@@ -20,7 +20,7 @@ include 'functions.php';
     <script src="js/bootstrap.js"></script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-
+<div class="loader">Loading...</div>
 <!--navigation goes here-->
 <?php require 'navbar.php'; ?>
 <!--end navigation-->
@@ -155,9 +155,9 @@ include 'functions.php';
                         while ($grp = mysql_fetch_array($grp2)) {
                             $catId = $grp['id'];
                             ?>
-                            <div class="panel panel-default">
-                                <div class="panel-heading"
-                                     id="<?php echo $grp['id'] ?>"><h5><?php echo $grp['name'] ?> </h5></div>
+                            <div class="panel panel-default" id="<?php echo $grp['id'] ?>">
+                                <div class="panel-heading">
+                                <h5><?php echo $grp['name'] ?> </h5></div>
                                 <div class="panel-body">
                                     <?php
                                     $j = 0;
@@ -291,9 +291,34 @@ include 'functions.php';
 <!--footer section-->
 <?php require 'footer.php'; ?>
 <script>
-    $(function () {
+    $(document).ready(function () {
+        alert($('#categorySection .panel:nth-child(1)').position.top);
+
+        $("#categorySection .panel:gt(1)").css("opacity",'0');
+
         $('.carousel').carousel({
             interval: 4000
+        });
+        $(window).scroll(function (event) {
+            var scrollTop = $(window).scrollTop();
+
+
+           if(scrollTop >= $('#categorySection .panel:nth-child(1)').position.top())
+           {
+               $("#categorySection .panel:nth-child(2)").addClass("animated slideInRight");
+
+           }
+            if(scrollTop >= 800)
+           {
+               $("#categorySection .panel:nth-child(3)").addClass("animated slideInRight");
+
+           }
+            if(scrollTop >= 1000)
+           {
+               $("#categorySection .panel:nth-child(4)").addClass("animated slideInRight");
+
+           }
+
         });
     });
 </script>
