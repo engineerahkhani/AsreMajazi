@@ -155,9 +155,8 @@ include 'functions.php';
                         while ($grp = mysql_fetch_array($grp2)) {
                             $catId = $grp['id'];
                             ?>
-                            <div class="panel panel-default">
-                                <div class="panel-heading"
-                                     id="<?php echo $grp['id'] ?>"><h5><?php echo $grp['name'] ?> </h5></div>
+                            <div class="panel panel-default" id="<?php echo $grp['id'] ?>" >
+                                <div class="panel-heading"><h5><?php echo $grp['name'] ?> </h5></div>
                                 <div class="panel-body">
                                     <?php
                                     $j = 0;
@@ -291,10 +290,26 @@ include 'functions.php';
 <!--footer section-->
 <?php require 'footer.php'; ?>
 <script>
-    $(function () {
+    $(document).ready(function () {
         $('.carousel').carousel({
             interval: 4000
         });
+        $('footer').css("opacity",0);
+        $("#169").css("opacity",0);
+
+        $(window).scroll(function(event){
+           var y = $(this).scrollTop();
+            if( y >= 700 ){
+                $('#169').addClass('animate');
+                $('#169 ').css('transform','translate(14em,0)');
+            }
+            var y = $(this).scrollTop();
+            if( y >= 2000 ){
+                $('footer').addClass('animate grow');
+
+            }
+        });
+
     });
 </script>
 </body>
