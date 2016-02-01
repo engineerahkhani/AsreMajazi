@@ -1,3 +1,4 @@
+<link type="text/css" rel="stylesheet" href="css/style2.css" media="all">
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".menuli").hide();

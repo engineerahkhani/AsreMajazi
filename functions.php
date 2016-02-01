@@ -13,8 +13,18 @@ function progetfrom($table,$what,$where,$result){
 function getnumrows($table,$where,$result){
 	$a="SELECT `id` FROM `".$table."` WHERE `".$where."`='".$result."'";
 	$result2=mysql_num_rows(mysql_query($a));
-	return $result2;
-} 
+	return $result2['0'];
+}
+function getArticlesCount(){
+	$a="select COUNT(*) from article";
+	$result2=mysql_fetch_array(mysql_query($a));
+	return $result2['0'];
+}
+function getCountRows($id){
+	$a="select COUNT(*) from article where grp='$id'";
+	$result2=mysql_fetch_array(mysql_query($a));
+	return $result2['0'];
+}
 function getnumrows2($table){
 	$a="SELECT `id` FROM `".$table."`";
 	$result2=mysql_num_rows(mysql_query($a));
@@ -29,6 +39,31 @@ function limitword($string, $limit){
 	if ($num > $limit)$s=" ... ";
 	return $output.$s;
 }
+
+function limitchar($string,$limit){
+	$s='';
+	$output='';
+	$string=strip_tags($string);
+	$words = explode(" ",$string);
+	$num=count($words);
+	$len=0;
+	foreach ($words as $word){
+		$len+=strlen($word);
+		++$len;
+		if ($len<$limit)$output .= $word." ";
+	}
+
+	if (strlen($string) > $limit)$s=" ... ";
+	return $output.$s;
+}
+
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
 function showdate(){
 	date_default_timezone_set('Asia/Tehran');
 	list($gyear, $gmonth, $gday ) = preg_split ('/-/', date("Y-m-d"));
