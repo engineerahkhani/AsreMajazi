@@ -310,7 +310,7 @@ if it's not present, don't show loader */
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background: url('../img/bx_loader.gif') 50% 50% no-repeat rgb(249,249,249);
+    background: url('../img/bx_loader.gif') 50% 50% no-repeat rgba(0,0,0,0.9);
 }
 /*animation*/
 .animated {
@@ -366,4 +366,33 @@ if it's not present, don't show loader */
     animation-name: zoomIn;
     animation-duration: 2s;
 
+}
+@keyframes slideInUp {
+    from {
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+.slideInUp {
+    animation-name: slideInUp;
+}
+@keyframes slideOutUp {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        visibility: hidden;
+        transform: translate3d(0, -100%, 0);
+    }
+}
+
+.slideOutUp {
+    animation-name: slideOutUp;
 }

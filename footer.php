@@ -18,17 +18,9 @@
     </div>
     <script>
         $(document).ready(function () {
-            $(".loader").slideUp(1000);
+            $(".loader").addClass("animated slideOutUp")
             var $height = $(window).height();
-
-
-
             $('footer').css('opacity','0');
-
-
-
-
-
 //        scrool to top
             $(window).scroll(function () {
                 if ($(this).scrollTop() > 100) {
@@ -45,12 +37,10 @@
             $(window).scroll(function (event) {
                 var scrollTop = $(window).scrollTop();
 
-                if(scrollTop >= 1000)
+                if(scrollTop >= 300)
                 {
                     $("footer").addClass("animated zoomIn");
-
                 }
-
             });
         });
     </script>

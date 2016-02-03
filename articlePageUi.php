@@ -292,33 +292,38 @@ include 'functions.php';
 <?php require 'footer.php'; ?>
 <script>
     $(document).ready(function () {
-        alert($('#categorySection .panel:nth-child(1)').position.top);
 
-        $("#categorySection .panel:gt(1)").css("opacity",'0');
+        $("#categorySection .panel:gt(0)").css("opacity",'0');
+//        $("#categorySection .panel").each(function(){
+//           $(this).css("opacity",'0');
+//        });
+         var winHiehgt = $(window).height();
 
+        var count = $("#categorySection").children().length;
+        var i=2;
         $('.carousel').carousel({
             interval: 4000
         });
         $(window).scroll(function (event) {
             var scrollTop = $(window).scrollTop();
-
-
-           if(scrollTop >= $('#categorySection .panel:nth-child(1)').position.top())
+//            if(scrollTop >= $("#categorySection .panel:nth-child(n)").position().top){
+//            while (i<=count){
+//                    alert(i);
+//                i++;
+//                }
+//            }
+            if(scrollTop >= winHiehgt/10)
            {
-               $("#categorySection .panel:nth-child(2)").addClass("animated slideInRight");
-
+               $("#categorySection .panel:nth-child(2)").addClass("animated slideInUp");
            }
-            if(scrollTop >= 800)
+            if(scrollTop >= $('#categorySection .panel:nth-child(3)').position().top)
            {
-               $("#categorySection .panel:nth-child(3)").addClass("animated slideInRight");
-
+               $("#categorySection .panel:nth-child(3)").addClass("animated slideInUp");
            }
-            if(scrollTop >= 1000)
+            if(scrollTop >= $('#categorySection .panel:nth-child(4)').position().top)
            {
                $("#categorySection .panel:nth-child(4)").addClass("animated slideInRight");
-
            }
-
         });
     });
 </script>
