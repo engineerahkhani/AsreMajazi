@@ -1,5 +1,12 @@
+<meta charset="UTF-8">
+<link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
 <?php include 'config.php';
 include 'functions.php';
+if(isset($_GET['id']))
+{
+if (test_input($_GET['id']) != "") {
+$flag = preg_match("#(=|'|\")#", test_input($_GET['id']));
+if (!$flag) {
 $categoryId = $_GET['id'];
 try {
     $article = mysql_fetch_array(mysql_query("select * from `grp` where `id`='" . $categoryId . "'"));
@@ -11,37 +18,34 @@ try {
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <title>عصرمجازی | مقالات</title>
+
+    <title><?php echo "عصرمجازی|مقالات|" . $article['name'] ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="<?php
+    echo "عکاسی هلی شات تکنولوژی پانوراما ";
     echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
     ?>"/>
     <meta name="keywords" content="<?php
+    echo "عکاسی هلی شات تکنولوژی پانوراما ";
     echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
     ?>"/>
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
-    <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
+
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
-    <link href="css/animsition.min.css" media="all" rel="stylesheet" type="text/css">
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
-<div class="loader"></div>
+<div class="loader">Loading...</div>
 <div class="container">
     <!--navigation goes here-->
-
     <?php require 'navbar.php' ?>
     <!--end navigation-->
     <!--head end-->
-
     <div class="container">
         <!--article section-->
         <div id="articleSection">
             <div class="row ">
-
                 <section id="mainSection">
-
                     <div class="container">
                         <div class="row">
                             <div class="row marginTop ">
@@ -79,7 +83,7 @@ try {
                                 </div>
                                 </ul>
                             </div>
-                            <div class="col-sm-4 " >
+                            <div class="col-sm-4 ">
                                 <section id="categorySection">
                                     <h4 class="rowActiveTitle">دسته بندی ها</h4>
                                     <hr>
@@ -188,10 +192,60 @@ try {
     </div>
 </article>
 <!--footer section-->
-<?php require 'footer.php' ?>
+<?php
+require 'footer.php';
+} else {
+    echo "
+    <div class=\"container marginTop\">
+    <div class=\"row\">
+        <div class=\"col-xs-10\">
+        <div class=\"alert alert-danger\" role=\"alert\">
+            <span class=\"fa fa-2x fa-frown-o text-warning\" aria-hidden=\"true\"></span>
+            <span class=\"sr-only\">Error:</span>
+            متاسفانه نتیجه ای یافت نشد.
+            <a href=\"articlePageUi.php\">بازگشت</a>
+        </div>
+    </div>
+        </div>
+        </div>
+";
+}
+} else {
+    echo "
+    <div class=\"container marginTop\">
+    <div class=\"row\">
+        <div class=\"col-xs-10\">
+        <div class=\"alert alert-danger\" role=\"alert\">
+            <span class=\"fa fa-2x fa-frown-o text-warning\" aria-hidden=\"true\"></span>
+            <span class=\"sr-only\">Error:</span>
+            متاسفانه نتیجه ای یافت نشد.
+            <a href=\"articlePageUi.php\">بازگشت</a>
+        </div>
+    </div>
+        </div>
+        </div>
+";
+}
+}
+else{
+     echo "
+    <div class=\"container marginTop\">
+    <div class=\"row\">
+        <div class=\"col-xs-10\">
+        <div class=\"alert alert-danger\" role=\"alert\">
+            <span class=\"fa fa-2x fa-frown-o text-warning\" aria-hidden=\"true\"></span>
+            <span class=\"sr-only\">Error:</span>
+            متاسفانه نتیجه ای یافت نشد.
+            <a href=\"articlePageUi.php\">بازگشت</a>
+        </div>
+    </div>
+        </div>
+        </div>
+";
 
-<script src="js/animsition.min.js"></script>
+}
 
+?>
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.twbsPagination.min.js"></script>
 <script>
@@ -204,13 +258,10 @@ try {
 
         //pagination setup
         $("#1").addClass("pagActive");
-
-
-
         $(".list-group div a").click(function (e) {
-          e.preventDefault();
-           var categorySubId = $(this).attr("id");
-            $("#articles .col-sm-12").load("load.php", {param1: '1', param2:categorySubId});
+            e.preventDefault();
+            var categorySubId = $(this).attr("id");
+            $("#articles .col-sm-12").load("load.php", {param1: '1', param2: categorySubId});
         });
 
         $("#catAll").click(function () {
@@ -219,18 +270,18 @@ try {
 
         $("#pagination ul li a").click(function () {
             var page = $(this).attr("id");
-            if(page =="next"){
+            if (page == "next") {
                 currentPage++;
             }
-            if(page =="prev"){
+            if (page == "prev") {
                 currentPage--;
             }
-            if(parseInt(page)>0){
-              currentPage =parseInt(page);
+            if (parseInt(page) > 0) {
+                currentPage = parseInt(page);
             }
 //            currentPage = page;
 //            alert(currentPage);
-           $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});
+            $('#articles .col-sm-12').load("load.php", {param1: currentPage, param2: categoryId});
         });
 
         //        scroll to top
@@ -243,10 +294,7 @@ try {
         });
 //        cat all clik
         $("#catAll").click();
-
     });
-
 </script>
-
 </body>
 </html>

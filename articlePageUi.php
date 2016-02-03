@@ -5,12 +5,14 @@ include 'functions.php';
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
-    <title>عصرمجازی | مقالات</title>
+    <title>صفحه اصلی مقالات | عصر مجازی</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="<?php
+    echo "عکاسی هلی شات تکنولوژی پانوراما ";
     echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
     ?>"/>
     <meta name="keywords" content="<?php
+    echo "عکاسی هلی شات تکنولوژی پانوراما ";
     echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
     ?>"/>
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
@@ -196,7 +198,7 @@ include 'functions.php';
                                                             <div class=" dirRtl btn-group btn-group-justified "
                                                                  role="group" aria-label="...">
                                                                 <span class="label articleProperties "><span><span
-                                                                            class="fa fa fa-user-md"></span> <?php echo "احمد حسین خانی"; ?></span>&nbsp;</span>
+                                                                            class="fa fa fa-user-md"></span> <?php echo $articleDetail['user']; ?></span>&nbsp;</span>
                                                                 <span class="label articleProperties "><span><span
                                                                             class="fa fa fa-clock-o"></span> <?php echo dateconvertfromdb($articleDetail['date']); ?></span>&nbsp;</span>
                                                                 <span class="label articleProperties "><span><span
@@ -254,7 +256,7 @@ include 'functions.php';
                                                             <div class=" dirRtl btn-group btn-group-justified "
                                                                  role="group" aria-label="...">
                                                                 <span class="label  articleProperties "><span><span
-                                                                            class="fa fa fa-user-md"></span> <?php echo "احمد حسین خانی"; ?></span>&nbsp;</span>
+                                                                            class="fa fa fa-user-md"></span> <?php echo $articleDetail['user']; ?></span>&nbsp;</span>
                                                                 <span class="label articleProperties "><span><span
                                                                             class="fa fa fa-clock-o"></span> <?php echo dateconvertfromdb($articleDetail['date']); ?></span>&nbsp;</span>
                                                                 <span class="label articleProperties "><span><span
@@ -286,33 +288,19 @@ include 'functions.php';
         </div>
     </div>
 </section>
-
 <!--end mainSection-->
 <!--footer section-->
 <?php require 'footer.php'; ?>
 <script>
     $(document).ready(function () {
-
         $("#categorySection .panel:gt(0)").css("opacity",'0');
-//        $("#categorySection .panel").each(function(){
-//           $(this).css("opacity",'0');
-//        });
          var winHiehgt = $(window).height();
-
-        var count = $("#categorySection").children().length;
-        var i=2;
         $('.carousel').carousel({
             interval: 4000
         });
         $(window).scroll(function (event) {
             var scrollTop = $(window).scrollTop();
-//            if(scrollTop >= $("#categorySection .panel:nth-child(n)").position().top){
-//            while (i<=count){
-//                    alert(i);
-//                i++;
-//                }
-//            }
-            if(scrollTop >= winHiehgt/10)
+            if(scrollTop >= $('#categorySection .panel:nth-child(2)').position().top)
            {
                $("#categorySection .panel:nth-child(2)").addClass("animated slideInUp");
            }
@@ -322,7 +310,7 @@ include 'functions.php';
            }
             if(scrollTop >= $('#categorySection .panel:nth-child(4)').position().top)
            {
-               $("#categorySection .panel:nth-child(4)").addClass("animated slideInRight");
+               $("#categorySection .panel:nth-child(4)").addClass("animated slideInUp");
            }
         });
     });

@@ -1,11 +1,3 @@
-<!--            $flag = preg_match("#(=|'|\")#", test_input($_GET['key']));
-            if (!$flag) {
-
-            }
-            else
-                echo "no";
-                -->
-<meta charset="utf-8">
 <?php
 include 'config.php';
 include 'functions.php';
@@ -19,20 +11,34 @@ include 'functions.php';
 <!DOCTYPE html>
 <html lang="fa">
 <head>
+    <meta charset="UTF-8">
+    <title><?php echo "عصرمجازی|جستجوی مقالات" ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta charset="utf-8" lang="fa">
+    <meta name="description" content="<?php
+    echo "عکاسی هلی شات تکنولوژی پانوراما ";
+    echo $article['title'];
+    echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
+    ?>"/>
+    <meta name="keywords" content="<?php
+    echo "عکاسی هلی شات تکنولوژی پانوراما ";
+    echo $article['title'];
+    echo "  virtual tour  Augmented Reality AR تور مجازی واقعیت افزورده بانک تور تورمجازی";
+    ?>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
+<div class="loader">Loading...</div>
 <?php include 'navbar.php'; ?>
 <div class="container-fluid marginTop">
     <div class="row">
         <div class="col-xs-12 col-sm-1  col-lg-2"></div>
         <div class="col-xs-12 col-sm-10  col-lg-8">
             <?php
+if(isset($_GET['key'])){
             if (test_input($_GET['key']) != "")
             {
             $flag = preg_match("#(=|'|\")#", test_input($_GET['key']));
@@ -119,6 +125,22 @@ include 'functions.php';
 
             {
             ?>
+                <?php
+            }
+}else echo "
+    <div class=\"container marginTop\">
+    <div class=\"row\">
+        <div class=\"col-xs-10\">
+        <div class=\"alert alert-danger\" role=\"alert\">
+            <span class=\"fa fa-2x fa-frown-o text-warning\" aria-hidden=\"true\"></span>
+            <span class=\"sr-only\">Error:</span>
+            متاسفانه نتیجه ای یافت نشد.
+            <a href=\"articlePageUi.php\">بازگشت</a>
+        </div>
+    </div>
+        </div>
+        </div>
+"; ?>
         </div>
         <div class="col-xs-12 col-sm-1  col-lg-2"></div>
     </div>
@@ -126,13 +148,8 @@ include 'functions.php';
 <?php include 'footer.php'; ?>
 
 <script>
-    $(document).ready(function () {
-
-    });
 
 </script>
 </body>
 </html>
-<?php
-}
-//validate se
+

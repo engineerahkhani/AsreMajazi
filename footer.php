@@ -35,9 +35,12 @@
                 return false;
             });
             $(window).scroll(function (event) {
-                var scrollTop = $(window).scrollTop();
+                var scrollTop = $(document).scrollTop();
 
-                if(scrollTop >= 300)
+                var docHeight = $( window ).height();
+
+
+                if(scrollTop >= (docHeight - 300) )
                 {
                     $("footer").addClass("animated zoomIn");
                 }
