@@ -1,5 +1,7 @@
 <meta charset="UTF-8">
 <link href="css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
 <?php include 'config.php';
 include 'functions.php';
 if(isset($_GET['id']))
@@ -32,7 +34,8 @@ try {
     <link href="css/articlesStyle.css" rel="stylesheet" media="all" type="text/css">
 
     <link href="css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
-    <script src="js/jquery.min.js"></script>
+
+
 </head>
 <body>
 <div class="loader">Loading...</div>
@@ -246,10 +249,10 @@ else{
 }
 
 ?>
-<script src="js/bootstrap.js"></script>
-<script src="js/jquery.twbsPagination.min.js"></script>
 <script>
     $(document).ready(function () {
+        $('footer').css('opacity','1');
+
 
         var totalArticles = $("article div:first-child").attr('id').toString();
         var categoryId = $("article div:nth-child(2)").attr('id').toString();

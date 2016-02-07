@@ -59,8 +59,8 @@ if($num !=0){
         <div class="container ">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-10">
+                    <div class="col-sm-1 hidden-xs"></div>
+                    <div class="col-xs-12 col-sm-10">
                         <div class="breadcrumb">
                             <span class="fa fa-2x fa-folder-open-o"></span>
                             <span><a href="articlePageUi.php">صفحه اصلی</a> <span class="divider">/</span></span>
@@ -84,7 +84,7 @@ if($num !=0){
                             } else {
                                 $src = 'img/blankpic.jpg';
                             }
-                            echo " <h3 class='modal-title rowActiveTitle'>" . $grp['title'] . "</h3>";
+                            echo " <h5 class='rowActiveTitle'>" . $grp['title'] . "</h5>";
                             echo "<div id=\"articleProperties\"> <span><span class=\"fa fa-user\">&nbsp;" . $grp['user'] . "</span></span>";
                             echo " <span><span class=\"fa fa-clock-o\">&nbsp;" . dateconvertfromdb($grp['date']) . "</span></span>";
                             echo " <span><span class=\"fa fa-eye\">&nbsp;" . $grp['view'] . "</span></span></div>";
@@ -121,7 +121,7 @@ if($num !=0){
 
                                                 <div class="caption">
                                                     <a href="detailes.php?id=<?php echo $grp['id']; ?>">
-                                                        <h5><?php echo limitchar($grp['title'], 50); ?></h5></a>
+                                                        <h5><?php echo limitword($grp['title'], 120); ?></h5></a>
 
                                                     <div class=" dirRtl btn-group btn-group-justified "
                                                          role="group">
@@ -145,8 +145,7 @@ if($num !=0){
                         </div>
 
                     </div>
-                    <div class="col-xs-1"></div>
-
+                    <div class="col-sm-1 hidden-xs"></div>
                 </div>
             </div>
         </div>
@@ -218,8 +217,10 @@ if($num !=0){
 <?php require 'footer.php' ?>
 <script>
     $(document).ready(function () {
-        $(".col-xs-10").find('img').addClass('img-responsive img-thumbnail');
-        $(".col-xs-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
+        $(".col-sm-10").find('img').addClass('img-responsive img-thumbnail');
+        $(".col-sm-10").find('img').css({'margin-right': 'auto', "margin-left": "auto"});
+        $(".col-sm-10").addClass("text-justify");
+        $(".col-sm-10").find('p').addClass("text-justify");
 
     });
 </script>

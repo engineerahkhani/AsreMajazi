@@ -1,7 +1,7 @@
 <footer id="footer" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <div href="#" class="scrollup"><span class="fa fa-1x fa-chevron-up "></span></div>
     <div class="container">
-        <div class="row">
+        <div class="row" id="footer-row">
             <div id="social-icons" class="btn-group btn-group-justified" role="group">
                 <span><span class="fa fa-2x fa-envelope"></span></span>
                 <span><span class="fa fa-2x fa-film"></span></span>
@@ -18,7 +18,7 @@
     </div>
     <script>
         $(document).ready(function () {
-            $(".loader").addClass("animated slideOutUp")
+            $(".loader").addClass("animated slideOutUp");
             var $height = $(window).height();
             $('footer').css('opacity','0');
 //        scrool to top

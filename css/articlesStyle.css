@@ -288,7 +288,9 @@ padding-top: 50px;
 
 
 
-
+#footer-row{
+    margin-left: 100px;
+}
 footer .social-icons ul li {
     display: inline;
     margin-left: 10px;
@@ -395,4 +397,62 @@ if it's not present, don't show loader */
 
 .slideOutUp {
     animation-name: slideOutUp;
+}
+/*media query for mobile*/
+@media only screen and (max-device-width: 480px) {
+    body {
+        font-size: 12px;
+        line-height: 1;
+    }
+    .carousel-caption-title{
+        font-size: 11px;
+    }
+    #articlePropertiesRowITem {
+
+        font-size: 10px;
+
+    }
+    .rowActiveTitle{
+      text-align: right;
+        font-size: 12px;
+
+
+
+    }
+    h1,
+    .h1 {
+        font-size: 30px;
+    }
+    h2,
+    .h2 {
+        font-size: 25px;
+    }
+    h3,
+    .h3 {
+        font-size: 20px;
+    }
+    h4,
+    .h4 {
+        font-size: 15px;
+    }
+    h5,
+    .h5 {
+        font-size: 12px;
+    }
+    h6,
+    .h6 {
+        font-size: 10px;
+    }
+    p {
+        margin: 0 0 5px;
+    }
+    .lead {
+        margin-bottom: 10px;
+        font-size: 12px;
+        font-weight: 200;
+        line-height: 1;
+    }
+    .breadcrumb,.breadcrumb a{
+        font-size:10px;
+    }
 }

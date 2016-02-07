@@ -46,7 +46,7 @@ include 'functions.php';
                     </ol>
                     <div class="carousel-inner">
                         <?php
-                        $grp2 = mysql_query("select * from article ORDER BY date and time  LIMIT 7 ");
+                        $grp2 = mysql_query("select * from article ORDER BY date DESC , time DESC  LIMIT 7 ");
                         $i = 1;
                         while ($grp = mysql_fetch_array($grp2)) {
                             $id = $grp['id'];
@@ -105,7 +105,7 @@ include 'functions.php';
                                         </div>
                                         <div class="media-body">
                                             <a href="detailes.php?id=<?php echo $grp['id'] ?>">
-                                                <h6 class="media-heading"><?php echo limitchar($grp['title'], 100) ?></h6>
+                                                <h6 class="media-heading"><?php echo limitchar($grp['title'], 110) ?></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -117,7 +117,7 @@ include 'functions.php';
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <?php
-                                $grp2 = mysql_query("select title,id from article  ORDER BY DaTE DESC LIMIT 6 ");
+                                $grp2 = mysql_query("select title,id from article  ORDER BY DATE DESC LIMIT 6 ");
                                 while ($grp = mysql_fetch_array($grp2)) {
                                     ?>
                                     <div class="media">
@@ -126,7 +126,7 @@ include 'functions.php';
                                         </div>
                                         <div class="media-body">
                                             <a href="detailes.php?id=<?php echo $grp['id'] ?>">
-                                                <h6 class="media-heading"><?php echo limitword($grp['title'], 7) ?></h6>
+                                                <h6 class="media-heading"><?php echo limitchar($grp['title'], 110) ?></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -154,12 +154,13 @@ include 'functions.php';
                         <?php
                         $p = 6;
                         $grp2 = mysql_query("select * from `grp` where `mgrp`=0 ");
+                        $panelNum = mysql_numrows($grp2);
                         while ($grp = mysql_fetch_array($grp2)) {
                             $catId = $grp['id'];
                             ?>
                             <div class="panel panel-default" id="<?php echo $grp['id'] ?>">
                                 <div class="panel-heading">
-                                <h5><?php echo $grp['name'] ?> </h5></div>
+                                    <h5><?php echo $grp['name'] ?> </h5></div>
                                 <div class="panel-body">
                                     <?php
                                     $j = 0;
@@ -195,7 +196,7 @@ include 'functions.php';
                                                                 <h4 class="rowactivetitle rowActiveTitle"><?php echo limitchar($articleDetail['title'], 100); ?></h4>
                                                             </a>
 
-                                                            <div class=" dirRtl btn-group btn-group-justified "
+                                                            <div class=" hidden-xs btn-group btn-group-justified "
                                                                  role="group" aria-label="...">
                                                                 <span class="label articleProperties "><span><span
                                                                             class="fa fa fa-user-md"></span> <?php echo $articleDetail['user']; ?></span>&nbsp;</span>
@@ -250,10 +251,10 @@ include 'functions.php';
                                                             <a target="_blank"
                                                                href="detailes.php?id=<?php echo $articleDetail['id']; ?>">
                                                                 <h5 class="media-heading rowActiveTitle"><?php --$p;
-                                                                    echo limitchar($articleDetail['title'], 100); ?></h5>
+                                                                    echo limitchar($articleDetail['title'], 70); ?></h5>
                                                             </a>
 
-                                                            <div class=" dirRtl btn-group btn-group-justified "
+                                                            <div class=" hidden-xs btn-group btn-group-justified "
                                                                  role="group" aria-label="...">
                                                                 <span class="label  articleProperties "><span><span
                                                                             class="fa fa fa-user-md"></span> <?php echo $articleDetail['user']; ?></span>&nbsp;</span>
@@ -293,26 +294,25 @@ include 'functions.php';
 <?php require 'footer.php'; ?>
 <script>
     $(document).ready(function () {
-        $("#categorySection .panel:gt(0)").css("opacity",'0');
-         var winHiehgt = $(window).height();
+        $("#categorySection .panel:gt(0)").css("opacity", '0');
+        var winHiehgt = $(window).height();
+
         $('.carousel').carousel({
             interval: 4000
         });
         $(window).scroll(function (event) {
             var scrollTop = $(window).scrollTop();
-            if(scrollTop >= $('#categorySection .panel:nth-child(2)').position().top)
-           {
-               $("#categorySection .panel:nth-child(2)").addClass("animated slideInUp");
-           }
-            if(scrollTop >= $('#categorySection .panel:nth-child(3)').position().top)
-           {
-               $("#categorySection .panel:nth-child(3)").addClass("animated slideInUp");
-           }
-            if(scrollTop >= $('#categorySection .panel:nth-child(4)').position().top)
-           {
-               $("#categorySection .panel:nth-child(4)").addClass("animated slideInUp");
-           }
+            <?php
+             for($i=1;$i<=$panelNum;++$i){
+            echo "if(scrollTop >= $('#categorySection .panel:nth-child($i)').position().top)
+            {
+                $(\"#categorySection .panel:nth-child($i)\").addClass(\"animated slideInUp\");
+            }";
+
+             }
+            ?>
         });
+
     });
 </script>
 </body>
